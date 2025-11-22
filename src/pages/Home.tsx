@@ -29,10 +29,10 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: softGreen[50] }}>
       {/* Отступ сверху */}
-      <div className="h-5"></div>
+      <div className="h-10 md:h-16"></div>
 
       {/* Hero - Карусель 3:4 */}
-      <section className="pb-8 md:pb-12 mb-12 md:mb-16 bg-white">
+      <section className="pb-12 md:pb-20 mb-16 md:mb-24 bg-white">
         <div className="w-full flex justify-center">
           <div className="relative w-full px-4 md:px-6" style={{ maxWidth: "calc(100vw - 32px)" }}>
             <div className="overflow-hidden" ref={emblaRef}>
@@ -83,10 +83,10 @@ export default function Home() {
       </section>
 
       {/* Блок 2: Тезис и Как это работает */}
-      <section className="py-8 md:py-16 px-4 md:px-6">
+      <section className="py-12 md:py-24 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Тезис */}
-          <div className="mb-12 md:mb-16">
+          <div className="mb-16 md:mb-24">
             <p className="text-gray-800 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold leading-relaxed text-center">
               Пластырь MediPatch создан для тех, кто ищет быстрое и эффективное решение для облегчения боли и ускорения восстановления организма
             </p>
@@ -94,7 +94,7 @@ export default function Home() {
 
           {/* Как это работает */}
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-8 md:mb-12 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 md:mb-16 text-center">
               Как это работает?
             </h2>
             
