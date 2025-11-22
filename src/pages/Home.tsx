@@ -98,12 +98,12 @@ export default function Home() {
               Как это работает?
             </h2>
             
-            <div className="flex flex-col lg:flex-row gap-6 md:gap-8 items-center lg:items-start">
-              {/* Картинка слева (сверху на мобильных) - уменьшена на 40% */}
-              <div className="w-full lg:w-auto lg:flex-shrink-0">
+            <div className="flex flex-col lg:flex-row gap-6 md:gap-8 items-start">
+              {/* Картинка слева (сверху на мобильных) - 30% ширины на десктопе */}
+              <div className="w-full lg:w-[30%] flex-shrink-0">
                 <div
-                  className="w-full rounded-xl overflow-hidden mx-auto"
-                  style={{ aspectRatio: "3/4", backgroundColor: softGreen[300], maxWidth: "280px" }}
+                  className="w-full rounded-xl overflow-hidden"
+                  style={{ aspectRatio: "3/4", backgroundColor: softGreen[300] }}
                 >
                   <div className="w-full h-full flex items-center justify-center text-white text-xl md:text-2xl font-semibold">
                     Фото продукта
