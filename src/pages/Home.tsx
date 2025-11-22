@@ -11,6 +11,247 @@ const softGreen = {
   600: "#4d8e64",
 };
 
+const testimonials = [
+  {
+    id: 1,
+    initials: "МА",
+    name: "Мария Александрова",
+    city: "Москва",
+    text: "Пользуюсь MediPatch Классик уже полгода. Отличное средство при болях в спине после работы. Действует быстро, хватает на весь день. Рекомендую!",
+  },
+  {
+    id: 2,
+    initials: "ДС",
+    name: "Дмитрий Соколов",
+    city: "Санкт-Петербург",
+    text: "Занимаюсь спортом профессионально. MediPatch Спорт - настоящее спасение после тренировок. Снимает напряжение и ускоряет восстановление.",
+  },
+  {
+    id: 3,
+    initials: "ЕП",
+    name: "Елена Петрова",
+    city: "Екатеринбург",
+    text: "У меня проблемы с суставами. MediPatch Сустав помог уменьшить боль и вернуть подвижность. Пользуюсь курсами, результат отличный!",
+  },
+  {
+    id: 4,
+    initials: "АК",
+    name: "Андрей Козлов",
+    city: "Новосибирск",
+    text: "Форте версия действительно мощная! При обострении радикулита использую именно её. Эффект наступает быстро и держится долго.",
+  },
+  {
+    id: 5,
+    initials: "ОВ",
+    name: "Ольга Васильева",
+    city: "Казань",
+    text: "MediPatch Релакс - моё открытие! После напряжённого дня клею на плечи, и сразу чувствую расслабление. Приятный аромат - дополнительный бонус.",
+  },
+  {
+    id: 6,
+    initials: "ИМ",
+    name: "Игорь Михайлов",
+    city: "Краснодар",
+    text: "Термопластырь просто чудо техники! Тепло держится весь рабочий день. При остеохондрозе незаменимая вещь. Буду брать ещё!",
+  },
+  {
+    id: 7,
+    initials: "НК",
+    name: "Наталья Кузнецова",
+    city: "Воронеж",
+    text: "Пользуюсь MediPatch больше года. Качество на высоте, состав натуральный. Помогает при мигренях и головных болях. Очень довольна!",
+  },
+  {
+    id: 8,
+    initials: "ВР",
+    name: "Виктор Романов",
+    city: "Нижний Новгород",
+    text: "Работаю водителем, постоянно болит поясница. MediPatch Классик всегда в аптечке. Клею перед рейсом - и весь день без боли. Спасибо!",
+  },
+  {
+    id: 9,
+    initials: "ТС",
+    name: "Татьяна Смирнова",
+    city: "Самара",
+    text: "После операции на колене врач посоветовал MediPatch Сустав. Восстановление прошло быстрее, чем ожидала. Рекомендую всем!",
+  },
+  {
+    id: 10,
+    initials: "СП",
+    name: "Сергей Павлов",
+    city: "Уфа",
+    text: "Занимаюсь тяжёлой атлетикой. MediPatch Спорт использую после каждой тренировки. Снимает боль в мышцах, ускоряет восстановление. Отлично работает!",
+  },
+  {
+    id: 11,
+    initials: "ЛИ",
+    name: "Людмила Иванова",
+    city: "Челябинск",
+    text: "У мужа артрит. Перепробовали много средств, но MediPatch Форте помогает лучше всего. Боль уходит надолго, может спокойно работать.",
+  },
+  {
+    id: 12,
+    initials: "АБ",
+    name: "Александр Белов",
+    city: "Омск",
+    text: "MediPatch Термо - просто находка! Греет равномерно и долго. При радикулите снимает боль уже через 20 минут. Всем советую!",
+  },
+];
+
+// Компонент галереи продукта
+function ProductGallery({ productId }: { productId: number }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    slidesToScroll: 1,
+    align: "center",
+  });
+
+  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi && emblaApi.scrollNext();
+
+  const images = Array.from({ length: 5 }, (_, i) => ({
+    id: `${productId}-${i + 1}`,
+    alt: `Продукт ${productId}, фото ${i + 1}`,
+  }));
+
+  return (
+    <div className="relative bg-white rounded-xl p-6 sm:p-8">
+      <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+        <div className="flex">
+          {images.map((image) => (
+            <div key={image.id} className="flex-[0_0_100%] min-w-0 px-2">
+              <div
+                className="w-full rounded-xl overflow-hidden"
+                style={{ aspectRatio: "3/4", backgroundColor: softGreen[200] }}
+              >
+                <div className="w-full h-full flex items-center justify-center text-gray-600 text-lg font-semibold">
+                  {image.alt}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Кнопки навигации */}
+      <button
+        onClick={scrollPrev}
+        className="absolute left-8 sm:left-10 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
+        aria-label="Предыдущее фото"
+        data-testid={`button-prev-${productId}`}
+      >
+        <ChevronLeft className="w-6 h-6" style={{ color: softGreen[600] }} />
+      </button>
+      <button
+        onClick={scrollNext}
+        className="absolute right-8 sm:right-10 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
+        aria-label="Следующее фото"
+        data-testid={`button-next-${productId}`}
+      >
+        <ChevronRight className="w-6 h-6" style={{ color: softGreen[600] }} />
+      </button>
+
+      {/* Индикаторы */}
+      <div className="flex justify-center gap-3 mt-6">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => emblaApi && emblaApi.scrollTo(idx)}
+            className="w-3 h-3 rounded-full transition-all"
+            style={{ 
+              backgroundColor: idx === 0 ? softGreen[600] : softGreen[200],
+            }}
+            aria-label={`Перейти к фото ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Компонент карусели отзывов
+function TestimonialsCarousel() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: true,
+    slidesToScroll: 1,
+  });
+
+  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi && emblaApi.scrollNext();
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-4 md:gap-6">
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.id}
+              className="basis-full md:basis-1/2 min-w-0 flex-shrink-0"
+            >
+              <div className="bg-white border rounded-xl p-6 md:p-8 shadow-sm h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <div 
+                    className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0" 
+                    style={{ backgroundColor: softGreen[500] }}
+                  >
+                    {testimonial.initials}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                    <div className="text-sm text-gray-500">{testimonial.city}</div>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} style={{ color: softGreen[500] }}>★</span>
+                  ))}
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  {testimonial.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Кнопки навигации */}
+      <button
+        onClick={scrollPrev}
+        className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
+        aria-label="Предыдущий отзыв"
+        data-testid="button-testimonials-prev"
+      >
+        <ChevronLeft className="w-6 h-6" style={{ color: softGreen[600] }} />
+      </button>
+      <button
+        onClick={scrollNext}
+        className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
+        aria-label="Следующий отзыв"
+        data-testid="button-testimonials-next"
+      >
+        <ChevronRight className="w-6 h-6" style={{ color: softGreen[600] }} />
+      </button>
+
+      {/* Индикаторы */}
+      <div className="flex justify-center gap-3 mt-6">
+        {testimonials.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => emblaApi && emblaApi.scrollTo(idx)}
+            className="w-3 h-3 rounded-full transition-all"
+            style={{ 
+              backgroundColor: idx === 0 ? softGreen[600] : softGreen[200],
+            }}
+            aria-label={`Перейти к отзыву ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -32,9 +273,9 @@ export default function Home() {
       <div className="h-10 md:h-16"></div>
 
       {/* Hero - Карусель 3:4 */}
-      <section className="pb-12 md:pb-20 mb-16 md:mb-24 bg-white">
-        <div className="w-full flex justify-center">
-          <div className="relative w-full px-4 md:px-6" style={{ maxWidth: "calc(100vw - 32px)" }}>
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+          <div className="relative w-full">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex gap-3 md:gap-4">
                 {carouselImages.map((image) => (
@@ -76,7 +317,7 @@ export default function Home() {
         </div>
 
         {/* Текст под каруселью */}
-        <div className="flex justify-center mt-8 md:mt-12 px-4 md:px-6">
+        <div className="flex justify-center mt-12 md:mt-16 px-6 md:px-10 lg:px-16">
           <p className="text-gray-800 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-center max-w-4xl">
             Надёжное средство для профилактики и лечения начальных этапов заболеваний! А так же рекомендуем к применению в комплексной терапии!
           </p>
@@ -84,10 +325,10 @@ export default function Home() {
       </section>
 
       {/* Блок 2: Тезис и Как это работает */}
-      <section className="py-12 md:py-24 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
           {/* Тезис */}
-          <div className="mb-16 md:mb-24">
+          <div className="mb-20 md:mb-28">
             <p className="text-gray-800 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold leading-relaxed text-center">
               Пластырь MediPatch создан для тех, кто ищет быстрое и эффективное решение для облегчения боли и ускорения восстановления организма
             </p>
@@ -95,7 +336,7 @@ export default function Home() {
 
           {/* Как это работает */}
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-10 md:mb-16 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-12 md:mb-16 text-center">
               Как это работает?
             </h2>
             
@@ -149,13 +390,13 @@ export default function Home() {
       </section>
 
       {/* Блок 3: Наша продукция */}
-      <section className="py-12 md:py-24 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-12 md:mb-20 text-center">
             Наша продукция
           </h2>
 
-          <div className="space-y-16 md:space-y-24">
+          <div className="space-y-20 md:space-y-28">
             {/* Продукт 1 - Фото слева */}
             <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
               {/* Галерея фото */}
@@ -354,145 +595,19 @@ export default function Home() {
       </section>
 
       {/* Блок 4: Отзывы */}
-      <section className="py-12 md:py-24 px-4 md:px-6" style={{ backgroundColor: "white" }}>
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 md:py-24" style={{ backgroundColor: "white" }}>
+        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-12 md:mb-20 text-center">
             Отзывы наших клиентов
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {/* Отзыв 1 */}
-            <div className="bg-white border rounded-xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: softGreen[500] }}>
-                  МА
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Мария Александрова</div>
-                  <div className="text-sm text-gray-500">Москва</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} style={{ color: softGreen[500] }}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                Пользуюсь MediPatch Классик уже полгода. Отличное средство при болях в спине после работы. Действует быстро, хватает на весь день. Рекомендую!
-              </p>
-            </div>
-
-            {/* Отзыв 2 */}
-            <div className="bg-white border rounded-xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: softGreen[500] }}>
-                  ДС
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Дмитрий Соколов</div>
-                  <div className="text-sm text-gray-500">Санкт-Петербург</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} style={{ color: softGreen[500] }}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                Занимаюсь спортом профессионально. MediPatch Спорт - настоящее спасение после тренировок. Снимает напряжение и ускоряет восстановление.
-              </p>
-            </div>
-
-            {/* Отзыв 3 */}
-            <div className="bg-white border rounded-xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: softGreen[500] }}>
-                  ЕП
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Елена Петрова</div>
-                  <div className="text-sm text-gray-500">Екатеринбург</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} style={{ color: softGreen[500] }}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                У меня проблемы с суставами. MediPatch Сустав помог уменьшить боль и вернуть подвижность. Пользуюсь курсами, результат отличный!
-              </p>
-            </div>
-
-            {/* Отзыв 4 */}
-            <div className="bg-white border rounded-xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: softGreen[500] }}>
-                  АК
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Андрей Козлов</div>
-                  <div className="text-sm text-gray-500">Новосибирск</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} style={{ color: softGreen[500] }}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                Форте версия действительно мощная! При обострении радикулита использую именно её. Эффект наступает быстро и держится долго.
-              </p>
-            </div>
-
-            {/* Отзыв 5 */}
-            <div className="bg-white border rounded-xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: softGreen[500] }}>
-                  ОВ
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Ольга Васильева</div>
-                  <div className="text-sm text-gray-500">Казань</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} style={{ color: softGreen[500] }}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                MediPatch Релакс - моё открытие! После напряжённого дня клею на плечи, и сразу чувствую расслабление. Приятный аромат - дополнительный бонус.
-              </p>
-            </div>
-
-            {/* Отзыв 6 */}
-            <div className="bg-white border rounded-xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: softGreen[500] }}>
-                  ИМ
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Игорь Михайлов</div>
-                  <div className="text-sm text-gray-500">Краснодар</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} style={{ color: softGreen[500] }}>★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 leading-relaxed">
-                Термопластырь просто чудо техники! Тепло держится весь рабочий день. При остеохондрозе незаменимая вещь. Буду брать ещё!
-              </p>
-            </div>
-          </div>
+          <TestimonialsCarousel />
         </div>
       </section>
 
       {/* Блок 5: Призыв к покупке (CTA) */}
-      <section className="py-16 md:py-24 px-4 md:px-6" style={{ backgroundColor: softGreen[500] }}>
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16 md:py-24" style={{ backgroundColor: softGreen[500] }}>
+        <div className="max-w-4xl mx-auto px-6 md:px-10 lg:px-16 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 md:mb-8">
             Закажите MediPatch сегодня
           </h2>
@@ -564,76 +679,6 @@ export default function Home() {
         </div>
       </section>
 
-    </div>
-  );
-}
-
-// Компонент галереи продукта
-function ProductGallery({ productId }: { productId: number }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    slidesToScroll: 1,
-  });
-
-  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
-  const scrollNext = () => emblaApi && emblaApi.scrollNext();
-
-  const images = Array.from({ length: 5 }, (_, i) => ({
-    id: `${productId}-${i + 1}`,
-    alt: `Продукт ${productId}, фото ${i + 1}`,
-  }));
-
-  return (
-    <div className="relative">
-      <div className="overflow-hidden rounded-xl" ref={emblaRef}>
-        <div className="flex">
-          {images.map((image) => (
-            <div key={image.id} className="flex-[0_0_100%] min-w-0">
-              <div
-                className="w-full rounded-xl overflow-hidden"
-                style={{ aspectRatio: "3/4", backgroundColor: softGreen[200] }}
-              >
-                <div className="w-full h-full flex items-center justify-center text-gray-600 text-lg font-semibold">
-                  {image.alt}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Кнопки навигации */}
-      <button
-        onClick={scrollPrev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
-        aria-label="Предыдущее фото"
-        data-testid={`button-prev-${productId}`}
-      >
-        <ChevronLeft className="w-6 h-6" style={{ color: softGreen[600] }} />
-      </button>
-      <button
-        onClick={scrollNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
-        aria-label="Следующее фото"
-        data-testid={`button-next-${productId}`}
-      >
-        <ChevronRight className="w-6 h-6" style={{ color: softGreen[600] }} />
-      </button>
-
-      {/* Индикаторы */}
-      <div className="flex justify-center gap-3 mt-4">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => emblaApi && emblaApi.scrollTo(idx)}
-            className="w-3 h-3 rounded-full transition-all"
-            style={{ 
-              backgroundColor: idx === 0 ? softGreen[600] : softGreen[200],
-            }}
-            aria-label={`Перейти к фото ${idx + 1}`}
-          />
-        ))}
-      </div>
     </div>
   );
 }
