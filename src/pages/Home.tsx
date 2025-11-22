@@ -30,7 +30,7 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: softGreen[50] }}>
 
       {/* Hero - Карусель 3:4 */}
-      <section className="py-12 bg-white">
+      <section className="pt-20 pb-12 bg-white">
         <div className="w-full flex justify-center">
           <div className="relative w-full px-6" style={{ maxWidth: "calc(100vw - 48px)" }}>
             <div className="overflow-hidden" ref={emblaRef}>
