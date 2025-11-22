@@ -182,8 +182,8 @@ function TestimonialsCarousel() {
 
   return (
     <div className="relative">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-4 md:gap-6">
+      <div className="overflow-hidden -mx-4 md:-mx-6" ref={emblaRef}>
+        <div className="flex gap-4 md:gap-6 px-4 md:px-6">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
@@ -276,8 +276,8 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="relative w-full">
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex gap-3 md:gap-4">
+            <div className="overflow-hidden -mx-3 md:-mx-4" ref={emblaRef}>
+              <div className="flex gap-3 md:gap-4 px-3 md:px-4">
                 {carouselImages.map((image) => (
                   <div
                     key={image.id}
