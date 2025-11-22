@@ -132,7 +132,7 @@ function ProductGallery({ productId }: { productId: number }) {
   }));
 
   return (
-    <div className="relative bg-white rounded-xl p-6 sm:p-8">
+    <div className="relative bg-white rounded-xl p-[4%] md:p-[5%]">
       <div className="overflow-hidden rounded-xl" ref={emblaRef}>
         <div className="flex">
           {images.map((image) => (
