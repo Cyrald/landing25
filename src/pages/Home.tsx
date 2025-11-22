@@ -274,10 +274,10 @@ export default function Home() {
 
       {/* Hero - Карусель 3:4 */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
-          <div className="relative w-full">
-            <div className="overflow-hidden -mx-6 md:-mx-10 lg:-mx-16" ref={emblaRef}>
-              <div className="flex gap-3 md:gap-4 px-6 md:px-10 lg:px-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative w-full px-6 md:px-10 lg:px-16">
+            <div className="overflow-visible" ref={emblaRef}>
+              <div className="flex gap-3 md:gap-4">
                 {carouselImages.map((image) => (
                   <div
                     key={image.id}
