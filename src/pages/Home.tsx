@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: softGreen[50] }}>
       {/* Отступ сверху */}
-      <div className="h-24"></div>
+      <div className="h-5"></div>
 
       {/* Hero - Карусель 3:4 */}
       <section className="pb-12 bg-white">
