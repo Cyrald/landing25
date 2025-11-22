@@ -32,22 +32,22 @@ export default function Home() {
       <div className="h-5"></div>
 
       {/* Hero - Карусель 3:4 */}
-      <section className="pb-12 bg-white">
+      <section className="pb-8 md:pb-12 bg-white">
         <div className="w-full flex justify-center">
-          <div className="relative w-full px-6" style={{ maxWidth: "calc(100vw - 48px)" }}>
+          <div className="relative w-full px-4 md:px-6" style={{ maxWidth: "calc(100vw - 32px)" }}>
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex gap-4">
+              <div className="flex gap-3 md:gap-4">
                 {carouselImages.map((image, idx) => (
                   <div
                     key={image.id}
-                    className="flex-[0_0_calc(25%-12px)] min-w-0"
-                    style={idx === carouselImages.length - 1 ? { marginRight: "16px" } : {}}
+                    className="flex-[0_0_calc(100%-12px)] sm:flex-[0_0_calc(50%-12px)] md:flex-[0_0_calc(33.333%-12px)] lg:flex-[0_0_calc(25%-12px)] min-w-0"
+                    style={idx === carouselImages.length - 1 ? { marginRight: "12px" } : {}}
                   >
                     <div
                       className="w-full rounded-xl overflow-hidden"
                       style={{ aspectRatio: "3/4", backgroundColor: softGreen[300] }}
                     >
-                      <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
+                      <div className="w-full h-full flex items-center justify-center text-white text-2xl md:text-3xl font-bold">
                         {image.id}
                       </div>
                     </div>
@@ -75,8 +75,8 @@ export default function Home() {
         </div>
 
         {/* Текст под каруселью */}
-        <div className="flex justify-center mt-12 px-6">
-          <p className="text-gray-800" style={{ fontSize: "24px", maxWidth: "900px", textAlign: "center" }}>
+        <div className="flex justify-center mt-8 md:mt-12 px-4 md:px-6">
+          <p className="text-gray-800 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed" style={{ maxWidth: "900px", textAlign: "center" }}>
             Надёжное средство для профилактики и лечения начальных этапов заболеваний! А так же рекомендуем к применению в комплексной терапии!
           </p>
         </div>
