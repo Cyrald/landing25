@@ -281,7 +281,7 @@ export default function Home() {
                 {carouselImages.map((image) => (
                   <div
                     key={image.id}
-                    className="basis-full sm:basis-1/2 md:basis-1/3 min-w-0 flex-shrink-0 pl-1.5 md:pl-2 pr-1.5 md:pr-2"
+                    className="basis-4/5 sm:basis-1/2 md:basis-1/3 min-w-0 flex-shrink-0 pl-1.5 md:pl-2 pr-1.5 md:pr-2"
                   >
                     <div
                       className="w-full rounded-xl overflow-hidden"
@@ -299,7 +299,7 @@ export default function Home() {
             {/* Кнопки навигации */}
             <button
               onClick={scrollPrev}
-              className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
               aria-label="Предыдущий слайд"
               data-testid="button-carousel-prev"
             >
@@ -307,7 +307,7 @@ export default function Home() {
             </button>
             <button
               onClick={scrollNext}
-              className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
               aria-label="Следующий слайд"
               data-testid="button-carousel-next"
             >
