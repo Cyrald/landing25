@@ -100,7 +100,7 @@ export default function Home() {
             
             <div className="flex flex-col lg:flex-row gap-6 md:gap-8 items-start">
               {/* Картинка слева (сверху на мобильных) - 30% ширины на десктопе */}
-              <div className="w-full lg:w-[30%] flex-shrink-0">
+              <div className="w-full lg:w-[30%] flex-shrink-0 lg:pl-[35px]">
                 <div
                   className="w-full rounded-xl overflow-hidden"
                   style={{ aspectRatio: "3/4", backgroundColor: softGreen[300] }}
