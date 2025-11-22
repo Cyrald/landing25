@@ -1,3 +1,4 @@
+import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -106,6 +107,22 @@ function ProductGallery({ productId }: { productId: number }) {
     align: "center",
   });
 
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
@@ -157,9 +174,9 @@ function ProductGallery({ productId }: { productId: number }) {
           <button
             key={idx}
             onClick={() => emblaApi && emblaApi.scrollTo(idx)}
-            className="w-3 h-3 rounded-full transition-all"
+            className="w-3 h-3 rounded-full transition-all duration-300"
             style={{ 
-              backgroundColor: idx === 0 ? softGreen[600] : softGreen[200],
+              backgroundColor: idx === selectedIndex ? softGreen[600] : softGreen[200],
             }}
             aria-label={`Перейти к фото ${idx + 1}`}
           />
@@ -176,6 +193,22 @@ function TestimonialsCarousel() {
     loop: true,
     slidesToScroll: 1,
   });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
@@ -240,9 +273,9 @@ function TestimonialsCarousel() {
           <button
             key={idx}
             onClick={() => emblaApi && emblaApi.scrollTo(idx)}
-            className="w-3 h-3 rounded-full transition-all"
+            className="w-3 h-3 rounded-full transition-all duration-300"
             style={{ 
-              backgroundColor: idx === 0 ? softGreen[600] : softGreen[200],
+              backgroundColor: idx === selectedIndex ? softGreen[600] : softGreen[200],
             }}
             aria-label={`Перейти к отзыву ${idx + 1}`}
           />
@@ -258,6 +291,22 @@ export default function Home() {
     slidesToScroll: 1,
     align: "start",
   });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
@@ -281,11 +330,11 @@ export default function Home() {
                 {carouselImages.map((image) => (
                   <div
                     key={image.id}
-                    className="basis-full sm:basis-1/2 md:basis-1/3 min-w-0 flex-shrink-0 pl-1.5 md:pl-2 pr-1.5 md:pr-2"
+                    className="basis-[70%] sm:basis-1/2 md:basis-1/3 min-w-0 flex-shrink-0 pl-1.5 md:pl-2 pr-1.5 md:pr-2"
                   >
                     <div
-                      className="w-full rounded-xl overflow-hidden aspect-[2/3] sm:aspect-[3/4]"
-                      style={{ backgroundColor: softGreen[300] }}
+                      className="w-full rounded-xl overflow-hidden"
+                      style={{ aspectRatio: "3/4", backgroundColor: softGreen[300] }}
                     >
                       <div className="w-full h-full flex items-center justify-center text-white text-2xl md:text-3xl font-bold">
                         {image.id}
@@ -314,14 +363,23 @@ export default function Home() {
               <ChevronRight className="w-6 h-6" style={{ color: softGreen[600] }} />
             </button>
           </div>
+
+          {/* Индикаторы */}
+          <div className="flex justify-center gap-3 mt-8">
+            {carouselImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => emblaApi && emblaApi.scrollTo(idx)}
+                className="w-3 h-3 rounded-full transition-all duration-300"
+                style={{ 
+                  backgroundColor: idx === selectedIndex ? softGreen[600] : softGreen[200],
+                }}
+                aria-label={`Перейти к слайду ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Текст под каруселью */}
-        <div className="flex justify-center mt-12 md:mt-16 px-6 md:px-10 lg:px-16">
-          <p className="text-gray-800 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-center max-w-4xl">
-            Надёжное средство для профилактики и лечения начальных этапов заболеваний! А так же рекомендуем к применению в комплексной терапии!
-          </p>
-        </div>
       </section>
 
       {/* Блок 2: Тезис и Как это работает */}
