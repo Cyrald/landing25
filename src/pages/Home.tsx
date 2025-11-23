@@ -267,24 +267,24 @@ function ProductsCarousel() {
       {/* Стрелки навигации */}
       <motion.button
         onClick={goToPrevious}
-        className="absolute left-2 md:left-4 top-[20%] md:top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white/95 transition-colors z-20"
+        className="absolute left-0 md:left-4 top-[20%] md:top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
         aria-label="Предыдущий продукт"
         data-testid="button-products-prev"
         animate={showHint ? { scale: [1, 1.1, 1] } : { scale: 1 }}
         transition={showHint ? { repeat: Infinity, duration: 1.5 } : {}}
       >
-        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" style={{ color: softGreen[600] }} />
+        <ChevronLeft className="w-7 h-7 md:w-8 md:h-8" style={{ color: softGreen[600] }} />
       </motion.button>
       
       <motion.button
         onClick={goToNext}
-        className="absolute right-2 md:right-4 top-[20%] md:top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white/95 transition-colors z-20"
+        className="absolute right-0 md:right-4 top-[20%] md:top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
         aria-label="Следующий продукт"
         data-testid="button-products-next"
         animate={showHint ? { scale: [1, 1.1, 1] } : { scale: 1 }}
         transition={showHint ? { repeat: Infinity, duration: 1.5, delay: 0.3 } : {}}
       >
-        <ChevronRight className="w-5 h-5 md:w-6 md:h-6" style={{ color: softGreen[600] }} />
+        <ChevronRight className="w-7 h-7 md:w-8 md:h-8" style={{ color: softGreen[600] }} />
       </motion.button>
 
       {/* Подсказка */}
