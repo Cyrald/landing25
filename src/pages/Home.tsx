@@ -543,7 +543,7 @@ export default function Home() {
             
             <div className="flex flex-row gap-4 md:gap-6 lg:gap-8">
               {/* Картинка слева - всегда слева */}
-              <div className="flex justify-start w-full max-w-[200px] sm:max-w-xs sm:basis-[39%] lg:basis-[33%] flex-shrink-0">
+              <div className="flex justify-start w-full max-w-sm sm:max-w-full sm:basis-[39%] lg:basis-[33%] flex-shrink-0">
                 <div
                   className="w-full rounded-xl overflow-hidden"
                   style={{ aspectRatio: "3/4", backgroundColor: softGreen[300] }}
