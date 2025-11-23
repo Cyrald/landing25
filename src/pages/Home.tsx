@@ -3,6 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getImages, getImageSources } from "../utils/imageLoader";
 import { SmartImage } from "../components/SmartImage";
+import { motion, AnimatePresence } from "framer-motion";
 
 const softGreen = {
   50: "#f0f7f3",
@@ -13,6 +14,75 @@ const softGreen = {
   500: "#5fa97a",
   600: "#4d8e64",
 };
+
+const products = [
+  {
+    id: 1,
+    name: "MediPatch Классик",
+    description: "Универсальный пластырь для снятия боли и воспаления. Идеально подходит для ежедневного применения при мышечных болях, растяжениях и усталости.",
+    features: [
+      "Быстрое действие через 15 минут",
+      "Эффект до 12 часов",
+      "100% натуральные компоненты"
+    ],
+    price: "990 ₽"
+  },
+  {
+    id: 2,
+    name: "MediPatch Форте",
+    description: "Усиленная формула для интенсивной терапии. Рекомендуется при сильных болях, артрите и хронических воспалениях.",
+    features: [
+      "Двойная концентрация активных веществ",
+      "Глубокое проникновение",
+      "Длительное действие до 24 часов"
+    ],
+    price: "1 490 ₽"
+  },
+  {
+    id: 3,
+    name: "MediPatch Спорт",
+    description: "Специально разработан для спортсменов. Помогает при травмах, растяжениях, ускоряет восстановление после тренировок.",
+    features: [
+      "Охлаждающий эффект",
+      "Поддержка связок и суставов",
+      "Водостойкий"
+    ],
+    price: "1 290 ₽"
+  },
+  {
+    id: 4,
+    name: "MediPatch Релакс",
+    description: "Успокаивающая формула с экстрактами лаванды и ромашки. Снимает напряжение, улучшает кровообращение, расслабляет мышцы.",
+    features: [
+      "Ароматерапевтический эффект",
+      "Снятие стресса и напряжения",
+      "Мягкое согревающее действие"
+    ],
+    price: "1 190 ₽"
+  },
+  {
+    id: 5,
+    name: "MediPatch Сустав",
+    description: "Целенаправленная терапия для суставов. Содержит хондроитин и глюкозамин для поддержки суставной ткани и хрящей.",
+    features: [
+      "Восстановление хрящевой ткани",
+      "Уменьшение отёка",
+      "Улучшение подвижности"
+    ],
+    price: "1 390 ₽"
+  },
+  {
+    id: 6,
+    name: "MediPatch Термо",
+    description: "Инновационный термопластырь с регулируемой температурой. Обеспечивает глубокое прогревание тканей для максимального эффекта.",
+    features: [
+      "Термотерапия до 8 часов",
+      "Усиление кровотока",
+      "Безопасная температура 40-45°C"
+    ],
+    price: "1 590 ₽"
+  }
+];
 
 const testimonials = [
   {
@@ -101,92 +171,156 @@ const testimonials = [
   },
 ];
 
-// Компонент галереи продукта
-function ProductGallery({ productId }: { productId: number }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    slidesToScroll: 1,
-    align: "center",
-  });
+// Компонент карусели продуктов
+function ProductsCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showHint, setShowHint] = useState(true);
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const currentProduct = products[currentIndex];
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? products.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === products.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToProduct = (index: number) => {
+    setCurrentIndex(index);
+  };
 
   useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi, onSelect]);
+    const timer = setTimeout(() => {
+      setShowHint(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
-  const scrollNext = () => emblaApi && emblaApi.scrollNext();
-
-  const images = getImages(`products/product-${productId}`, 5);
+  const imageSources = getImageSources(`products/product-${currentProduct.id}`, 1);
 
   return (
-    <div className="relative bg-white rounded-xl p-[4%] md:p-[5%]">
-      <div className="overflow-hidden rounded-xl" ref={emblaRef}>
-        <div className="flex">
-          {images.map((image) => (
-            <div key={image.id} className="flex-[0_0_100%] min-w-0 px-2">
-              <div
-                className="w-full rounded-xl overflow-hidden"
-                style={{ aspectRatio: "3/4", backgroundColor: softGreen[200] }}
+    <div className="relative">
+      <div className="flex flex-row gap-4 md:gap-10 items-start">
+        {/* Фото слева */}
+        <div className="w-5/12 md:w-5/12 flex-shrink-0">
+          <div className="relative bg-white rounded-xl p-[4%] md:p-[5%]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentProduct.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
               >
-                <SmartImage
-                  sources={image.sources}
-                  alt={`Продукт ${productId}, фото ${image.id}`}
-                  className="w-full h-full object-cover"
-                  placeholderContent={
-                    <div className="w-full h-full flex items-center justify-center text-gray-600 text-lg font-semibold">
-                      Продукт {productId}, фото {image.id}
-                    </div>
-                  }
-                />
+                <div
+                  className="w-full rounded-xl overflow-hidden"
+                  style={{ aspectRatio: "3/4", backgroundColor: softGreen[200] }}
+                >
+                  <SmartImage
+                    sources={imageSources}
+                    alt={`${currentProduct.name}`}
+                    className="w-full h-full object-cover"
+                    placeholderContent={
+                      <div className="w-full h-full flex items-center justify-center text-gray-600 text-lg font-semibold">
+                        {currentProduct.name}
+                      </div>
+                    }
+                  />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Текст справа */}
+        <div className="flex-1 min-w-0 relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentProduct.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="text-sm md:text-2xl lg:text-3xl font-bold mb-2 md:mb-4 leading-tight" style={{ color: softGreen[600] }}>
+                {currentProduct.name}
+              </h3>
+              <p className="text-gray-700 text-sm md:text-lg leading-relaxed mb-2 md:mb-4 hidden md:block">
+                {currentProduct.description}
+              </p>
+              <ul className="space-y-1 md:space-y-2 mb-3 md:mb-6">
+                {currentProduct.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-1 md:gap-2 text-gray-700 text-sm md:text-base">
+                    <span className="flex-shrink-0" style={{ color: softGreen[600] }}>✓</span>
+                    <span className="leading-tight">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="text-base md:text-3xl font-bold mb-2 md:mb-4" style={{ color: softGreen[600] }}>
+                {currentProduct.price}
               </div>
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Кнопки навигации */}
-      <button
-        onClick={scrollPrev}
-        className="absolute left-8 sm:left-10 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
-        aria-label="Предыдущее фото"
-        data-testid={`button-prev-${productId}`}
+      {/* Стрелки навигации */}
+      <motion.button
+        onClick={goToPrevious}
+        className="absolute left-0 md:left-4 top-[20%] md:top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
+        aria-label="Предыдущий продукт"
+        data-testid="button-products-prev"
+        animate={showHint ? { scale: [1, 1.1, 1] } : { scale: 1 }}
+        transition={showHint ? { repeat: Infinity, duration: 1.5 } : {}}
       >
-        <ChevronLeft className="w-6 h-6" style={{ color: softGreen[600] }} />
-      </button>
-      <button
-        onClick={scrollNext}
-        className="absolute right-8 sm:right-10 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-100 transition-colors z-10"
-        aria-label="Следующее фото"
-        data-testid={`button-next-${productId}`}
+        <ChevronLeft className="w-7 h-7 md:w-8 md:h-8" style={{ color: softGreen[600] }} />
+      </motion.button>
+      
+      <motion.button
+        onClick={goToNext}
+        className="absolute right-0 md:right-4 top-[20%] md:top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors z-20"
+        aria-label="Следующий продукт"
+        data-testid="button-products-next"
+        animate={showHint ? { scale: [1, 1.1, 1] } : { scale: 1 }}
+        transition={showHint ? { repeat: Infinity, duration: 1.5, delay: 0.3 } : {}}
       >
-        <ChevronRight className="w-6 h-6" style={{ color: softGreen[600] }} />
-      </button>
+        <ChevronRight className="w-7 h-7 md:w-8 md:h-8" style={{ color: softGreen[600] }} />
+      </motion.button>
 
-      {/* Индикаторы */}
-      <div className="flex justify-center gap-3 mt-6">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => emblaApi && emblaApi.scrollTo(idx)}
-            className="w-3 h-3 rounded-full transition-all duration-300"
-            style={{ 
-              backgroundColor: idx === selectedIndex ? softGreen[600] : softGreen[200],
-            }}
-            aria-label={`Перейти к фото ${idx + 1}`}
-          />
-        ))}
+      {/* Подсказка */}
+      {showHint && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-2 bg-white px-4 py-2 rounded-lg shadow-md z-30 hidden md:block"
+        >
+          <p className="text-sm font-medium whitespace-nowrap" style={{ color: softGreen[600] }}>
+            Листайте товары ←→
+          </p>
+        </motion.div>
+      )}
+
+      {/* Индикаторы и счётчик */}
+      <div className="mt-8 flex flex-col items-center gap-3">
+        <div className="flex justify-center gap-3">
+          {products.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goToProduct(idx)}
+              className="w-3 h-3 rounded-full transition-all duration-300"
+              style={{ 
+                backgroundColor: idx === currentIndex ? softGreen[600] : softGreen[200],
+              }}
+              aria-label={`Перейти к продукту ${idx + 1}`}
+              data-testid={`indicator-product-${idx}`}
+            />
+          ))}
+        </div>
+        <div className="text-sm font-semibold" style={{ color: softGreen[600] }}>
+          {currentIndex + 1} из {products.length}
+        </div>
       </div>
     </div>
   );
@@ -471,201 +605,7 @@ export default function Home() {
             Наша продукция
           </h2>
 
-          <div className="space-y-20 md:space-y-28">
-            {/* Продукт 1 - Фото слева */}
-            <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
-              {/* Галерея фото */}
-              <div className="w-full md:w-5/12 flex-shrink-0">
-                <ProductGallery productId={1} />
-              </div>
-              {/* Текст */}
-              <div className="w-full md:flex-1">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  MediPatch Классик
-                </h3>
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  Универсальный пластырь для снятия боли и воспаления. Идеально подходит для ежедневного применения при мышечных болях, растяжениях и усталости.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Быстрое действие через 15 минут</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Эффект до 12 часов</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>100% натуральные компоненты</span>
-                  </li>
-                </ul>
-                <div className="text-2xl md:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  990 ₽
-                </div>
-              </div>
-            </div>
-
-            {/* Продукт 2 - Фото справа */}
-            <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 md:items-start">
-              <div className="w-full md:w-5/12 flex-shrink-0">
-                <ProductGallery productId={2} />
-              </div>
-              <div className="w-full md:flex-1">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  MediPatch Форте
-                </h3>
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  Усиленная формула для интенсивной терапии. Рекомендуется при сильных болях, артрите и хронических воспалениях.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Двойная концентрация активных веществ</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Глубокое проникновение</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Длительное действие до 24 часов</span>
-                  </li>
-                </ul>
-                <div className="text-2xl md:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  1 490 ₽
-                </div>
-              </div>
-            </div>
-
-            {/* Продукт 3 - Фото слева */}
-            <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
-              <div className="w-full md:w-5/12 flex-shrink-0">
-                <ProductGallery productId={3} />
-              </div>
-              <div className="w-full md:flex-1">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  MediPatch Спорт
-                </h3>
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  Специально разработан для спортсменов. Помогает при травмах, растяжениях, ускоряет восстановление после тренировок.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Охлаждающий эффект</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Поддержка связок и суставов</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Водостойкий</span>
-                  </li>
-                </ul>
-                <div className="text-2xl md:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  1 290 ₽
-                </div>
-              </div>
-            </div>
-
-            {/* Продукт 4 - Фото справа */}
-            <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 md:items-start">
-              <div className="w-full md:w-5/12 flex-shrink-0">
-                <ProductGallery productId={4} />
-              </div>
-              <div className="w-full md:flex-1">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  MediPatch Релакс
-                </h3>
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  Успокаивающая формула с экстрактами лаванды и ромашки. Снимает напряжение, улучшает кровообращение, расслабляет мышцы.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Ароматерапевтический эффект</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Снятие стресса и напряжения</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Мягкое согревающее действие</span>
-                  </li>
-                </ul>
-                <div className="text-2xl md:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  1 190 ₽
-                </div>
-              </div>
-            </div>
-
-            {/* Продукт 5 - Фото слева */}
-            <div className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-start">
-              <div className="w-full md:w-5/12 flex-shrink-0">
-                <ProductGallery productId={5} />
-              </div>
-              <div className="w-full md:flex-1">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  MediPatch Сустав
-                </h3>
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  Целенаправленная терапия для суставов. Содержит хондроитин и глюкозамин для поддержки суставной ткани и хрящей.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Восстановление хрящевой ткани</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Уменьшение отёка</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Улучшение подвижности</span>
-                  </li>
-                </ul>
-                <div className="text-2xl md:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  1 390 ₽
-                </div>
-              </div>
-            </div>
-
-            {/* Продукт 6 - Фото справа */}
-            <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 md:items-start">
-              <div className="w-full md:w-5/12 flex-shrink-0">
-                <ProductGallery productId={6} />
-              </div>
-              <div className="w-full md:flex-1">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  MediPatch Термо
-                </h3>
-                <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
-                  Инновационный термопластырь с регулируемой температурой. Обеспечивает глубокое прогревание тканей для максимального эффекта.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Термотерапия до 8 часов</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Усиление кровотока</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-700">
-                    <span style={{ color: softGreen[600] }}>✓</span>
-                    <span>Безопасная температура 40-45°C</span>
-                  </li>
-                </ul>
-                <div className="text-2xl md:text-3xl font-bold mb-4" style={{ color: softGreen[600] }}>
-                  1 590 ₽
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductsCarousel />
         </div>
       </section>
 
