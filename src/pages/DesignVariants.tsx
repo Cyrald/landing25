@@ -1,6 +1,24 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ChevronDown, ExternalLink, Leaf, Star, Sparkles, Shield, CircleDot, Droplets, Activity, Glasses, Ribbon } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+
+function useReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  return prefersReducedMotion;
+}
 
 const products = [
   {
@@ -137,7 +155,16 @@ const colors = {
   gradient: "linear-gradient(135deg, #3d6b4f 0%, #2a4a36 50%, #1a2e1f 100%)",
 };
 
-function AnimatedMeshGradient() {
+const STABLE_PARTICLES = Array.from({ length: 25 }, (_, i) => ({
+  id: i,
+  x: ((i * 17) % 100),
+  y: ((i * 23) % 100),
+  size: ((i * 7) % 4) + 2,
+  duration: ((i * 11) % 20) + 15,
+  delay: ((i * 5) % 10),
+}));
+
+function AnimatedMeshGradient({ reducedMotion }: { reducedMotion: boolean }) {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
       <div 
@@ -152,31 +179,35 @@ function AnimatedMeshGradient() {
           `,
         }}
       />
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            `radial-gradient(ellipse 80% 50% at 20% 40%, rgba(61, 107, 79, 0.15) 0%, transparent 50%),
-             radial-gradient(ellipse 60% 80% at 80% 20%, rgba(42, 74, 54, 0.12) 0%, transparent 50%)`,
-            `radial-gradient(ellipse 80% 50% at 30% 50%, rgba(61, 107, 79, 0.18) 0%, transparent 50%),
-             radial-gradient(ellipse 60% 80% at 70% 30%, rgba(42, 74, 54, 0.15) 0%, transparent 50%)`,
-            `radial-gradient(ellipse 80% 50% at 25% 35%, rgba(61, 107, 79, 0.12) 0%, transparent 50%),
-             radial-gradient(ellipse 60% 80% at 75% 25%, rgba(42, 74, 54, 0.1) 0%, transparent 50%)`,
-            `radial-gradient(ellipse 80% 50% at 20% 40%, rgba(61, 107, 79, 0.15) 0%, transparent 50%),
-             radial-gradient(ellipse 60% 80% at 80% 20%, rgba(42, 74, 54, 0.12) 0%, transparent 50%)`,
-          ],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {!reducedMotion && (
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            background: [
+              `radial-gradient(ellipse 80% 50% at 20% 40%, rgba(61, 107, 79, 0.15) 0%, transparent 50%),
+               radial-gradient(ellipse 60% 80% at 80% 20%, rgba(42, 74, 54, 0.12) 0%, transparent 50%)`,
+              `radial-gradient(ellipse 80% 50% at 30% 50%, rgba(61, 107, 79, 0.18) 0%, transparent 50%),
+               radial-gradient(ellipse 60% 80% at 70% 30%, rgba(42, 74, 54, 0.15) 0%, transparent 50%)`,
+              `radial-gradient(ellipse 80% 50% at 25% 35%, rgba(61, 107, 79, 0.12) 0%, transparent 50%),
+               radial-gradient(ellipse 60% 80% at 75% 25%, rgba(42, 74, 54, 0.1) 0%, transparent 50%)`,
+              `radial-gradient(ellipse 80% 50% at 20% 40%, rgba(61, 107, 79, 0.15) 0%, transparent 50%),
+               radial-gradient(ellipse 60% 80% at 80% 20%, rgba(42, 74, 54, 0.12) 0%, transparent 50%)`,
+            ],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )}
     </div>
   );
 }
 
-function BreathingBlobs() {
+function BreathingBlobs({ reducedMotion }: { reducedMotion: boolean }) {
+  const staticStyle = { scale: 1 };
+  
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
       <motion.div
@@ -190,7 +221,7 @@ function BreathingBlobs() {
           borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
           filter: "blur(40px)",
         }}
-        animate={{
+        animate={reducedMotion ? staticStyle : {
           scale: [1, 1.1, 1.05, 1],
           borderRadius: [
             "40% 60% 70% 30% / 40% 50% 60% 50%",
@@ -199,7 +230,7 @@ function BreathingBlobs() {
             "40% 60% 70% 30% / 40% 50% 60% 50%",
           ],
         }}
-        transition={{
+        transition={reducedMotion ? undefined : {
           duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
@@ -216,7 +247,7 @@ function BreathingBlobs() {
           borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
           filter: "blur(50px)",
         }}
-        animate={{
+        animate={reducedMotion ? staticStyle : {
           scale: [1, 1.15, 1.08, 1],
           borderRadius: [
             "60% 40% 30% 70% / 60% 30% 70% 40%",
@@ -225,7 +256,7 @@ function BreathingBlobs() {
             "60% 40% 30% 70% / 60% 30% 70% 40%",
           ],
         }}
-        transition={{
+        transition={reducedMotion ? undefined : {
           duration: 15,
           repeat: Infinity,
           ease: "easeInOut",
@@ -243,7 +274,7 @@ function BreathingBlobs() {
           borderRadius: "30% 70% 40% 60% / 50% 60% 40% 50%",
           filter: "blur(60px)",
         }}
-        animate={{
+        animate={reducedMotion ? staticStyle : {
           scale: [1, 1.2, 1.1, 1],
           borderRadius: [
             "30% 70% 40% 60% / 50% 60% 40% 50%",
@@ -252,7 +283,7 @@ function BreathingBlobs() {
             "30% 70% 40% 60% / 50% 60% 40% 50%",
           ],
         }}
-        transition={{
+        transition={reducedMotion ? undefined : {
           duration: 18,
           repeat: Infinity,
           ease: "easeInOut",
@@ -263,19 +294,31 @@ function BreathingBlobs() {
   );
 }
 
-function FloatingParticles() {
-  const particles = Array.from({ length: 25 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 2,
-    duration: Math.random() * 20 + 15,
-    delay: Math.random() * 10,
-  }));
+function FloatingParticles({ reducedMotion }: { reducedMotion: boolean }) {
+  if (reducedMotion) {
+    return (
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 2 }}>
+        {STABLE_PARTICLES.map((p) => (
+          <div
+            key={p.id}
+            className="absolute rounded-full"
+            style={{
+              width: p.size,
+              height: p.size,
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              backgroundColor: colors.accent,
+              opacity: 0.12,
+            }}
+          />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 2 }}>
-      {particles.map((p) => (
+      {STABLE_PARTICLES.map((p) => (
         <motion.div
           key={p.id}
           className="absolute rounded-full"
@@ -304,7 +347,7 @@ function FloatingParticles() {
   );
 }
 
-function ParallaxBotanicals() {
+function ParallaxBotanicals({ reducedMotion }: { reducedMotion: boolean }) {
   const { scrollY } = useScroll();
   
   const y1 = useTransform(scrollY, [0, 1000], [0, -150]);
@@ -312,6 +355,37 @@ function ParallaxBotanicals() {
   const y3 = useTransform(scrollY, [0, 1000], [0, -200]);
   const rotate1 = useTransform(scrollY, [0, 1000], [0, 15]);
   const rotate2 = useTransform(scrollY, [0, 1000], [0, -10]);
+
+  if (reducedMotion) {
+    return (
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
+        <div className="absolute top-20 right-10 opacity-[0.07]">
+          <svg width="120" height="180" viewBox="0 0 120 180">
+            <path d="M60 10 C30 40, 20 80, 25 120 C28 145, 45 165, 60 175 C75 165, 92 145, 95 120 C100 80, 90 40, 60 10" fill="none" stroke={colors.accent} strokeWidth="2" />
+            <path d="M60 40 L60 170" stroke={colors.accent} strokeWidth="1.5" />
+          </svg>
+        </div>
+        <div className="absolute top-[40%] left-5 opacity-[0.05]">
+          <svg width="80" height="140" viewBox="0 0 80 140">
+            <path d="M40 5 C20 25, 10 55, 15 85 C18 105, 30 120, 40 130 C50 120, 62 105, 65 85 C70 55, 60 25, 40 5" fill="none" stroke={colors.accentDark} strokeWidth="1.5" />
+            <path d="M40 20 L40 125" stroke={colors.accentDark} strokeWidth="1" />
+          </svg>
+        </div>
+        <div className="absolute top-[60%] right-[15%] opacity-[0.04]">
+          <svg width="100" height="160" viewBox="0 0 100 160">
+            <path d="M50 8 C25 35, 15 70, 20 105 C23 128, 38 145, 50 155 C62 145, 77 128, 80 105 C85 70, 75 35, 50 8" fill="none" stroke={colors.accent} strokeWidth="1.5" />
+            <path d="M50 25 L50 150" stroke={colors.accent} strokeWidth="1" />
+          </svg>
+        </div>
+        <div className="absolute bottom-[20%] left-[10%] opacity-[0.06]">
+          <svg width="60" height="100" viewBox="0 0 60 100">
+            <ellipse cx="30" cy="50" rx="25" ry="40" fill="none" stroke={colors.accent} strokeWidth="1.5" />
+            <path d="M30 15 L30 85" stroke={colors.accent} strokeWidth="1" />
+          </svg>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
@@ -391,7 +465,9 @@ function ParallaxBotanicals() {
   );
 }
 
-function WaveDivider({ flip = false, color = colors.bgAlt }: { flip?: boolean; color?: string }) {
+function WaveDivider({ flip = false, color = colors.bgAlt, reducedMotion = false }: { flip?: boolean; color?: string; reducedMotion?: boolean }) {
+  const staticPath = "M0,60 C150,90 350,30 600,60 C850,90 1050,30 1200,60 L1200,120 L0,120 Z";
+  
   return (
     <div className={`w-full overflow-hidden ${flip ? 'rotate-180' : ''}`} style={{ marginTop: flip ? 0 : '-1px', marginBottom: flip ? '-1px' : 0 }}>
       <svg
@@ -400,28 +476,34 @@ function WaveDivider({ flip = false, color = colors.bgAlt }: { flip?: boolean; c
         className="w-full h-16 md:h-24"
         style={{ display: 'block' }}
       >
-        <motion.path
-          d="M0,60 C150,90 350,30 600,60 C850,90 1050,30 1200,60 L1200,120 L0,120 Z"
-          fill={color}
-          animate={{
-            d: [
-              "M0,60 C150,90 350,30 600,60 C850,90 1050,30 1200,60 L1200,120 L0,120 Z",
-              "M0,60 C150,30 350,90 600,60 C850,30 1050,90 1200,60 L1200,120 L0,120 Z",
-              "M0,60 C150,90 350,30 600,60 C850,90 1050,30 1200,60 L1200,120 L0,120 Z",
-            ],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {reducedMotion ? (
+          <path d={staticPath} fill={color} />
+        ) : (
+          <motion.path
+            d={staticPath}
+            fill={color}
+            animate={{
+              d: [
+                "M0,60 C150,90 350,30 600,60 C850,90 1050,30 1200,60 L1200,120 L0,120 Z",
+                "M0,60 C150,30 350,90 600,60 C850,30 1050,90 1200,60 L1200,120 L0,120 Z",
+                "M0,60 C150,90 350,30 600,60 C850,90 1050,30 1200,60 L1200,120 L0,120 Z",
+              ],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        )}
       </svg>
     </div>
   );
 }
 
-function OrganicWaveDivider({ color = colors.cardBg }: { color?: string }) {
+function OrganicWaveDivider({ color = colors.cardBg, reducedMotion = false }: { color?: string; reducedMotion?: boolean }) {
+  const staticPath = "M0,40 Q200,80 400,40 T800,40 T1200,40 L1200,120 L0,120 Z";
+  
   return (
     <div className="w-full overflow-hidden" style={{ marginTop: '-1px' }}>
       <svg
@@ -430,22 +512,26 @@ function OrganicWaveDivider({ color = colors.cardBg }: { color?: string }) {
         className="w-full h-20 md:h-28"
         style={{ display: 'block' }}
       >
-        <motion.path
-          d="M0,40 Q200,80 400,40 T800,40 T1200,40 L1200,120 L0,120 Z"
-          fill={color}
-          animate={{
-            d: [
-              "M0,40 Q200,80 400,40 T800,40 T1200,40 L1200,120 L0,120 Z",
-              "M0,50 Q200,20 400,50 T800,50 T1200,50 L1200,120 L0,120 Z",
-              "M0,40 Q200,80 400,40 T800,40 T1200,40 L1200,120 L0,120 Z",
-            ],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {reducedMotion ? (
+          <path d={staticPath} fill={color} />
+        ) : (
+          <motion.path
+            d={staticPath}
+            fill={color}
+            animate={{
+              d: [
+                "M0,40 Q200,80 400,40 T800,40 T1200,40 L1200,120 L0,120 Z",
+                "M0,50 Q200,20 400,50 T800,50 T1200,50 L1200,120 L0,120 Z",
+                "M0,40 Q200,80 400,40 T800,40 T1200,40 L1200,120 L0,120 Z",
+              ],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        )}
       </svg>
     </div>
   );
@@ -466,13 +552,14 @@ function SubtleTexture() {
 
 export default function DesignVariants() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const reducedMotion = useReducedMotion();
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: colors.bg }}>
-      <AnimatedMeshGradient />
-      <BreathingBlobs />
-      <FloatingParticles />
-      <ParallaxBotanicals />
+      <AnimatedMeshGradient reducedMotion={reducedMotion} />
+      <BreathingBlobs reducedMotion={reducedMotion} />
+      <FloatingParticles reducedMotion={reducedMotion} />
+      <ParallaxBotanicals reducedMotion={reducedMotion} />
       <SubtleTexture />
       
       <div className="relative" style={{ zIndex: 10 }}>
@@ -562,7 +649,7 @@ export default function DesignVariants() {
           </div>
         </section>
 
-        <WaveDivider color={colors.bgAlt} />
+        <WaveDivider color={colors.bgAlt} reducedMotion={reducedMotion} />
 
         {/* Quote Section */}
         <section className="py-16 md:py-20" style={{ backgroundColor: colors.bgAlt }}>
@@ -591,7 +678,7 @@ export default function DesignVariants() {
           </div>
         </section>
 
-        <OrganicWaveDivider color={colors.bg} />
+        <OrganicWaveDivider color={colors.bg} reducedMotion={reducedMotion} />
 
         {/* How It Works */}
         <section className="py-16 md:py-24">
@@ -642,7 +729,7 @@ export default function DesignVariants() {
           </div>
         </section>
 
-        <WaveDivider color={colors.cardBg} />
+        <WaveDivider color={colors.cardBg} reducedMotion={reducedMotion} />
 
         {/* Products Section */}
         <section className="py-16 md:py-24" style={{ backgroundColor: colors.cardBg }} data-testid="section-products">
@@ -719,7 +806,7 @@ export default function DesignVariants() {
           </div>
         </section>
 
-        <WaveDivider flip color={colors.bg} />
+        <WaveDivider flip color={colors.bg} reducedMotion={reducedMotion} />
 
         {/* Testimonials */}
         <section className="py-16 md:py-24">
@@ -768,7 +855,7 @@ export default function DesignVariants() {
           </div>
         </section>
 
-        <OrganicWaveDivider color={colors.bgAlt} />
+        <OrganicWaveDivider color={colors.bgAlt} reducedMotion={reducedMotion} />
 
         {/* FAQ */}
         <section className="py-16 md:py-24" style={{ backgroundColor: colors.bgAlt }}>
