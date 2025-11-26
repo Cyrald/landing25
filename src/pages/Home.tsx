@@ -442,12 +442,12 @@ export default function Home() {
       {/* Отступ сверху */}
       <div className="h-10 md:h-16"></div>
 
-      {/* Hero - Баннер 1920x500 */}
-      <section className="bg-white">
-        <div className="w-full">
+      {/* Hero - Баннер 1820x500 */}
+      <section className="bg-white py-6 md:py-10">
+        <div className="max-w-[1820px] mx-auto px-6 md:px-10">
           <div
-            className="w-full"
-            style={{ aspectRatio: "1920/500", backgroundColor: softGreen[300] }}
+            className="w-full rounded-xl overflow-hidden"
+            style={{ aspectRatio: "1820/500", backgroundColor: softGreen[300] }}
           >
             <SmartImage
               sources={getImageSources('banner', 1)}
@@ -455,7 +455,7 @@ export default function Home() {
               className="w-full h-full object-cover"
               placeholderContent={
                 <div className="w-full h-full flex items-center justify-center text-white text-2xl md:text-4xl font-bold">
-                  1920 x 500
+                  1820 x 500
                 </div>
               }
             />
