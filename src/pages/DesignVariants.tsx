@@ -629,14 +629,14 @@ export default function DesignVariants() {
               </div>
 
               <motion.div 
-                className="flex-1 w-full max-w-lg"
+                className="flex-1 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div 
                   className="relative rounded-2xl overflow-hidden"
-                  style={{ aspectRatio: "4/5" }}
+                  style={{ aspectRatio: "3/4" }}
                 >
                   <div 
                     className="absolute inset-0"
@@ -657,8 +657,10 @@ export default function DesignVariants() {
           </div>
         </section>
 
+        <WaveDivider color={colors.bg} reducedMotion={reducedMotion} />
+
         {/* How It Works */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24" style={{ backgroundColor: colors.bg }}>
           <div className="max-w-5xl mx-auto px-6">
             <motion.h2 
               className="text-2xl md:text-4xl font-bold text-center mb-12"
@@ -731,10 +733,10 @@ export default function DesignVariants() {
                   className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 items-center rounded-xl overflow-hidden`}
                   style={{ backgroundColor: colors.bg, border: `1px solid ${colors.accentLight}` }}
                   data-testid={`card-product-${product.id}`}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
                 >
                   <div 
                     className="w-2/3 mx-auto md:mx-0 md:w-[28%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
