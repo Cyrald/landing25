@@ -300,7 +300,7 @@ export default function DesignVariants() {
               ))}
             </div>
             <div 
-              className="w-full md:w-72 aspect-[3/4] rounded-xl flex items-center justify-center"
+              className="w-full md:w-80 aspect-[3/4] rounded-xl flex items-center justify-center"
               style={{ backgroundColor: colors.cardBg }}
             >
               <span style={{ color: colors.accent }}>Иллюстрация 3:4</span>
@@ -332,7 +332,7 @@ export default function DesignVariants() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <div 
-                  className="w-full aspect-[4/3] md:aspect-[3/4] md:w-[28%] flex items-center justify-center flex-shrink-0"
+                  className="w-2/3 mx-auto md:mx-0 md:w-[28%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: colors.bgAlt }}
                   data-testid={`img-product-${product.id}`}
                 >
