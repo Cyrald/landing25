@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, ExternalLink, Leaf, Star, Sparkles, Shield, CircleDot, Droplets, Activity, Glasses, Ribbon } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -152,6 +152,7 @@ const colors = {
   text: "#1a2e1f",
   textSecondary: "#4a6b52",
   cardBg: "#ffffff",
+  catalogBg: "#f4f9f5",
   gradient: "linear-gradient(135deg, #3d6b4f 0%, #2a4a36 50%, #1a2e1f 100%)",
 };
 
@@ -350,11 +351,18 @@ function FloatingParticles({ reducedMotion }: { reducedMotion: boolean }) {
 function ParallaxBotanicals({ reducedMotion }: { reducedMotion: boolean }) {
   const { scrollY } = useScroll();
   
-  const y1 = useTransform(scrollY, [0, 1000], [0, -150]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
-  const y3 = useTransform(scrollY, [0, 1000], [0, -200]);
-  const rotate1 = useTransform(scrollY, [0, 1000], [0, 15]);
-  const rotate2 = useTransform(scrollY, [0, 1000], [0, -10]);
+  const y1 = useTransform(scrollY, (value) => -(value * 0.1));
+  const y2 = useTransform(scrollY, (value) => -(value * 0.07));
+  const y3 = useTransform(scrollY, (value) => -(value * 0.13));
+  
+  const rotate1 = useTransform(scrollY, (value) => {
+    const cycle = value / 400;
+    return Math.sin(cycle) * 10 + Math.sin(cycle * 0.7) * 5;
+  });
+  const rotate2 = useTransform(scrollY, (value) => {
+    const cycle = value / 500;
+    return Math.sin(cycle + 1) * -8 + Math.sin(cycle * 0.6) * -4;
+  });
 
   if (reducedMotion) {
     return (
@@ -649,37 +657,6 @@ export default function DesignVariants() {
           </div>
         </section>
 
-        <WaveDivider color={colors.bgAlt} reducedMotion={reducedMotion} />
-
-        {/* Quote Section */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: colors.bgAlt }}>
-          <div className="max-w-4xl mx-auto px-6">
-            <motion.div 
-              className="relative rounded-2xl p-8 md:p-12 text-center backdrop-blur-sm"
-              style={{ backgroundColor: `${colors.cardBg}cc` }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative">
-                <Leaf className="w-10 h-10 mx-auto mb-6" style={{ color: colors.accent }} />
-                <p 
-                  className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed"
-                  style={{ color: colors.text, fontStyle: "italic" }}
-                >
-                  "Природа — лучший целитель. Мы лишь помогаем ей достучаться до вас."
-                </p>
-                <div 
-                  className="w-16 h-1 mx-auto mt-6 rounded-full"
-                  style={{ backgroundColor: colors.accent }}
-                />
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <OrganicWaveDivider color={colors.bg} reducedMotion={reducedMotion} />
-
         {/* How It Works */}
         <section className="py-16 md:py-24">
           <div className="max-w-5xl mx-auto px-6">
@@ -729,10 +706,10 @@ export default function DesignVariants() {
           </div>
         </section>
 
-        <WaveDivider color={colors.cardBg} reducedMotion={reducedMotion} />
+        <WaveDivider color={colors.catalogBg} reducedMotion={reducedMotion} />
 
         {/* Products Section */}
-        <section className="py-16 md:py-24" style={{ backgroundColor: colors.cardBg }} data-testid="section-products">
+        <section className="py-16 md:py-24" style={{ backgroundColor: colors.catalogBg }} data-testid="section-products">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-12 md:mb-16">
               <motion.h2 
