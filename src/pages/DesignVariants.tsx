@@ -309,6 +309,39 @@ export default function DesignVariants() {
         </div>
       </section>
 
+      {/* Как это работает */}
+      <section className="py-16 md:py-24" style={{ backgroundColor: colors.bgAlt }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-12" style={{ color: colors.text }}>
+            Как это работает
+          </h2>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 space-y-6">
+              {howItWorks.map((item) => (
+                <div key={item.step} className="flex gap-4">
+                  <div 
+                    className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 text-xl font-bold"
+                    style={{ backgroundColor: colors.accent, color: "#fff" }}
+                  >
+                    {item.step}
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1" style={{ color: colors.text }}>{item.title}</h3>
+                    <p className="text-sm" style={{ color: colors.textSecondary }}>{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div 
+              className="w-full md:w-72 aspect-[3/4] rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: colors.cardBg }}
+            >
+              <span style={{ color: colors.accent }}>Иллюстрация 3:4</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Каталог продуктов - Zigzag layout */}
       <section className="py-16 md:py-24" data-testid="section-products">
         <div className="max-w-5xl mx-auto px-6">
@@ -374,39 +407,6 @@ export default function DesignVariants() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Как это работает */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: colors.bgAlt }}>
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-12" style={{ color: colors.text }}>
-            Как это работает
-          </h2>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1 space-y-6">
-              {howItWorks.map((item) => (
-                <div key={item.step} className="flex gap-4">
-                  <div 
-                    className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 text-xl font-bold"
-                    style={{ backgroundColor: colors.accent, color: "#fff" }}
-                  >
-                    {item.step}
-                  </div>
-                  <div>
-                    <h3 className="font-bold mb-1" style={{ color: colors.text }}>{item.title}</h3>
-                    <p className="text-sm" style={{ color: colors.textSecondary }}>{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div 
-              className="w-full md:w-80 h-64 rounded-xl flex items-center justify-center"
-              style={{ backgroundColor: colors.cardBg }}
-            >
-              <span style={{ color: colors.accent }}>Иллюстрация</span>
-            </div>
           </div>
         </div>
       </section>
