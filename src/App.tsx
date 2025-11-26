@@ -1,10 +1,10 @@
 import { Route, Switch, Link } from "wouter";
-import Home from "./pages/Home";
+import DesignVariants from "./pages/DesignVariants";
 
 export default function App() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={DesignVariants} />
       <Route>
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
           <div className="text-center">
