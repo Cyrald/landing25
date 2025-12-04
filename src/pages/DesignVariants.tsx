@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, ExternalLink, Star, Shield, CircleDot, Droplets, Activity, Glasses, Ribbon } from "lucide-react";
 import { motion } from "framer-motion";
 import HeroVariants from "../components/HeroVariants";
+import { usePalette } from "../context/PaletteContext";
 
 const products = [
   {
@@ -126,21 +127,22 @@ const howItWorks = [
   },
 ];
 
-const colors = {
-  bg: "#f8faf8",
-  bgAlt: "#eef4ee",
-  accent: "#3d6b4f",
-  accentLight: "#d4e5d8",
-  accentDark: "#2a4a36",
-  text: "#1a2e1f",
-  textSecondary: "#4a6b52",
-  cardBg: "#ffffff",
-  catalogBg: "#f4f9f5",
-  gradient: "linear-gradient(135deg, #3d6b4f 0%, #2a4a36 50%, #1a2e1f 100%)",
-};
-
 export default function DesignVariants() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const { currentPalette } = usePalette();
+  
+  const colors = {
+    bg: currentPalette.colors.bg,
+    bgAlt: currentPalette.colors.bgAlt,
+    accent: currentPalette.colors.accent,
+    accentLight: currentPalette.colors.accentLight,
+    accentDark: currentPalette.colors.accentDark,
+    text: currentPalette.colors.text,
+    textSecondary: currentPalette.colors.textSecondary,
+    cardBg: currentPalette.colors.card,
+    catalogBg: currentPalette.colors.bgAlt,
+    gradient: `linear-gradient(135deg, ${currentPalette.colors.accent} 0%, ${currentPalette.colors.accentDark} 50%, ${currentPalette.colors.text} 100%)`,
+  };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.bg }}>
