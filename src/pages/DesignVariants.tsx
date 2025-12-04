@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, ExternalLink, Star, Shield, CircleDot, Droplets, Activity, Glasses, Ribbon } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import HeroVariants from "../components/HeroVariants";
 
 function useReducedMotion() {
@@ -349,131 +349,6 @@ function FloatingParticles({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-function ParallaxBotanicals({ reducedMotion }: { reducedMotion: boolean }) {
-  const { scrollY } = useScroll();
-  
-  const y1 = useTransform(scrollY, (value) => -(value * 0.1));
-  const y2 = useTransform(scrollY, (value) => -(value * 0.07));
-  const y3 = useTransform(scrollY, (value) => -(value * 0.13));
-  
-  const rotate1 = useTransform(scrollY, (value) => {
-    const cycle = value / 400;
-    return Math.sin(cycle) * 10 + Math.sin(cycle * 0.7) * 5;
-  });
-  const rotate2 = useTransform(scrollY, (value) => {
-    const cycle = value / 500;
-    return Math.sin(cycle + 1) * -8 + Math.sin(cycle * 0.6) * -4;
-  });
-
-  if (reducedMotion) {
-    return (
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
-        <div className="absolute top-20 right-10 opacity-[0.07]">
-          <svg width="120" height="180" viewBox="0 0 120 180">
-            <path d="M60 10 C30 40, 20 80, 25 120 C28 145, 45 165, 60 175 C75 165, 92 145, 95 120 C100 80, 90 40, 60 10" fill="none" stroke={colors.accent} strokeWidth="2" />
-            <path d="M60 40 L60 170" stroke={colors.accent} strokeWidth="1.5" />
-          </svg>
-        </div>
-        <div className="absolute top-[40%] left-5 opacity-[0.05]">
-          <svg width="80" height="140" viewBox="0 0 80 140">
-            <path d="M40 5 C20 25, 10 55, 15 85 C18 105, 30 120, 40 130 C50 120, 62 105, 65 85 C70 55, 60 25, 40 5" fill="none" stroke={colors.accentDark} strokeWidth="1.5" />
-            <path d="M40 20 L40 125" stroke={colors.accentDark} strokeWidth="1" />
-          </svg>
-        </div>
-        <div className="absolute top-[60%] right-[15%] opacity-[0.04]">
-          <svg width="100" height="160" viewBox="0 0 100 160">
-            <path d="M50 8 C25 35, 15 70, 20 105 C23 128, 38 145, 50 155 C62 145, 77 128, 80 105 C85 70, 75 35, 50 8" fill="none" stroke={colors.accent} strokeWidth="1.5" />
-            <path d="M50 25 L50 150" stroke={colors.accent} strokeWidth="1" />
-          </svg>
-        </div>
-        <div className="absolute bottom-[20%] left-[10%] opacity-[0.06]">
-          <svg width="60" height="100" viewBox="0 0 60 100">
-            <ellipse cx="30" cy="50" rx="25" ry="40" fill="none" stroke={colors.accent} strokeWidth="1.5" />
-            <path d="M30 15 L30 85" stroke={colors.accent} strokeWidth="1" />
-          </svg>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 1 }}>
-      <motion.div
-        style={{ y: y1, rotate: rotate1 }}
-        className="absolute top-20 right-10 opacity-[0.07]"
-      >
-        <svg width="120" height="180" viewBox="0 0 120 180">
-          <path
-            d="M60 10 C30 40, 20 80, 25 120 C28 145, 45 165, 60 175 C75 165, 92 145, 95 120 C100 80, 90 40, 60 10"
-            fill="none"
-            stroke={colors.accent}
-            strokeWidth="2"
-          />
-          <path d="M60 40 L60 170" stroke={colors.accent} strokeWidth="1.5" />
-          <path d="M40 70 Q50 60 60 70" fill="none" stroke={colors.accent} strokeWidth="1" />
-          <path d="M60 70 Q70 60 80 70" fill="none" stroke={colors.accent} strokeWidth="1" />
-          <path d="M35 100 Q47 85 60 100" fill="none" stroke={colors.accent} strokeWidth="1" />
-          <path d="M60 100 Q73 85 85 100" fill="none" stroke={colors.accent} strokeWidth="1" />
-          <path d="M40 130 Q50 115 60 130" fill="none" stroke={colors.accent} strokeWidth="1" />
-          <path d="M60 130 Q70 115 80 130" fill="none" stroke={colors.accent} strokeWidth="1" />
-        </svg>
-      </motion.div>
-      
-      <motion.div
-        style={{ y: y2, rotate: rotate2 }}
-        className="absolute top-[40%] left-5 opacity-[0.05]"
-      >
-        <svg width="80" height="140" viewBox="0 0 80 140">
-          <path
-            d="M40 5 C20 25, 10 55, 15 85 C18 105, 30 120, 40 130 C50 120, 62 105, 65 85 C70 55, 60 25, 40 5"
-            fill="none"
-            stroke={colors.accentDark}
-            strokeWidth="1.5"
-          />
-          <path d="M40 20 L40 125" stroke={colors.accentDark} strokeWidth="1" />
-          <path d="M25 50 Q32 40 40 50" fill="none" stroke={colors.accentDark} strokeWidth="0.8" />
-          <path d="M40 50 Q48 40 55 50" fill="none" stroke={colors.accentDark} strokeWidth="0.8" />
-          <path d="M22 80 Q31 65 40 80" fill="none" stroke={colors.accentDark} strokeWidth="0.8" />
-          <path d="M40 80 Q49 65 58 80" fill="none" stroke={colors.accentDark} strokeWidth="0.8" />
-        </svg>
-      </motion.div>
-      
-      <motion.div
-        style={{ y: y3 }}
-        className="absolute top-[60%] right-[15%] opacity-[0.04]"
-      >
-        <svg width="100" height="160" viewBox="0 0 100 160">
-          <path
-            d="M50 8 C25 35, 15 70, 20 105 C23 128, 38 145, 50 155 C62 145, 77 128, 80 105 C85 70, 75 35, 50 8"
-            fill="none"
-            stroke={colors.accent}
-            strokeWidth="1.5"
-          />
-          <path d="M50 25 L50 150" stroke={colors.accent} strokeWidth="1" />
-          <path d="M32 60 Q41 48 50 60" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-          <path d="M50 60 Q59 48 68 60" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-          <path d="M28 95 Q39 78 50 95" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-          <path d="M50 95 Q61 78 72 95" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-        </svg>
-      </motion.div>
-
-      <motion.div
-        style={{ y: y1 }}
-        className="absolute bottom-[20%] left-[10%] opacity-[0.06]"
-      >
-        <svg width="60" height="100" viewBox="0 0 60 100">
-          <ellipse cx="30" cy="50" rx="25" ry="40" fill="none" stroke={colors.accent} strokeWidth="1.5" />
-          <path d="M30 15 L30 85" stroke={colors.accent} strokeWidth="1" />
-          <path d="M15 40 Q22 30 30 40" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-          <path d="M30 40 Q38 30 45 40" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-          <path d="M12 60 Q21 48 30 60" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-          <path d="M30 60 Q39 48 48 60" fill="none" stroke={colors.accent} strokeWidth="0.8" />
-        </svg>
-      </motion.div>
-    </div>
-  );
-}
-
 function WaveDivider({ flip = false, color = colors.bgAlt, reducedMotion = false }: { flip?: boolean; color?: string; reducedMotion?: boolean }) {
   const staticPath = "M0,60 C150,90 350,30 600,60 C850,90 1050,30 1200,60 L1200,120 L0,120 Z";
   
@@ -568,12 +443,11 @@ export default function DesignVariants() {
       <AnimatedMeshGradient reducedMotion={reducedMotion} />
       <BreathingBlobs reducedMotion={reducedMotion} />
       <FloatingParticles reducedMotion={reducedMotion} />
-      <ParallaxBotanicals reducedMotion={reducedMotion} />
       <SubtleTexture />
       
       <div className="relative" style={{ zIndex: 10 }}>
-        {/* Hero Section с 10 вариантами */}
-        <HeroVariants variant={1} showSelector={true} />
+        {/* Hero Section */}
+        <HeroVariants />
 
         <WaveDivider color={colors.bg} reducedMotion={reducedMotion} />
 
