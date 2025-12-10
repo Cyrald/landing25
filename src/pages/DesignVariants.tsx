@@ -141,6 +141,8 @@ export default function DesignVariants() {
     textSecondary: currentPalette.colors.textSecondary,
     cardBg: currentPalette.colors.card,
     catalogBg: currentPalette.colors.bgAlt,
+    button: currentPalette.colors.button,
+    buttonText: currentPalette.colors.buttonText,
     gradient: `linear-gradient(135deg, ${currentPalette.colors.accent} 0%, ${currentPalette.colors.accentDark} 50%, ${currentPalette.colors.text} 100%)`,
   };
 
@@ -161,8 +163,8 @@ export default function DesignVariants() {
           >
             Как это работает
           </motion.h2>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch">
+            <div className="flex flex-col justify-center space-y-6 md:space-y-8">
               {howItWorks.map((item, idx) => (
                 <motion.div 
                   key={item.step} 
@@ -173,20 +175,20 @@ export default function DesignVariants() {
                   transition={{ delay: idx * 0.1 }}
                 >
                   <div 
-                    className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 text-xl font-bold"
+                    className="w-12 h-12 md:w-14 md:h-14 rounded-lg flex items-center justify-center flex-shrink-0 text-xl md:text-2xl font-bold"
                     style={{ backgroundColor: colors.accent, color: "#fff" }}
                   >
                     {item.step}
                   </div>
-                  <div>
-                    <h3 className="font-bold mb-1" style={{ color: colors.text }}>{item.title}</h3>
-                    <p className="text-sm" style={{ color: colors.textSecondary }}>{item.desc}</p>
+                  <div className="flex flex-col justify-center">
+                    <h3 className="font-bold mb-1 text-base md:text-lg" style={{ color: colors.text }}>{item.title}</h3>
+                    <p className="text-sm md:text-base" style={{ color: colors.textSecondary }}>{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
             <motion.div 
-              className="w-full md:w-80 aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm"
+              className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last"
               style={{ backgroundColor: `${colors.cardBg}ee` }}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -218,7 +220,7 @@ export default function DesignVariants() {
             {products.map((product, idx) => (
               <motion.div 
                 key={product.id}
-                className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 items-center rounded-xl overflow-hidden`}
+                className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} rounded-xl overflow-hidden`}
                 style={{ backgroundColor: colors.bg, border: `1px solid ${colors.accentLight}` }}
                 data-testid={`card-product-${product.id}`}
                 initial={{ opacity: 0, y: 20 }}
@@ -227,7 +229,7 @@ export default function DesignVariants() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
               >
                 <div 
-                  className="w-2/3 mx-auto md:mx-0 md:w-[28%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
+                  className="w-full md:w-[40%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: colors.bgAlt }}
                   data-testid={`img-product-${product.id}`}
                 >
@@ -236,7 +238,7 @@ export default function DesignVariants() {
                     <span style={{ color: colors.accent }}>Фото {product.name}</span>
                   </div>
                 </div>
-                <div className="w-full md:w-2/3 p-6">
+                <div className="w-full md:w-[60%] p-6 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-3">
                     <span 
                       className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
@@ -259,13 +261,22 @@ export default function DesignVariants() {
                       ))}
                     </ul>
                   </div>
-                  <button
-                    className="mt-4 px-5 py-2 text-sm font-medium rounded-lg transition-all hover:scale-105"
-                    style={{ backgroundColor: colors.accentLight, color: colors.accent }}
-                    data-testid={`button-learn-more-${product.id}`}
-                  >
-                    Подробнее о продукте
-                  </button>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <button
+                      className="px-5 py-2.5 text-sm font-medium rounded-lg transition-all hover:scale-105"
+                      style={{ backgroundColor: colors.button, color: colors.buttonText }}
+                      data-testid={`button-order-${product.id}`}
+                    >
+                      Заказать
+                    </button>
+                    <button
+                      className="px-5 py-2.5 text-sm font-medium rounded-lg transition-all hover:scale-105"
+                      style={{ backgroundColor: colors.accentLight, color: colors.accent }}
+                      data-testid={`button-learn-more-${product.id}`}
+                    >
+                      Подробнее о продукте
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
