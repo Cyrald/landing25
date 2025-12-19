@@ -129,6 +129,7 @@ const howItWorks = [
 
 export default function DesignVariants() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
   const { currentPalette } = usePalette();
   
   const colors = {
@@ -188,7 +189,7 @@ export default function DesignVariants() {
               ))}
             </div>
             <motion.div 
-              className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last"
+              className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last scale-70"
               style={{ backgroundColor: `${colors.cardBg}ee` }}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -229,7 +230,7 @@ export default function DesignVariants() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
               >
                 <div 
-                  className="w-full md:w-[40%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
+                  className="w-full md:w-[20%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: colors.bgAlt }}
                   data-testid={`img-product-${product.id}`}
                 >
@@ -238,7 +239,7 @@ export default function DesignVariants() {
                     <span style={{ color: colors.accent }}>Фото {product.name}</span>
                   </div>
                 </div>
-                <div className="w-full md:w-[60%] p-6 flex flex-col justify-center">
+                <div className="w-full md:w-[80%] p-6 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-3">
                     <span 
                       className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
@@ -296,37 +297,53 @@ export default function DesignVariants() {
           >
             Истории наших клиентов
           </motion.h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {testimonials.map((t, idx) => (
-              <motion.div 
-                key={t.id}
-                className="rounded-2xl p-6"
-                style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <div className="flex gap-1 mb-3">
-                  {[1,2,3,4,5].map((s) => (
-                    <Star key={s} className="w-4 h-4 fill-current" style={{ color: colors.accent }} />
-                  ))}
-                </div>
-                <p className="mb-4 leading-relaxed" style={{ color: colors.text }}>"{t.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div 
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
-                    style={{ backgroundColor: colors.accent }}
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div className="flex gap-6 transition-transform duration-300" style={{ transform: `translateX(-${testimonialIndex * (100 / 2 + 3)}%)` }}>
+                {testimonials.map((t, idx) => (
+                  <motion.div 
+                    key={t.id}
+                    className="flex-shrink-0 w-full md:w-1/2 rounded-2xl p-6 h-80"
+                    style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
                   >
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-sm" style={{ color: colors.text }}>{t.name}</div>
-                    <div className="text-xs" style={{ color: colors.textSecondary }}>{t.city}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                    <div className="flex gap-1 mb-3">
+                      {[1,2,3,4,5].map((s) => (
+                        <Star key={s} className="w-4 h-4 fill-current" style={{ color: "#FFD700" }} />
+                      ))}
+                    </div>
+                    <p className="mb-4 leading-relaxed line-clamp-5" style={{ color: colors.text }}>"{t.text}"</p>
+                    <div className="flex items-center gap-3">
+                      <div>
+                        <div className="font-semibold text-sm" style={{ color: colors.text }}>{t.name}</div>
+                        <div className="text-xs" style={{ color: colors.textSecondary }}>{t.city}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            <div className="flex justify-center gap-3 mt-8">
+              <button
+                onClick={() => setTestimonialIndex(Math.max(0, testimonialIndex - 1))}
+                className="px-4 py-2 rounded-lg transition-all"
+                style={{ backgroundColor: colors.accent, color: "#fff" }}
+                data-testid="button-testimonial-prev"
+              >
+                &larr;
+              </button>
+              <button
+                onClick={() => setTestimonialIndex(Math.min(testimonials.length - 2, testimonialIndex + 1))}
+                className="px-4 py-2 rounded-lg transition-all"
+                style={{ backgroundColor: colors.accent, color: "#fff" }}
+                data-testid="button-testimonial-next"
+              >
+                &rarr;
+              </button>
+            </div>
           </div>
         </div>
       </section>
