@@ -286,53 +286,71 @@ export default function DesignVariants() {
           >
             Истории наших клиентов
           </motion.h2>
-          <div className="relative flex items-center justify-center">
-            <button
-              onClick={() => setTestimonialIndex((prev) => {
-                const newIndex = prev - 1;
-                return newIndex < 0 ? testimonials.length - 1 : newIndex;
-              })}
-              className="absolute left-0 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-              style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
-              data-testid="button-testimonial-prev"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
+          
+          {/* Carousel with duplicated items for infinite loop */}
+          {(() => {
+            const extendedTestimonials = [...testimonials, ...testimonials.slice(0, 2)];
+            const totalItems = extendedTestimonials.length;
             
-            <div className="overflow-hidden w-full px-16">
-              <motion.div 
-                className="flex gap-6"
-                animate={{ x: `-${testimonialIndex * (100 / 1.5)}%` }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              >
-                {testimonials.map((t) => (
-                  <div 
-                    key={t.id}
-                    className="flex-shrink-0 w-full md:w-1/2 rounded-2xl p-6"
-                    style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}
+            return (
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  onClick={() => setTestimonialIndex((prev) => {
+                    const newIndex = prev - 1;
+                    if (newIndex < 0) {
+                      return testimonials.length - 1;
+                    }
+                    return newIndex;
+                  })}
+                  className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                  style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
+                  data-testid="button-testimonial-prev"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                
+                <div className="flex-1 overflow-hidden">
+                  <motion.div 
+                    className="flex gap-6"
+                    animate={{ x: `-${testimonialIndex * 52}%` }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   >
-                    <div className="font-bold text-lg mb-2" style={{ color: colors.text }}>{t.name}</div>
-                    <div className="text-sm mb-3" style={{ color: colors.textSecondary }}>{t.city}</div>
-                    <div className="flex gap-1 mb-3">
-                      {[1,2,3,4,5].map((s) => (
-                        <Star key={s} className="w-4 h-4 fill-current" style={{ color: "#FFD700" }} />
-                      ))}
-                    </div>
-                    <p className="leading-relaxed" style={{ color: colors.text }}>"{t.text}"</p>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-            
-            <button
-              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
-              className="absolute right-0 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-              style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
-              data-testid="button-testimonial-next"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+                    {extendedTestimonials.map((t, idx) => (
+                      <div 
+                        key={`${t.id}-${idx}`}
+                        className="flex-shrink-0 w-full md:w-1/2 rounded-2xl p-6"
+                        style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}
+                      >
+                        <div className="font-bold text-lg mb-2" style={{ color: colors.text }}>{t.name}</div>
+                        <div className="text-sm mb-3" style={{ color: colors.textSecondary }}>{t.city}</div>
+                        <div className="flex gap-1 mb-3">
+                          {[1,2,3,4,5].map((s) => (
+                            <Star key={s} className="w-4 h-4 fill-current" style={{ color: "#FFD700" }} />
+                          ))}
+                        </div>
+                        <p className="leading-relaxed" style={{ color: colors.text }}>"{t.text}"</p>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+                
+                <button
+                  onClick={() => setTestimonialIndex((prev) => {
+                    const nextIndex = prev + 1;
+                    if (nextIndex >= testimonials.length) {
+                      return 0;
+                    }
+                    return nextIndex;
+                  })}
+                  className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                  style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
+                  data-testid="button-testimonial-next"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
