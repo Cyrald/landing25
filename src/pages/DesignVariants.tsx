@@ -287,77 +287,60 @@ export default function DesignVariants() {
             Истории наших клиентов
           </motion.h2>
           
-          {/* Infinite carousel with proper infinite loop */}
-          {(() => {
-            // Create extended list: original + clones of first 2 items at the end
-            const extendedTestimonials = [...testimonials, testimonials[0], testimonials[1]];
+          {/* Testimonials carousel - shows 2 items at a time, cycles through all 6 */}
+          <div className="flex items-center justify-center gap-4">
+            <button
+              onClick={() => {
+                setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+              }}
+              className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
+              data-testid="button-testimonial-prev"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
             
-            // Calculate offset: 50% for item width + ~2% for gap compensation = 52%
-            const offsetPercentage = 52;
-            
-            return (
-              <div className="flex items-center justify-center gap-4">
-                <button
-                  onClick={() => {
-                    setTestimonialIndex((prev) => {
-                      const next = prev - 1;
-                      if (next < 0) {
-                        return testimonials.length - 1;
-                      }
-                      return next;
-                    });
-                  }}
-                  className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                  style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
-                  data-testid="button-testimonial-prev"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                
-                <div className="w-full overflow-hidden">
-                  <motion.div 
-                    className="flex gap-6"
-                    animate={{ x: `-${testimonialIndex * offsetPercentage}%` }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            <div className="w-full overflow-hidden">
+              <motion.div 
+                className="flex"
+                animate={{ x: `-${testimonialIndex * 50}%` }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                style={{ width: `${(testimonials.length / 2) * 100}%` }}
+              >
+                {testimonials.map((t, idx) => (
+                  <div 
+                    key={t.id}
+                    className="flex-shrink-0 w-1/2 rounded-2xl p-6"
+                    style={{ 
+                      backgroundColor: colors.cardBg, 
+                      border: `1px solid ${colors.accentLight}`,
+                      marginRight: idx < testimonials.length - 1 ? '24px' : '0px'
+                    }}
                   >
-                    {extendedTestimonials.map((t, idx) => (
-                      <div 
-                        key={`${t.id}-${idx}`}
-                        className="flex-shrink-0 w-1/2 rounded-2xl p-6"
-                        style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}
-                      >
-                        <div className="font-bold text-lg mb-2" style={{ color: colors.text }}>{t.name}</div>
-                        <div className="text-sm mb-3" style={{ color: colors.textSecondary }}>{t.city}</div>
-                        <div className="flex gap-1 mb-3">
-                          {[1,2,3,4,5].map((s) => (
-                            <Star key={s} className="w-4 h-4 fill-current" style={{ color: "#FFD700" }} />
-                          ))}
-                        </div>
-                        <p className="leading-relaxed" style={{ color: colors.text }}>"{t.text}"</p>
-                      </div>
-                    ))}
-                  </motion.div>
-                </div>
-                
-                <button
-                  onClick={() => {
-                    setTestimonialIndex((prev) => {
-                      const next = prev + 1;
-                      if (next >= testimonials.length) {
-                        return 0;
-                      }
-                      return next;
-                    });
-                  }}
-                  className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                  style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
-                  data-testid="button-testimonial-next"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            );
-          })()}
+                    <div className="font-bold text-lg mb-2" style={{ color: colors.text }}>{t.name}</div>
+                    <div className="text-sm mb-3" style={{ color: colors.textSecondary }}>{t.city}</div>
+                    <div className="flex gap-1 mb-3">
+                      {[1,2,3,4,5].map((s) => (
+                        <Star key={s} className="w-4 h-4 fill-current" style={{ color: "#FFD700" }} />
+                      ))}
+                    </div>
+                    <p className="leading-relaxed" style={{ color: colors.text }}>"{t.text}"</p>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+            
+            <button
+              onClick={() => {
+                setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+              }}
+              className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ backgroundColor: `${colors.accent}20`, color: colors.accent, border: `1px solid ${colors.accent}40` }}
+              data-testid="button-testimonial-next"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </section>
 
