@@ -307,7 +307,7 @@ export default function DesignVariants() {
               {testimonials.map((testimonial) => (
                 <SwiperSlide key={testimonial.id}>
                   <div
-                    className="rounded-2xl p-5 flex flex-col"
+                    className="rounded-2xl p-5 flex flex-col h-80"
                     style={{
                       backgroundColor: colors.cardBg,
                       border: `1px solid ${colors.accentLight}`,
@@ -325,16 +325,28 @@ export default function DesignVariants() {
 
                     {/* City */}
                     <div
-                      className="text-sm mb-3"
+                      className="text-sm mb-2"
                       style={{ color: colors.textSecondary }}
                       data-testid={`text-city-${testimonial.id}`}
                     >
                       {testimonial.city}
                     </div>
 
+                    {/* Stars */}
+                    <div className="flex gap-1 mb-3" data-testid={`stars-${testimonial.id}`}>
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4"
+                          fill="#FFD700"
+                          color="#FFD700"
+                        />
+                      ))}
+                    </div>
+
                     {/* Text */}
                     <p
-                      className="leading-relaxed text-sm"
+                      className="leading-relaxed text-sm flex-1 overflow-hidden"
                       style={{ color: colors.text }}
                       data-testid={`text-review-${testimonial.id}`}
                     >
