@@ -49,6 +49,14 @@ const products = [
     benefits: ["Поддержка поясницы", "Мягкое прогревание", "Комфорт в движении"],
     icon: Shield,
   },
+  {
+    id: 6,
+    name: "Тесьма",
+    shortName: "Тесьма",
+    description: "Уникальная лечебная тесьма для многофункционального использования. Её можно повязывать на запястья, щиколотки или использовать как вспомогательный элемент для фиксации других оздоровительных средств.",
+    benefits: ["Универсальность", "Легкость и прочность", "Природная фиксация"],
+    icon: Activity,
+  },
 ];
 
 const testimonials = [
@@ -194,7 +202,7 @@ export default function DesignVariants() {
               ))}
             </div>
             <motion.div 
-              className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last scale-85"
+              className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last scale-95"
               style={{ backgroundColor: `${colors.cardBg}ee` }}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
