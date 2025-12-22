@@ -216,7 +216,7 @@ export default function DesignVariants() {
 
       {/* Products Section */}
       <section className="py-16 md:py-24" style={{ backgroundColor: colors.catalogBg }} data-testid="section-products">
-        <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl xl:max-w-[90rem] mx-auto px-4 lg:px-6">
           <div className="text-center mb-12 md:mb-16">
             <motion.h2 
               className="text-2xl md:text-4xl font-bold mb-2"
@@ -243,31 +243,31 @@ export default function DesignVariants() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
               >
                 <div 
-                  className="w-[30%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
+                  className="w-[40%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: colors.bgAlt }}
                   data-testid={`img-product-${product.id}`}
                 >
-                  <div className="text-center p-4">
-                    <product.icon className="w-14 h-14 mx-auto mb-2" style={{ color: colors.accent }} />
-                    <span className="text-sm" style={{ color: colors.accent }}>Фото {product.name}</span>
+                  <div className="text-center p-6">
+                    <product.icon className="w-16 h-16 mx-auto mb-3" style={{ color: colors.accent }} />
+                    <span className="text-base" style={{ color: colors.accent }}>Фото {product.name}</span>
                   </div>
                 </div>
-                <div className="w-[70%] p-6 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-3">
+                <div className="w-[60%] p-8 flex flex-col justify-center">
+                  <div className="flex items-center gap-4 mb-4">
                     <span 
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-bold"
                       style={{ backgroundColor: colors.accent }}
                     >
                       {product.id}
                     </span>
-                    <h3 className="text-xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
+                    <h3 className="text-2xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
                   </div>
-                  <p className="text-sm leading-relaxed mb-4" style={{ color: colors.textSecondary }}>
+                  <p className="text-base leading-relaxed mb-6" style={{ color: colors.textSecondary }}>
                     {product.description}
                   </p>
                   <div className="mt-auto">
                     <button
-                      className="px-5 py-2.5 text-sm font-medium rounded-lg transition-all hover:scale-105"
+                      className="px-6 py-3 text-base font-medium rounded-lg transition-all hover:scale-105"
                       style={{ backgroundColor: colors.button, color: colors.buttonText }}
                       data-testid={`button-order-${product.id}`}
                     >
