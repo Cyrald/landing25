@@ -1,6 +1,6 @@
 import { Route, Switch, Link } from "wouter";
 import { PaletteProvider, usePalette } from "./context/PaletteContext";
-import DesignVariants from "./pages/DesignVariants";
+import Home from "./pages/Home";
 
 function NotFoundPage() {
   const { currentPalette } = usePalette();
@@ -39,7 +39,7 @@ function NotFoundPage() {
 function AppContent() {
   return (
     <Switch>
-      <Route path="/" component={DesignVariants} />
+      <Route path="/" component={Home} />
       <Route component={NotFoundPage} />
     </Switch>
   );
