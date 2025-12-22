@@ -13,7 +13,7 @@ const products = [
     id: 1,
     name: "Пластырь",
     shortName: "Пластырь",
-    description: "Точечное воздействие на проблемные зоны. Активные компоненты проникают глубоко в ткани, снимая дискомфорт.",
+    description: "Традиционный лечебный пластырь для наклеивания на проблемные зоны. Активные компоненты проникают через кожу и оказывают целебное воздействие на глубокие ткани.",
     benefits: ["Глубокое проникновение", "До 12 часов действия", "Удобное применение"],
     icon: CircleDot,
   },
@@ -21,7 +21,7 @@ const products = [
     id: 2,
     name: "Очиститель воды",
     shortName: "Вода",
-    description: "Структурирует и очищает воду, насыщая её минералами. Улучшает вкус и биодоступность для организма.",
+    description: "Специальный состав для структурирования и очищения питьевой воды. Насыщает воду полезными минералами и улучшает её биодоступность для организма.",
     benefits: ["Природная минерализация", "Улучшение вкуса воды", "Польза для организма"],
     icon: Droplets,
   },
@@ -29,7 +29,7 @@ const products = [
     id: 3,
     name: "Очелье",
     shortName: "Очелье",
-    description: "Снимает напряжение и головную боль. Улучшает кровообращение и способствует глубокому расслаблению.",
+    description: "Лечебная повязка на голову с активными компонентами. Помогает при головных болях, снимает напряжение, улучшает кровообращение в области головы.",
     benefits: ["Снятие головной боли", "Расслабление", "Улучшение сна"],
     icon: Activity,
   },
@@ -37,7 +37,7 @@ const products = [
     id: 4,
     name: "Наочники",
     shortName: "Наочники", 
-    description: "Снимают усталость глаз и отёчность. Освежают взгляд после долгой работы за компьютером или смартфоном.",
+    description: "Накладки на глаза с целебными экстрактами. Снимают усталость глаз, уменьшают отёчность, освежают и тонизируют нежную кожу вокруг глаз.",
     benefits: ["Снятие усталости глаз", "Уменьшение отёков", "Освежающий эффект"],
     icon: Glasses,
   },
@@ -45,7 +45,7 @@ const products = [
     id: 5,
     name: "Кушак",
     shortName: "Кушак",
-    description: "Поддержка поясницы и мягкое тепло. Оздоравливает внутренние органы и обеспечивает комфорт в движении.",
+    description: "Широкий лечебный пояс для области живота и поясницы. Обеспечивает мягкое тепло, поддержку и оздоровительное воздействие на внутренние органы.",
     benefits: ["Поддержка поясницы", "Мягкое прогревание", "Комфорт в движении"],
     icon: Shield,
   },
@@ -53,7 +53,7 @@ const products = [
     id: 6,
     name: "Тесьма",
     shortName: "Тесьма",
-    description: "Универсальное оздоровительное средство. Легко фиксируется на суставах или дополняет другие продукты.",
+    description: "Уникальная лечебная тесьма для многофункционального использования. Её можно повязывать на запястья, щиколотки или использовать как вспомогательный элемент для фиксации других оздоровительных средств.",
     benefits: ["Универсальность", "Легкость и прочность", "Природная фиксация"],
     icon: Activity,
   },
@@ -243,16 +243,16 @@ export default function DesignVariants() {
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
               >
                 <div 
-                  className="w-full aspect-[16/9] flex items-center justify-center flex-shrink-0"
+                  className="w-full md:w-[35%] aspect-[3/4] flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: colors.bgAlt }}
                   data-testid={`img-product-${product.id}`}
                 >
-                  <div className="text-center">
+                  <div className="text-center p-4">
                     <product.icon className="w-12 h-12 mx-auto mb-2" style={{ color: colors.accent }} />
-                    <span className="text-sm" style={{ color: colors.accent }}>Фото {product.name}</span>
+                    <span className="text-xs" style={{ color: colors.accent }}>Фото {product.name}</span>
                   </div>
                 </div>
-                <div className="p-5 flex flex-col flex-1">
+                <div className="w-full md:w-[65%] p-5 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-2">
                     <span 
                       className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold"
@@ -260,9 +260,9 @@ export default function DesignVariants() {
                     >
                       {product.id}
                     </span>
-                    <h3 className="text-lg md:text-xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
+                    <h3 className="text-lg font-bold" style={{ color: colors.text }}>{product.name}</h3>
                   </div>
-                  <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: colors.textSecondary }}>
+                  <p className="text-sm leading-relaxed mb-4" style={{ color: colors.textSecondary }}>
                     {product.description}
                   </p>
                   <div className="mt-auto">
