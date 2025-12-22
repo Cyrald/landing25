@@ -279,6 +279,7 @@ export default function Home() {
     button: currentPalette.colors.button,
     buttonText: currentPalette.colors.buttonText,
     gradient: `linear-gradient(135deg, ${currentPalette.colors.accent} 0%, ${currentPalette.colors.accentDark} 50%, ${currentPalette.colors.text} 100%)`,
+    buttonHover: currentPalette.colors.accentDark,
   };
 
   return (
@@ -337,8 +338,21 @@ export default function Home() {
       <section className="py-16 md:py-24" style={{ backgroundColor: colors.bg }}>
         <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-12" style={{ color: colors.text }}>Истории наших клиентов</h2>
-          <div style={{ position: 'relative' }}>
-            <Swiper ref={swiperRef} modules={[Navigation, Pagination]} spaceBetween={20} slidesPerView={1} loop={true} navigation={{ nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' }} breakpoints={{ 640: { slidesPerView: 2, spaceBetween: 24 } }} onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}>
+          <div className="relative group">
+            <Swiper 
+              ref={swiperRef} 
+              modules={[Navigation, Pagination]} 
+              spaceBetween={20} 
+              slidesPerView={1} 
+              loop={true} 
+              navigation={{ 
+                nextEl: '.swiper-button-next-custom', 
+                prevEl: '.swiper-button-prev-custom' 
+              }} 
+              breakpoints={{ 640: { slidesPerView: 2, spaceBetween: 24 } }} 
+              onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
+              className="px-4"
+            >
               {testimonials.map((testimonial) => (
                 <SwiperSlide key={testimonial.id}>
                   <div className="rounded-2xl p-5 flex flex-col h-80" style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}>
@@ -352,6 +366,22 @@ export default function Home() {
                 </SwiperSlide>
               ))}
             </Swiper>
+            
+            {/* Custom Navigation Buttons */}
+            <button 
+              className="swiper-button-prev-custom absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all hover:scale-110 active:scale-95"
+              style={{ backgroundColor: colors.cardBg, color: colors.accent, border: `1px solid ${colors.accentLight}` }}
+              data-testid="button-testimonials-prev"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button 
+              className="swiper-button-next-custom absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all hover:scale-110 active:scale-95"
+              style={{ backgroundColor: colors.cardBg, color: colors.accent, border: `1px solid ${colors.accentLight}` }}
+              data-testid="button-testimonials-next"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </section>
