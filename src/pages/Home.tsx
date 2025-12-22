@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { ChevronDown, ExternalLink, Star, Shield, CircleDot, Droplets, Activity, Glasses, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ExternalLink, Star, Shield, CircleDot, Droplets, Activity, Glasses, ChevronLeft, ChevronRight, Leaf, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -7,79 +7,76 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { usePalette } from "../context/PaletteContext";
 import { products, testimonials, faqItems, howItWorks } from "../data";
+import { SmartImage } from "../components/SmartImage";
+import { getImageSources } from "../utils/imageLoader";
+
+function ProductImage({ text = "Продукт", aspectRatio = "1/1", className = "", bgColor }: { text?: string; aspectRatio?: string; className?: string; bgColor: string }) {
+  return (
+    <div
+      className={`rounded-xl overflow-hidden ${className}`}
+      style={{ aspectRatio, backgroundColor: bgColor }}
+    >
+      <SmartImage
+        sources={getImageSources('hero-product', 1)}
+        alt={text}
+        className="w-full h-full object-cover"
+        placeholderContent={
+          <div className="w-full h-full flex flex-col items-center justify-center gap-2">
+            <Leaf className="w-10 h-10 text-white/70" />
+            <span className="text-white/80 text-sm font-medium">{text}</span>
+          </div>
+        }
+      />
+    </div>
+  );
+}
 
 const HeroSection = () => {
   const { currentPalette } = usePalette();
-  
-  const colors = {
-    bg: currentPalette.colors.bg,
-    accent: currentPalette.colors.accent,
-    accentDark: currentPalette.colors.accentDark,
-    text: currentPalette.colors.text,
-    textSecondary: currentPalette.colors.textSecondary,
-    button: currentPalette.colors.button,
-    buttonText: currentPalette.colors.buttonText,
-  };
+  const colors = currentPalette.colors;
 
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden" style={{ backgroundColor: colors.bg }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-sm font-medium mb-6">
-            <Star className="w-4 h-4 fill-current" />
-            <span>История исцеления: путь к гармонии</span>
-          </div>
-          <h1 className="text-5xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1]" style={{ color: colors.text }}>
-            Верните себе <span style={{ color: colors.accent }}>природную</span> силу и баланс
-          </h1>
-          <p className="text-xl mb-10 leading-relaxed max-w-xl" style={{ color: colors.textSecondary }}>
-            Мы объединили древние знания о травах с современными технологиями, чтобы создать продукты, которые действительно работают.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+    <section className="pt-8 pb-16 md:pt-12 md:pb-24" style={{ backgroundColor: colors.bg }}>
+      <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <Quote className="w-10 h-10 mb-6" style={{ color: colors.accent }} />
+            <blockquote 
+              className="text-2xl md:text-3xl font-medium mb-6 leading-relaxed italic"
+              style={{ color: colors.text }}
+            >
+              "После многих лет боли я наконец нашла облегчение в простом натуральном средстве"
+            </blockquote>
+            <p className="mb-8" style={{ color: colors.textSecondary }}>
+              — Мария, 54 года, Москва
+            </p>
+            <h2 className="text-xl md:text-2xl font-bold mb-4" style={{ color: colors.text }}>
+              Тысячи историй <span style={{ color: colors.accent }}>исцеления</span>
+            </h2>
+            <p className="mb-8" style={{ color: colors.textSecondary }}>
+              Каждый день we получаем благодарности от людей, которые вернули себе радость движения.
+            </p>
+            <button
+              className="px-8 py-4 rounded-lg font-semibold transition-transform hover:scale-105"
               style={{ backgroundColor: colors.button, color: colors.buttonText }}
+              data-testid="button-hero-stories"
             >
-              Перейти в каталог
-              <ChevronDown className="w-5 h-5" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 rounded-xl font-bold text-lg border-2 transition-all"
-              style={{ borderColor: colors.accent, color: colors.accent }}
-            >
-              Узнать больше
-            </motion.button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative hidden lg:block"
-        >
-          <div 
-            className="absolute -inset-4 bg-emerald-200/20 rounded-[2rem] blur-3xl"
-            style={{ backgroundColor: `${colors.accent}15` }}
-          ></div>
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-white shadow-2xl border border-emerald-100 flex items-center justify-center">
-             <div className="text-center p-12">
-                <div className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                   <Activity className="w-12 h-12" style={{ color: colors.accent }} />
-                </div>
-                <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>Wellness продукт</h3>
-                <p style={{ color: colors.textSecondary }}>Натуральные компоненты для вашего здоровья</p>
-             </div>
-          </div>
-        </motion.div>
+              Читать истории
+            </button>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <ProductImage text="Продукт" aspectRatio="4/5" className="shadow-xl rounded-2xl" bgColor={colors.accentLight} />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
