@@ -384,15 +384,14 @@ export default function DesignVariants() {
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Pagination Indicators */}
-            <div className="flex items-center justify-center gap-2 mt-6" data-testid="pagination-indicators">
+            {/* Pagination Indicators - Only on mobile (1 slide visible) */}
+            <div className="flex items-center justify-center gap-2 mt-6 md:hidden" data-testid="pagination-indicators">
               {[...Array(testimonials.length)].map((_, idx) => (
                 <div
                   key={idx}
                   className="w-2 h-2 rounded-full transition-all cursor-pointer"
                   style={{
                     backgroundColor: currentSlide === idx ? colors.accent : `${colors.accent}40`,
-                    width: currentSlide === idx ? '24px' : '8px',
                   }}
                   onClick={() => {
                     if (swiperRef.current?.swiper) {
@@ -403,7 +402,7 @@ export default function DesignVariants() {
                 />
               ))}
             </div>
-            <div className="text-center mt-3 text-sm" style={{ color: colors.textSecondary }} data-testid="pagination-text">
+            <div className="text-center mt-3 text-sm md:hidden" style={{ color: colors.textSecondary }} data-testid="pagination-text">
               {currentSlide + 1} из {testimonials.length}
             </div>
           </div>
