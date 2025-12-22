@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { ChevronDown, ExternalLink, Star, Shield, CircleDot, Droplets, Activity, Glasses, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import HeroVariants from "../components/HeroVariants";
@@ -133,7 +133,8 @@ const howItWorks = [
 
 export default function DesignVariants() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const swiperRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const swiperRef = useRef<any>(null);
   const { currentPalette } = usePalette();
   
   const colors = {
@@ -288,7 +289,7 @@ export default function DesignVariants() {
           <div style={{ position: 'relative' }}>
             <Swiper
               ref={swiperRef}
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
               spaceBetween={20}
               slidesPerView={1}
               loop={true}
@@ -302,6 +303,7 @@ export default function DesignVariants() {
                   spaceBetween: 24,
                 },
               }}
+              onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
               className="pb-6"
             >
               {testimonials.map((testimonial) => (
@@ -357,9 +359,9 @@ export default function DesignVariants() {
               ))}
             </Swiper>
 
-            {/* Navigation Buttons */}
+            {/* Navigation Buttons - Hidden on Mobile */}
             <button
-              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
+              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10 hidden md:flex"
               style={{
                 backgroundColor: `${colors.accent}20`,
                 color: colors.accent,
@@ -371,7 +373,7 @@ export default function DesignVariants() {
             </button>
 
             <button
-              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
+              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10 hidden md:flex"
               style={{
                 backgroundColor: `${colors.accent}20`,
                 color: colors.accent,
@@ -381,6 +383,29 @@ export default function DesignVariants() {
             >
               <ChevronRight className="w-5 h-5" />
             </button>
+
+            {/* Pagination Indicators */}
+            <div className="flex items-center justify-center gap-2 mt-6" data-testid="pagination-indicators">
+              {[...Array(testimonials.length)].map((_, idx) => (
+                <div
+                  key={idx}
+                  className="w-2 h-2 rounded-full transition-all cursor-pointer"
+                  style={{
+                    backgroundColor: currentSlide === idx ? colors.accent : `${colors.accent}40`,
+                    width: currentSlide === idx ? '24px' : '8px',
+                  }}
+                  onClick={() => {
+                    if (swiperRef.current?.swiper) {
+                      swiperRef.current.swiper.slideTo(idx);
+                    }
+                  }}
+                  data-testid={`pagination-dot-${idx}`}
+                />
+              ))}
+            </div>
+            <div className="text-center mt-3 text-sm" style={{ color: colors.textSecondary }} data-testid="pagination-text">
+              {currentSlide + 1} из {testimonials.length}
+            </div>
           </div>
         </div>
       </section>
