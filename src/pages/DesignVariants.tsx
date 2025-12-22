@@ -369,7 +369,7 @@ export default function DesignVariants() {
 
             {/* Navigation Buttons - Hidden on Mobile */}
             <button
-              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10 hidden md:flex"
+              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 lg:-translate-x-24 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10 hidden md:flex"
               style={{
                 backgroundColor: `${colors.accent}20`,
                 color: colors.accent,
@@ -377,11 +377,11 @@ export default function DesignVariants() {
               }}
               data-testid="button-testimonial-prev"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
 
             <button
-              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10 hidden md:flex"
+              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 lg:translate-x-24 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 z-10 hidden md:flex"
               style={{
                 backgroundColor: `${colors.accent}20`,
                 color: colors.accent,
@@ -389,7 +389,7 @@ export default function DesignVariants() {
               }}
               data-testid="button-testimonial-next"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </button>
 
             {/* Pagination Indicators - Only on mobile (1 slide visible) */}
