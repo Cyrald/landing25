@@ -129,166 +129,41 @@ const HeroSection = () => {
   );
 };
 
-// --- How It Works Typography Variants (Strict Layout: Text Left, Photo Right) ---
+// --- How It Works Typography Variants ---
 const howItWorksVariants = [
   {
     id: 1,
-    name: "Гармония природы",
-    textClass: "space-y-6",
-    pClass: "text-xl font-light leading-relaxed first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:leading-none",
-    accent: "border-l-2 pl-8 border-accent/30",
-    pStyle: { color: colors.textSecondary }
+    name: "Шестиугольная гармония",
+    pClass: "text-lg md:text-xl font-light leading-relaxed",
+    accent: "clip-path-hexagon bg-accent/5 border-2 border-white p-16 md:p-24",
+    pStyle: { color: colors.accentDark }
   },
   {
     id: 2,
-    name: "Дзен-баланс",
-    textClass: "space-y-4",
-    pClass: "text-lg italic font-medium leading-loose text-center md:text-left",
-    accent: "bg-accent-light/5 p-10 rounded-[4rem] border border-white/40",
-    pStyle: { color: colors.accentDark }
+    name: "Дыхание леса",
+    pClass: "text-lg md:text-xl font-medium italic leading-loose",
+    accent: "clip-path-hexagon bg-gradient-to-br from-accent-light/20 to-transparent p-16 md:p-24 shadow-inner",
+    pStyle: { color: colors.text }
   },
   {
     id: 3,
-    name: "Чистое прикосновение",
-    textClass: "space-y-4",
-    pClass: "text-xl tracking-tight font-medium leading-snug",
-    accent: "relative before:absolute before:-left-4 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-accent before:to-transparent",
-    pStyle: { color: colors.text }
+    name: "Природный кристалл",
+    pClass: "text-lg md:text-xl tracking-tight leading-relaxed font-semibold",
+    accent: "clip-path-hexagon bg-white/40 backdrop-blur-md border-2 border-accent-light/30 p-16 md:p-24",
+    pStyle: { color: colors.accentDark }
   },
   {
     id: 4,
-    name: "Органический поток",
-    textClass: "space-y-4",
-    pClass: "text-lg font-light leading-relaxed",
-    accent: "p-8 border-2 border-dashed rounded-3xl",
-    pStyle: { color: colors.textSecondary, borderColor: colors.accentLight }
+    name: "Органический штрих",
+    pClass: "text-lg md:text-xl font-light leading-relaxed",
+    accent: "clip-path-hexagon border-4 border-double border-accent/20 p-16 md:p-24 bg-white/20",
+    pStyle: { color: colors.textSecondary }
   },
   {
     id: 5,
-    name: "Мудрость веков",
-    textClass: "space-y-4",
-    pClass: "text-xl font-serif italic leading-relaxed",
-    accent: "drop-shadow-sm",
-    pStyle: { color: colors.text }
-  },
-  {
-    id: 6,
-    name: "Эфирный свет",
-    textClass: "space-y-2",
-    pClass: "text-lg tracking-widest font-light uppercase opacity-80",
-    accent: "border-b-2 pb-10",
-    pStyle: { color: colors.accentDark, borderBottomColor: colors.accentLight }
-  },
-  {
-    id: 7,
-    name: "Сила земли",
-    textClass: "space-y-4",
-    pClass: "text-lg font-bold leading-relaxed",
-    accent: "bg-accent-light/10 p-8 rounded-tr-[3rem] rounded-bl-[3rem] shadow-inner",
-    pStyle: { color: colors.accentDark }
-  },
-  {
-    id: 8,
-    name: "Журнальный фокус",
-    textClass: "space-y-6",
-    pClass: "text-xl font-medium leading-relaxed underline decoration-accent/20 decoration-8 underline-offset-[-2px] decoration-skip-ink-none",
-    accent: "",
-    pStyle: { color: colors.text }
-  },
-  {
-    id: 9,
-    name: "Утренняя роса",
-    textClass: "space-y-4",
-    pClass: "text-lg leading-relaxed font-light",
-    accent: "backdrop-blur-sm bg-white/40 p-8 rounded-2xl shadow-sm border border-white/60",
-    pStyle: { color: colors.textSecondary }
-  },
-  {
-    id: 10,
-    name: "Глубокое дыхание",
-    textClass: "space-y-4",
-    pClass: "text-2xl font-bold tracking-tighter leading-none uppercase",
-    accent: "opacity-70 hover:opacity-100 transition-opacity duration-700",
-    pStyle: { color: colors.accent }
-  },
-  {
-    id: 11,
-    name: "Природный кристалл",
-    textClass: "space-y-4",
-    pClass: "text-lg font-medium leading-relaxed",
-    accent: "border-2 p-8 rounded-lg shadow-[4px_4px_0px_0px_rgba(61,107,79,0.1)]",
-    pStyle: { color: colors.text, borderColor: colors.accentLight }
-  },
-  {
-    id: 12,
-    name: "Лесной туман",
-    textClass: "space-y-4",
-    pClass: "text-xl font-light italic leading-loose",
-    accent: "bg-gradient-to-r from-accent-light/10 to-transparent p-10",
-    pStyle: { color: colors.textSecondary }
-  },
-  {
-    id: 13,
-    name: "Золотое сечение",
-    textClass: "space-y-4",
-    pClass: "text-lg leading-relaxed",
-    accent: "border-r-4 pr-10 text-right",
-    pStyle: { color: colors.text, borderRightColor: colors.accent }
-  },
-  {
-    id: 14,
-    name: "Шепот листьев",
-    textClass: "space-y-4",
-    pClass: "text-lg font-medium leading-relaxed",
-    accent: "selection:bg-accent selection:text-white px-4",
-    pStyle: { color: colors.textSecondary }
-  },
-  {
-    id: 15,
-    name: "Минимал-шик",
-    textClass: "space-y-2",
-    pClass: "text-3xl font-light tracking-tight leading-tight",
-    accent: "py-8 border-y border-accent-light/20",
-    pStyle: { color: colors.accentDark }
-  },
-  {
-    id: 16,
-    name: "Экологичный лофт",
-    textClass: "space-y-4",
-    pClass: "text-lg font-mono leading-relaxed",
-    accent: "bg-slate-50 p-8 rounded shadow-sm",
-    pStyle: { color: colors.textSecondary }
-  },
-  {
-    id: 17,
-    name: "Атмосфера покоя",
-    textClass: "space-y-4",
-    pClass: "text-xl font-light leading-relaxed",
-    accent: "relative after:absolute after:bottom-0 after:left-0 after:w-20 after:h-1 after:bg-accent",
-    pStyle: { color: colors.text }
-  },
-  {
-    id: 18,
-    name: "Эстетика велнеса",
-    textClass: "space-y-6",
-    pClass: "text-lg font-medium leading-relaxed first-line:text-accent first-line:font-bold",
-    accent: "p-8 bg-white/80 rounded-3xl card-shadow",
-    pStyle: { color: colors.textSecondary }
-  },
-  {
-    id: 19,
-    name: "Природный контраст",
-    textClass: "space-y-4",
-    pClass: "text-xl font-bold italic leading-relaxed",
-    accent: "text-accent/80 hover:text-accent transition-colors duration-500",
-    pStyle: {}
-  },
-  {
-    id: 20,
-    name: "Гармония Сфер",
-    textClass: "space-y-4",
-    pClass: "text-lg font-medium leading-relaxed text-center",
-    accent: "flex flex-col items-center justify-center p-12 bg-accent/5 rounded-full border-2 border-white aspect-square",
+    name: "Эфирное единство",
+    pClass: "text-lg md:text-xl tracking-widest uppercase font-light",
+    accent: "clip-path-hexagon bg-accent-light/10 p-16 md:p-24 flex items-center justify-center",
     pStyle: { color: colors.accentDark }
   }
 ];
@@ -315,7 +190,7 @@ export default function Home() {
             onClick={() => setIsPanelOpen(!isPanelOpen)}
             className="flex items-center justify-between w-full mb-2 font-bold text-sm uppercase tracking-wider opacity-60 hover:opacity-100"
           >
-            <span>Варианты текста (20)</span>
+            <span>Варианты (Шестиугольник)</span>
             {isPanelOpen ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
           </button>
           
@@ -351,11 +226,18 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <motion.div 
               key={`text-${variantIndex}`}
-              initial={{ opacity: 0, x: -20 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              className={`md:col-span-7 ${v.textClass}`}
+              initial={{ opacity: 0, scale: 0.9 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              className="md:col-span-7 flex items-center justify-center"
             >
-              <div className={v.accent}>
+              <div 
+                className={`transition-all duration-700 flex items-center justify-center text-center ${v.accent}`}
+                style={{ 
+                  clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
+                  width: "100%",
+                  aspectRatio: "1.15/1"
+                }}
+              >
                 <p 
                   className={v.pClass}
                   style={v.pStyle}
@@ -378,7 +260,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <motion.div 
-                className="w-full aspect-[3/4] flex items-center justify-center rounded-xl bg-white p-4 card-shadow hover-elevate cursor-pointer transition-all duration-300"
+                className="w-full aspect-[3/4] flex items-center justify-center rounded-xl transition-all duration-300 shadow-sm hover:shadow-[0_20px_50px_rgba(61,107,79,0.15)] bg-white p-4 scale-[0.98]"
               >
                 <div className="w-full h-full flex items-center justify-center bg-accent-light/5 rounded-lg border border-accent-light/10">
                   <Leaf className="w-20 h-20 opacity-20" style={{ color: colors.accent }} />
