@@ -129,110 +129,90 @@ const HeroSection = () => {
   );
 };
 
-// --- How It Works Variants (Based on Variant 10) ---
+// --- How It Works Variants (STRICT Skeleton: Text Left, Photo Right) ---
 const howItWorksVariants = [
   {
     id: 1,
     name: "Классический Журнал",
-    textCol: "col-span-12 md:col-span-7",
-    imgCol: "col-span-12 md:col-span-5",
-    wrapperClass: "gap-12",
-    textClass: "pt-4",
-    imageCardClass: "bg-white p-4 shadow-xl rotate-1",
-    accentLine: false
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-12",
+    textClass: "md:col-span-7 pt-4",
+    imageCardClass: "md:col-span-5 bg-white p-4 shadow-xl rotate-1",
+    imageScale: 1
   },
   {
     id: 2,
-    name: "Минималистичный Акцент",
-    textCol: "col-span-12 md:col-span-6",
-    imgCol: "col-span-12 md:col-span-6",
-    wrapperClass: "gap-16 items-center",
-    textClass: "border-l-4 pl-8",
+    name: "Элегантная Линия",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-16 items-center",
+    textClass: "md:col-span-6 border-l-4 pl-8",
     textStyle: { borderLeftColor: colors.accent },
-    imageCardClass: "bg-transparent p-0",
-    accentLine: true
+    imageCardClass: "md:col-span-6 bg-transparent",
+    imageScale: 0.8
   },
   {
     id: 3,
-    name: "Мягкий Контейнер",
-    textCol: "col-span-12 md:col-span-7",
-    imgCol: "col-span-12 md:col-span-5",
-    wrapperClass: "gap-0 bg-white/40 rounded-3xl overflow-hidden card-shadow border border-white/50",
-    textClass: "p-10 md:p-14",
-    imageCardClass: "bg-accent-light/20 h-full rounded-none",
-    accentLine: false
+    name: "Мягкое Свечение",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-12 items-center p-8 rounded-3xl bg-white/30",
+    textClass: "md:col-span-7",
+    imageCardClass: "md:col-span-5 bg-white p-4 shadow-2xl rounded-2xl",
+    imageScale: 0.9
   },
   {
     id: 4,
-    name: "Современный Гротеск",
-    textCol: "col-span-12 md:col-span-8",
-    imgCol: "col-span-12 md:col-span-4",
-    wrapperClass: "gap-8",
-    textClass: "bg-slate-900 text-white p-12 rounded-3xl shadow-2xl",
-    imageCardClass: "bg-white p-2 shadow-lg -rotate-3",
-    accentLine: false
+    name: "Акцентная Тень",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-12 items-start",
+    textClass: "md:col-span-7",
+    imageCardClass: "md:col-span-5 bg-white p-2 shadow-[15px_15px_0px_0px_rgba(61,107,79,0.1)]",
+    imageScale: 1
   },
   {
     id: 5,
-    name: "Природный Баланс",
-    textCol: "col-span-12 md:col-span-7",
-    imgCol: "col-span-12 md:col-span-5",
-    wrapperClass: "gap-12",
-    textClass: "bg-white/60 backdrop-blur p-10 rounded-2xl border border-accent-light/30",
-    imageCardClass: "bg-accent p-6 rounded-full shadow-inner",
-    accentLine: false
+    name: "Природный Матовый",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-12 items-center",
+    textClass: "md:col-span-7 bg-white/60 backdrop-blur-sm p-10 rounded-2xl border border-accent-light/30",
+    imageCardClass: "md:col-span-5 bg-accent/10 p-10 rounded-full",
+    imageScale: 0.85
   },
   {
     id: 6,
-    name: "Инверсия",
-    textCol: "col-span-12 md:col-span-5 order-last",
-    imgCol: "col-span-12 md:col-span-7",
-    wrapperClass: "gap-12 items-center",
-    textClass: "text-right",
-    imageCardClass: "bg-white p-6 shadow-2xl -rotate-1",
-    accentLine: false
+    name: "Минималистичный Бордюр",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-12 py-10 border-y",
+    wrapperStyle: { borderColor: colors.accentLight },
+    textClass: "md:col-span-7",
+    imageCardClass: "md:col-span-5 bg-white p-6 shadow-sm",
+    imageScale: 0.95
   },
   {
     id: 7,
-    name: "Стеклянный Журнал",
-    textCol: "col-span-12 md:col-span-7",
-    imgCol: "col-span-12 md:col-span-5",
-    wrapperClass: "gap-0 backdrop-blur-xl border border-white/40 rounded-[2.5rem] overflow-hidden",
-    wrapperStyle: { backgroundColor: `${colors.cardBg}88` },
-    textClass: "p-12",
-    imageCardClass: "bg-gradient-to-br from-white/40 to-transparent h-full rounded-none",
-    accentLine: true
+    name: "Легкий Градиент",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-12 items-center",
+    textClass: "md:col-span-7",
+    imageCardClass: "md:col-span-5 bg-gradient-to-br from-accent-light/40 to-white/10 p-8 rounded-[3rem] shadow-inner",
+    imageScale: 0.8
   },
   {
     id: 8,
-    name: "Геометрия",
-    textCol: "col-span-12 md:col-span-6",
-    imgCol: "col-span-12 md:col-span-6",
-    wrapperClass: "gap-4",
-    textClass: "bg-accent-light/20 p-12 rounded-tl-[5rem] rounded-br-[5rem]",
-    imageCardClass: "bg-white p-10 shadow-lg rounded-tr-[5rem] rounded-bl-[5rem]",
-    accentLine: false
+    name: "Журнальный Отступ",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-20",
+    textClass: "md:col-span-8",
+    imageCardClass: "md:col-span-4 bg-white p-3 shadow-lg rotate-2",
+    imageScale: 1
   },
   {
     id: 9,
-    name: "Теневой Фокус",
-    textCol: "col-span-12 md:col-span-7",
-    imgCol: "col-span-12 md:col-span-5",
-    wrapperClass: "gap-20 items-start",
-    textClass: "relative z-10",
-    imageCardClass: "bg-white p-2 shadow-[20px_20px_0px_0px_rgba(61,107,79,0.1)]",
-    accentLine: false
+    name: "Стеклянный Слой",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-0 rounded-3xl overflow-hidden shadow-xl",
+    textClass: "md:col-span-7 bg-white p-12",
+    imageCardClass: "md:col-span-5 bg-accent-light/20 h-full flex items-center justify-center",
+    imageScale: 0.7
   },
   {
     id: 10,
-    name: "Эстетика Пустоты",
-    textCol: "col-span-12 md:col-span-7",
-    imgCol: "col-span-12 md:col-span-5",
-    wrapperClass: "gap-12 border-y py-12",
-    wrapperStyle: { borderColor: colors.accentLight },
-    textClass: "max-w-xl",
-    imageCardClass: "bg-transparent border-2 border-dashed border-accent-light p-8",
-    accentLine: false
+    name: "Тонкий Штрих",
+    wrapperClass: "grid grid-cols-1 md:grid-cols-12 gap-12 items-center",
+    textClass: "md:col-span-7 border-t-2 pt-8",
+    textStyle: { borderTopColor: colors.accentLight },
+    imageCardClass: "md:col-span-5 bg-white p-4 shadow-xl rounded-lg",
+    imageScale: 0.9
   }
 ];
 
@@ -248,7 +228,7 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: colors.bg }}>
       <HeroSection />
 
-      {/* Контроллер вариантов */}
+      {/* Панель выбора */}
       <div className="fixed bottom-4 left-4 z-[100]">
         <motion.div 
           className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border p-4 w-64"
@@ -258,7 +238,7 @@ export default function Home() {
             onClick={() => setIsPanelOpen(!isPanelOpen)}
             className="flex items-center justify-between w-full mb-2 font-bold text-sm uppercase tracking-wider opacity-60 hover:opacity-100"
           >
-            <span>Варианты (Скелет #10)</span>
+            <span>Варианты дизайна</span>
             {isPanelOpen ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
           </button>
           
@@ -292,21 +272,20 @@ export default function Home() {
           </motion.h2>
           
           <div 
-            className={`grid transition-all duration-500 ${v.wrapperClass}`}
+            className={`transition-all duration-500 ${v.wrapperClass}`}
             style={v.wrapperStyle}
           >
             <motion.div 
               key={`text-${variantIndex}`}
               initial={{ opacity: 0, x: -20 }} 
               animate={{ opacity: 1, x: 0 }} 
-              className={`flex flex-col justify-center ${v.textCol} ${v.textClass}`}
+              className={`flex flex-col justify-center ${v.textClass}`}
               style={v.textStyle}
             >
-              {v.accentLine && <div className="w-12 h-1 mb-6" style={{ backgroundColor: colors.accent }}></div>}
               <div className="prose prose-lg max-w-none">
                 <p 
                   className="leading-relaxed text-lg"
-                  style={{ color: variantIndex === 3 ? "#fff" : colors.textSecondary }}
+                  style={{ color: colors.textSecondary }}
                 >
                   Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. 
                   Процесс начинается с мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
@@ -320,17 +299,18 @@ export default function Home() {
             
             <motion.div 
               key={`img-${variantIndex}`}
-              className={`w-full flex items-center justify-center ${v.imgCol}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              className={`w-full flex items-center justify-center ${v.imageCardClass}`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div 
-                className={`w-full aspect-[3/4] flex items-center justify-center transition-all duration-500 rounded-xl ${v.imageCardClass}`}
-                style={{ backgroundColor: v.imageCardClass.includes('bg-') ? undefined : `${colors.cardBg}ee` }}
+              <motion.div 
+                animate={{ scale: v.imageScale }}
+                className="w-full aspect-[3/4] flex items-center justify-center rounded-xl"
+                style={{ backgroundColor: v.imageCardClass.includes('bg-white') ? undefined : `${colors.cardBg}ee` }}
               >
-                <Leaf className="w-16 h-16 opacity-20" style={{ color: variantIndex === 3 ? "#fff" : colors.accent }} />
-              </div>
+                <Leaf className="w-16 h-16 opacity-20" style={{ color: colors.accent }} />
+              </motion.div>
             </motion.div>
           </div>
         </div>
