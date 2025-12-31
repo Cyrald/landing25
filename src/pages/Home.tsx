@@ -133,108 +133,163 @@ const HeroSection = () => {
 const howItWorksVariants = [
   {
     id: 1,
-    name: "Эстетичный заголовок",
-    textClass: "space-y-4",
-    pClass: "text-lg leading-relaxed first-line:uppercase first-line:tracking-widest first-line:font-bold",
-    accent: "border-l-2 pl-6"
+    name: "Гармония природы",
+    textClass: "space-y-6",
+    pClass: "text-xl font-light leading-relaxed first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:leading-none",
+    accent: "border-l-2 pl-8 border-accent/30",
+    pStyle: { color: colors.textSecondary }
   },
   {
     id: 2,
-    name: "Дзен-минимализм",
-    textClass: "space-y-6",
-    pClass: "text-xl font-light italic leading-loose",
-    accent: "opacity-80"
+    name: "Дзен-баланс",
+    textClass: "space-y-4",
+    pClass: "text-lg italic font-medium leading-loose text-center md:text-left",
+    accent: "bg-accent-light/5 p-10 rounded-[4rem] border border-white/40",
+    pStyle: { color: colors.accentDark }
   },
   {
     id: 3,
-    name: "Журнальный акцент",
-    textClass: "space-y-2",
-    pClass: "text-lg font-medium bg-accent-light/10 p-6 rounded-r-3xl border-l-4",
-    accent: "border-accent"
+    name: "Чистое прикосновение",
+    textClass: "space-y-4",
+    pClass: "text-xl tracking-tight font-medium leading-snug",
+    accent: "relative before:absolute before:-left-4 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-accent before:to-transparent",
+    pStyle: { color: colors.text }
   },
   {
     id: 4,
-    name: "Современный блок",
+    name: "Органический поток",
     textClass: "space-y-4",
-    pClass: "text-lg border-2 p-8 rounded-2xl shadow-inner bg-white/40",
-    accent: "border-white"
+    pClass: "text-lg font-light leading-relaxed",
+    accent: "p-8 border-2 border-dashed rounded-3xl",
+    pStyle: { color: colors.textSecondary, borderColor: colors.accentLight }
   },
   {
     id: 5,
-    name: "Типографика 1",
-    textClass: "space-y-3",
-    pClass: "text-2xl font-bold tracking-tight leading-tight uppercase",
-    accent: "text-accent"
+    name: "Мудрость веков",
+    textClass: "space-y-4",
+    pClass: "text-xl font-serif italic leading-relaxed",
+    accent: "drop-shadow-sm",
+    pStyle: { color: colors.text }
   },
   {
     id: 6,
-    name: "Типографика 2",
-    textClass: "space-y-4",
-    pClass: "text-lg font-serif",
-    accent: "underline decoration-accent decoration-2 underline-offset-8"
+    name: "Эфирный свет",
+    textClass: "space-y-2",
+    pClass: "text-lg tracking-widest font-light uppercase opacity-80",
+    accent: "border-b-2 pb-10",
+    pStyle: { color: colors.accentDark, borderBottomColor: colors.accentLight }
   },
   {
     id: 7,
-    name: "Цитатный стиль",
-    textClass: "relative",
-    pClass: "text-xl leading-relaxed before:content-['“'] before:text-6xl before:absolute before:-left-8 before:-top-4 before:opacity-20",
-    accent: "before:text-accent"
+    name: "Сила земли",
+    textClass: "space-y-4",
+    pClass: "text-lg font-bold leading-relaxed",
+    accent: "bg-accent-light/10 p-8 rounded-tr-[3rem] rounded-bl-[3rem] shadow-inner",
+    pStyle: { color: colors.accentDark }
   },
   {
     id: 8,
-    name: "Акцент на фразах",
-    textClass: "space-y-4",
-    pClass: "text-lg leading-relaxed",
-    accent: "selection:bg-accent selection:text-white"
+    name: "Журнальный фокус",
+    textClass: "space-y-6",
+    pClass: "text-xl font-medium leading-relaxed underline decoration-accent/20 decoration-8 underline-offset-[-2px] decoration-skip-ink-none",
+    accent: "",
+    pStyle: { color: colors.text }
   },
   {
     id: 9,
-    name: "Градиентный текст",
+    name: "Утренняя роса",
     textClass: "space-y-4",
-    pClass: "text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-accent-dark",
-    accent: ""
+    pClass: "text-lg leading-relaxed font-light",
+    accent: "backdrop-blur-sm bg-white/40 p-8 rounded-2xl shadow-sm border border-white/60",
+    pStyle: { color: colors.textSecondary }
   },
   {
     id: 10,
-    name: "Мягкий курсив",
-    textClass: "space-y-2",
-    pClass: "text-lg italic opacity-90 border-b pb-4",
-    accent: "border-accent-light"
+    name: "Глубокое дыхание",
+    textClass: "space-y-4",
+    pClass: "text-2xl font-bold tracking-tighter leading-none uppercase",
+    accent: "opacity-70 hover:opacity-100 transition-opacity duration-700",
+    pStyle: { color: colors.accent }
   },
   {
     id: 11,
-    name: "Брутализм",
+    name: "Природный кристалл",
     textClass: "space-y-4",
-    pClass: "text-lg font-mono border-4 p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]",
-    accent: "border-black"
+    pClass: "text-lg font-medium leading-relaxed",
+    accent: "border-2 p-8 rounded-lg shadow-[4px_4px_0px_0px_rgba(61,107,79,0.1)]",
+    pStyle: { color: colors.text, borderColor: colors.accentLight }
   },
   {
     id: 12,
-    name: "Легкий штрих",
-    textClass: "space-y-6",
-    pClass: "text-lg tracking-wide border-r-4 pr-10",
-    accent: "border-accent"
+    name: "Лесной туман",
+    textClass: "space-y-4",
+    pClass: "text-xl font-light italic leading-loose",
+    accent: "bg-gradient-to-r from-accent-light/10 to-transparent p-10",
+    pStyle: { color: colors.textSecondary }
   },
   {
     id: 13,
-    name: "Эфирный стиль",
+    name: "Золотое сечение",
     textClass: "space-y-4",
-    pClass: "text-lg font-light tracking-widest opacity-70",
-    accent: "blur-[0.5px]"
+    pClass: "text-lg leading-relaxed",
+    accent: "border-r-4 pr-10 text-right",
+    pStyle: { color: colors.text, borderRightColor: colors.accent }
   },
   {
     id: 14,
-    name: "Геометрический",
-    textClass: "space-y-4 p-8 bg-accent/5 rounded-full aspect-square flex items-center justify-center text-center",
-    pClass: "text-sm md:text-base",
-    accent: ""
+    name: "Шепот листьев",
+    textClass: "space-y-4",
+    pClass: "text-lg font-medium leading-relaxed",
+    accent: "selection:bg-accent selection:text-white px-4",
+    pStyle: { color: colors.textSecondary }
   },
   {
     id: 15,
-    name: "Финальный акцент",
+    name: "Минимал-шик",
+    textClass: "space-y-2",
+    pClass: "text-3xl font-light tracking-tight leading-tight",
+    accent: "py-8 border-y border-accent-light/20",
+    pStyle: { color: colors.accentDark }
+  },
+  {
+    id: 16,
+    name: "Экологичный лофт",
     textClass: "space-y-4",
-    pClass: "text-xl leading-relaxed first-letter:text-5xl first-letter:font-bold first-letter:mr-2 first-letter:float-left",
-    accent: "first-letter:text-accent"
+    pClass: "text-lg font-mono leading-relaxed",
+    accent: "bg-slate-50 p-8 rounded shadow-sm",
+    pStyle: { color: colors.textSecondary }
+  },
+  {
+    id: 17,
+    name: "Атмосфера покоя",
+    textClass: "space-y-4",
+    pClass: "text-xl font-light leading-relaxed",
+    accent: "relative after:absolute after:bottom-0 after:left-0 after:w-20 after:h-1 after:bg-accent",
+    pStyle: { color: colors.text }
+  },
+  {
+    id: 18,
+    name: "Эстетика велнеса",
+    textClass: "space-y-6",
+    pClass: "text-lg font-medium leading-relaxed first-line:text-accent first-line:font-bold",
+    accent: "p-8 bg-white/80 rounded-3xl card-shadow",
+    pStyle: { color: colors.textSecondary }
+  },
+  {
+    id: 19,
+    name: "Природный контраст",
+    textClass: "space-y-4",
+    pClass: "text-xl font-bold italic leading-relaxed",
+    accent: "text-accent/80 hover:text-accent transition-colors duration-500",
+    pStyle: {}
+  },
+  {
+    id: 20,
+    name: "Гармония Сфер",
+    textClass: "space-y-4",
+    pClass: "text-lg font-medium leading-relaxed text-center",
+    accent: "flex flex-col items-center justify-center p-12 bg-accent/5 rounded-full border-2 border-white aspect-square",
+    pStyle: { color: colors.accentDark }
   }
 ];
 
@@ -260,7 +315,7 @@ export default function Home() {
             onClick={() => setIsPanelOpen(!isPanelOpen)}
             className="flex items-center justify-between w-full mb-2 font-bold text-sm uppercase tracking-wider opacity-60 hover:opacity-100"
           >
-            <span>Варианты текста (15)</span>
+            <span>Варианты текста (20)</span>
             {isPanelOpen ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
           </button>
           
@@ -303,7 +358,7 @@ export default function Home() {
               <div className={v.accent}>
                 <p 
                   className={v.pClass}
-                  style={{ color: !v.pClass.includes('text-') ? colors.textSecondary : undefined }}
+                  style={v.pStyle}
                 >
                   Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. 
                   Процесс начинается с мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
@@ -322,13 +377,13 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div 
-                className="w-full aspect-[3/4] flex items-center justify-center rounded-xl scale-[0.85] bg-white p-4 shadow-xl rotate-1"
+              <motion.div 
+                className="w-full aspect-[3/4] flex items-center justify-center rounded-xl bg-white p-4 card-shadow hover-elevate cursor-pointer transition-all duration-300"
               >
-                <div className="w-full h-full flex items-center justify-center bg-accent-light/10 rounded-lg">
-                  <Leaf className="w-16 h-16 opacity-20" style={{ color: colors.accent }} />
+                <div className="w-full h-full flex items-center justify-center bg-accent-light/5 rounded-lg border border-accent-light/10">
+                  <Leaf className="w-20 h-20 opacity-20" style={{ color: colors.accent }} />
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
