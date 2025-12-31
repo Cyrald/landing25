@@ -143,7 +143,7 @@ export default function Home() {
             Как это работает
           </motion.h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-stretch">
             {/* ТЕКСТ СЛЕВА (Дизайн 44 - Природный паттерн, адаптированный под палитру) */}
             <motion.div 
               initial={{ opacity: 0, x: -20 }} 
@@ -151,7 +151,7 @@ export default function Home() {
               className="md:col-span-7 flex flex-col justify-center bg-white p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] rounded-none border-l-[12px]"
               style={{ borderColor: colors.accent }}
             >
-              <div>
+              <div className="h-full flex flex-col justify-center">
                 <p 
                   className="text-xl font-light leading-relaxed tracking-wide"
                   style={{ color: colors.text }}
@@ -169,11 +169,11 @@ export default function Home() {
             {/* КАРТИНКА СПРАВА (ФИКСИРОВАННАЯ, ЧИСТАЯ, БЕЗ РАМОК) */}
             <div className="md:col-span-5 w-full flex items-center justify-center">
               <motion.div 
-                className="w-full aspect-[3/4] flex items-center justify-center rounded-xl transition-all duration-300 shadow-sm hover:shadow-[0_20px_50px_rgba(61,107,79,0.15)] bg-white scale-[0.83]"
+                className="w-full h-full flex items-center justify-center rounded-xl transition-all duration-300 shadow-sm hover:shadow-[0_20px_50px_rgba(61,107,79,0.15)] bg-white scale-[0.83]"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="w-full h-full flex items-center justify-center bg-white rounded-xl overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center bg-white rounded-xl overflow-hidden min-h-[400px]">
                   <Leaf className="w-20 h-20 opacity-20" style={{ color: colors.accent }} />
                 </div>
               </motion.div>
