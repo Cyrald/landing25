@@ -152,7 +152,7 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
-            <motion.div className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last scale-95 card-shadow" style={{ backgroundColor: `${colors.cardBg}ee` }}>
+            <motion.div className="w-full aspect-[3/4] max-w-[80%] mx-auto rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last card-shadow" style={{ backgroundColor: `${colors.cardBg}ee` }}>
               <Leaf className="w-16 h-16 opacity-20" style={{ color: colors.accent }} />
             </motion.div>
           </div>
@@ -165,7 +165,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-4xl font-bold mb-2" style={{ color: colors.text }}>Каталог продуктов</h2>
             <div className="w-24 h-0.5 mx-auto" style={{ backgroundColor: colors.accent }}></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[85%] mx-auto">
             {products.map((product) => (
               <motion.div key={product.id} className="flex flex-row rounded-xl overflow-hidden card-shadow" style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}>
                 <div className="w-[40%] aspect-[3/4] flex items-center justify-center flex-shrink-0" style={{ backgroundColor: colors.bgAlt }}>
