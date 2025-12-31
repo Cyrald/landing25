@@ -149,47 +149,20 @@ export default function Home() {
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="flex-1 bg-slate-50 p-12 rounded-2xl shadow-sm flex flex-col justify-between"
+                  className="flex-1 bg-slate-50 p-10 rounded-xl shadow-sm"
                 >
-                  <div className="space-y-8">
-                    <p className="text-2xl font-light leading-relaxed border-b pb-8 border-slate-200" style={{ color: colors.text }}>
-                      Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
-                      <div className="space-y-2">
-                        <span className="text-xs uppercase tracking-widest opacity-50" style={{ color: colors.text }}>Этап 01</span>
-                        <h4 className="text-xl font-medium" style={{ color: colors.accent }}>Очищение</h4>
-                        <p className="text-sm leading-relaxed opacity-80" style={{ color: colors.text }}>Мягкое воздействие на клеточном уровне подготавливает тело к регенерации.</p>
-                      </div>
-                      <div className="space-y-2">
-                        <span className="text-xs uppercase tracking-widest opacity-50" style={{ color: colors.text }}>Этап 02</span>
-                        <h4 className="text-xl font-medium" style={{ color: colors.accent }}>Активация</h4>
-                        <p className="text-sm leading-relaxed opacity-80" style={{ color: colors.text }}>Запуск внутренних ресурсов здоровья и нормализация обмена веществ.</p>
-                      </div>
-                      <div className="space-y-2">
-                        <span className="text-xs uppercase tracking-widest opacity-50" style={{ color: colors.text }}>Этап 03</span>
-                        <h4 className="text-xl font-medium" style={{ color: colors.accent }}>Гармония</h4>
-                        <p className="text-sm leading-relaxed opacity-80" style={{ color: colors.text }}>Устранение первопричин дискомфорта и возврат природной энергии.</p>
-                      </div>
-                      <div className="space-y-2">
-                        <span className="text-xs uppercase tracking-widest opacity-50" style={{ color: colors.text }}>Результат</span>
-                        <h4 className="text-xl font-medium" style={{ color: colors.accent }}>Тонус</h4>
-                        <p className="text-sm leading-relaxed opacity-80" style={{ color: colors.text }}>Стабильное состояние жизненной силы и естественного здоровья.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-12 pt-8 border-t border-slate-200 flex flex-wrap gap-4 text-[10px] uppercase tracking-[0.2em] opacity-40" style={{ color: colors.text }}>
-                    <span>• Натурально</span>
-                    <span>• Эффективно</span>
-                    <span>• Безпечно</span>
-                    <span>• Доказано</span>
-                  </div>
+                  <p className="text-xl font-light leading-relaxed" style={{ color: colors.text }}>
+                    Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. 
+                    Процесс начинается с мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
+                    Благодаря уникальному сочетанию природных компонентов и современных технологий, продукты активируют внутренние 
+                    ресурсы здоровья, нормализуют обмен веществ и гармонизируют работу всех систем. Регулярное использование 
+                    помогает не только устранить симптомы, но и воздействует на первопричину дискомфорта, возвращая вам 
+                    природную энергию и жизненный тонус.
+                  </p>
                 </motion.div>
              </div>
              <div className="md:col-span-4">
-                <div className="w-full aspect-[3/4] rounded-2xl bg-white border-2 border-dashed flex items-center justify-center transition-colors hover:border-accent/30" style={{ borderColor: colors.accentLight }}>
+                <div className="w-full aspect-[3/4] rounded-xl bg-white border-2 border-dashed flex items-center justify-center" style={{ borderColor: colors.accentLight }}>
                    <Leaf className="w-20 h-20 opacity-20" style={{ color: colors.accent }} />
                 </div>
              </div>
