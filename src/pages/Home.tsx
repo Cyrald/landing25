@@ -154,7 +154,7 @@ export default function Home() {
             </motion.div>
             <div className="md:col-span-5">
               <motion.div 
-                className="w-full h-full min-h-[300px] flex items-center justify-center rounded-2xl bg-white shadow-sm overflow-hidden"
+                className="w-full aspect-[3/4] flex items-center justify-center rounded-2xl bg-white shadow-sm overflow-hidden"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
@@ -179,7 +179,7 @@ export default function Home() {
               </p>
             </motion.div>
             <div className="md:col-span-5">
-              <motion.div className="w-full h-full bg-slate-100 flex items-center justify-center">
+              <motion.div className="w-full h-full aspect-[3/4] bg-slate-100 flex items-center justify-center">
                  <Leaf className="w-24 h-24 opacity-30" style={{ color: colors.accent }} />
               </motion.div>
             </div>
@@ -199,7 +199,7 @@ export default function Home() {
               </p>
             </motion.div>
             <div className="flex-1">
-              <div className="w-full h-full rounded-3xl overflow-hidden shadow-lg">
+              <div className="w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-lg">
                 <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: colors.accentLight }}>
                   <Leaf className="w-20 h-20 text-white" />
                 </div>
@@ -219,7 +219,7 @@ export default function Home() {
                 Возвращая вам природную энергию и жизненный тонус.
               </p>
             </motion.div>
-            <div className="w-full h-full rounded-tl-[100px] rounded-br-[100px] overflow-hidden">
+            <div className="w-full aspect-[3/4] rounded-tl-[100px] rounded-br-[100px] overflow-hidden">
                <div className="w-full h-full flex items-center justify-center bg-slate-200">
                   <Leaf className="w-16 h-16 opacity-40" />
                </div>
@@ -240,7 +240,7 @@ export default function Home() {
                 </motion.div>
              </div>
              <div className="md:col-span-4">
-                <div className="w-full h-full rounded-xl bg-white border-2 border-dashed flex items-center justify-center" style={{ borderColor: colors.accentLight }}>
+                <div className="w-full aspect-[3/4] rounded-xl bg-white border-2 border-dashed flex items-center justify-center" style={{ borderColor: colors.accentLight }}>
                    <Leaf className="w-12 h-12 opacity-50" style={{ color: colors.accent }} />
                 </div>
              </div>
