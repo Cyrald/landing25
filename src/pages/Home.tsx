@@ -131,18 +131,106 @@ const HeroSection = () => {
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [howItWorksVariant, setHowItWorksVariant] = useState(5);
   const swiperRef = useRef<any>(null);
 
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.bg }}>
-      <HeroSection />
-
-      <section className="py-10 md:py-14" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: colors.text }}>
-            Как это работает
-          </motion.h2>
-
+  const renderHowItWorks = () => {
+    switch (howItWorksVariant) {
+      case 1: // Generative Cloud
+        return (
+          <div className="relative h-[500px] w-full flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 flex flex-wrap items-center justify-center gap-4 p-8">
+              {["Биорезонанс", "Очищение", "Регенерация", "Обмен веществ", "Гармония", "Энергия", "Тонус"].map((text, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.2 }}
+                  className="bg-white/80 backdrop-blur-md p-6 rounded-full shadow-lg border border-accent/20 cursor-pointer"
+                  animate={{
+                    y: [0, -10, 0],
+                    x: [0, 5, 0]
+                  }}
+                  transition={{
+                    duration: 3 + i,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <span className="font-medium" style={{ color: colors.accent }}>{text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        );
+      case 2: // Interactive Microscope
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <p className="text-xl font-light leading-relaxed" style={{ color: colors.text }}>
+                Исследуйте процесс на клеточном уровне. Натуральные компоненты проникают глубоко в структуру ткани, активируя естественные механизмы обновления.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="w-80 h-80 rounded-full border-8 border-slate-100 shadow-inner flex items-center justify-center bg-white overflow-hidden relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent"></div>
+                <Leaf className="w-32 h-32 opacity-20" style={{ color: colors.accent }} />
+                <div className="absolute inset-0 border-[20px] border-white/50 rounded-full"></div>
+              </motion.div>
+            </div>
+          </div>
+        );
+      case 3: // Glass Layers
+        return (
+          <div className="relative h-[400px] w-full">
+            {[1, 2, 3].map((layer) => (
+              <motion.div
+                key={layer}
+                className="absolute inset-0 bg-white/30 backdrop-blur-lg border border-white/50 rounded-3xl p-8 shadow-xl"
+                style={{ top: layer * 20, left: layer * 20, zIndex: 10 - layer }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: layer * 0.2 }}
+              >
+                <p className="text-lg font-light max-w-lg" style={{ color: colors.text }}>
+                  {layer === 1 && "Наши продукты основаны на принципах биорезонанса."}
+                  {layer === 2 && "Процесс начинается с мягкого очищения клеток."}
+                  {layer === 3 && "Глубокая регенерация возвращает жизненный тонус."}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        );
+      case 4: // Pulse of Life
+        return (
+          <div className="flex flex-col items-center gap-8">
+            <p className="text-xl text-center max-w-2xl font-light" style={{ color: colors.text }}>
+              Наши продукты активируют внутренние ресурсы здоровья, гармонизируя работу всех систем.
+            </p>
+            <div className="w-full h-32 flex items-center justify-center">
+              <motion.svg width="100%" height="100" viewBox="0 0 1000 100">
+                <motion.path
+                  d="M0 50 Q 250 0, 500 50 T 1000 50"
+                  fill="none"
+                  stroke={colors.accent}
+                  strokeWidth="3"
+                  animate={{
+                    d: [
+                      "M0 50 Q 250 0, 500 50 T 1000 50",
+                      "M0 50 Q 250 100, 500 50 T 1000 50",
+                      "M0 50 Q 250 0, 500 50 T 1000 50"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </motion.svg>
+            </div>
+          </div>
+        );
+      case 5: // Spectrum Accordion
+        return (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-stretch">
              <div className="md:col-span-8 flex items-stretch">
                 <div className="w-2 bg-accent rounded-full mr-6" style={{ backgroundColor: colors.accent }}></div>
@@ -167,6 +255,121 @@ export default function Home() {
                 </div>
              </div>
           </div>
+        );
+      case 6: // Mask Image
+        return (
+          <div className="relative w-full aspect-video rounded-3xl overflow-hidden bg-slate-900 flex items-center justify-center group">
+            <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700"></div>
+            <h3 className="relative text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-white mix-blend-difference text-center px-4">
+              ПРИРОДНАЯ ЭНЕРГИЯ
+            </h3>
+          </div>
+        );
+      case 7: // Digital Alchemy
+        return (
+          <div className="bg-slate-900 p-12 rounded-3xl overflow-hidden relative">
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent via-transparent to-transparent"></div>
+            <motion.p 
+              className="text-2xl font-mono text-white/90 leading-relaxed relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+            >
+              {"> "}System status: Initializing regeneration...
+              <br />
+              {"> "}Processing natural components...
+              <br />
+              {"> "}Bio-resonance alignment: 100%
+              <br />
+              {"> "}Body harmony restored.
+            </motion.p>
+          </div>
+        );
+      case 8: // Liquid Boundary
+        return (
+          <div className="flex flex-col md:flex-row items-center gap-0 rounded-3xl overflow-hidden border">
+            <div className="flex-1 bg-white p-12 relative z-10">
+              <p className="text-xl font-light" style={{ color: colors.text }}>
+                Активируют внутренние ресурсы здоровья и гармонизируют работу всех систем.
+              </p>
+              <div className="absolute top-0 right-[-50px] bottom-0 w-[100px] bg-white hidden md:block" style={{ borderRadius: "50% 0 0 50% / 50% 0 0 50%", transform: "scaleX(2)" }}></div>
+            </div>
+            <div className="flex-1 w-full aspect-[3/4] bg-slate-50 flex items-center justify-center">
+              <Leaf className="w-24 h-24 opacity-20" style={{ color: colors.accent }} />
+            </div>
+          </div>
+        );
+      case 9: // Tarot Cards
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <motion.div
+                key={i}
+                whileHover={{ rotateY: 180 }}
+                className="aspect-[2/3] bg-white border-2 rounded-2xl p-6 shadow-md flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-500"
+                style={{ borderColor: colors.accentLight, transformStyle: "preserve-3d" }}
+              >
+                <div style={{ backfaceVisibility: "hidden" }}>
+                  <Star className="w-12 h-12 mb-4" style={{ color: colors.accent }} />
+                  <span className="font-bold text-lg" style={{ color: colors.text }}>КАРТА {i}</span>
+                </div>
+                <div className="absolute inset-0 bg-accent text-white p-6 rounded-2xl flex items-center justify-center" style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}>
+                   <p className="text-sm font-medium">Секрет здоровья {i} раскрыт</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        );
+      case 10: // Architectural Blueprint
+        return (
+          <div className="relative p-12 bg-slate-50 border-2 border-dashed border-slate-300 rounded-3xl overflow-hidden">
+            <div className="absolute top-4 left-4 text-[10px] text-slate-400 font-mono">ID: W-2025-REGEN</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+              <div className="border-l border-t border-slate-300 p-6">
+                <div className="text-xs uppercase tracking-widest text-slate-500 mb-2">Technical Description</div>
+                <p className="text-sm leading-relaxed" style={{ color: colors.text }}>
+                  Комплексное воздействие на клеточную структуру. Нормализация метаболических процессов.
+                </p>
+              </div>
+              <div className="flex justify-center items-center">
+                <div className="w-48 h-48 border border-slate-300 rounded-full flex items-center justify-center relative">
+                  <div className="absolute inset-0 border-t border-slate-200 rotate-45"></div>
+                  <div className="absolute inset-0 border-t border-slate-200 -rotate-45"></div>
+                  <Leaf className="w-16 h-16 opacity-30" style={{ color: colors.accent }} />
+                </div>
+              </div>
+            </div>
+            <div className="absolute bottom-4 right-4 text-[10px] text-slate-400 font-mono">SCALE: 1:1 NAT</div>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: colors.bg }}>
+      <HeroSection />
+
+      <section className="py-10 md:py-14" style={{ backgroundColor: colors.bg }}>
+        <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
+            <motion.h2 className="text-2xl md:text-3xl font-bold" style={{ color: colors.text }}>
+              Как это работает
+            </motion.h2>
+            
+            <div className="flex flex-wrap gap-2 p-1 bg-slate-100 rounded-lg justify-center">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => (
+                <button
+                  key={v}
+                  onClick={() => setHowItWorksVariant(v)}
+                  className={`px-3 py-1 text-sm rounded-md transition-all ${howItWorksVariant === v ? 'bg-white shadow-sm font-bold' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  {v}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {renderHowItWorks()}
         </div>
       </section>
 
