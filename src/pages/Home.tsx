@@ -140,20 +140,34 @@ export default function Home() {
       <section className="py-16 md:py-24" style={{ backgroundColor: colors.bg }}>
         <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
           <motion.h2 className="text-2xl md:text-4xl font-bold text-center mb-12" style={{ color: colors.text }}>Как это работает</motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch">
-            <div className="flex flex-col justify-center space-y-6 md:space-y-8">
-              {howItWorks.map((item, idx) => (
-                <motion.div key={item.step} className="flex gap-4" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}>
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg flex items-center justify-center flex-shrink-0 text-xl md:text-2xl font-bold" style={{ backgroundColor: colors.accent, color: "#fff" }}>{item.step}</div>
-                  <div className="flex flex-col justify-center">
-                    <h3 className="font-bold mb-1 text-base md:text-lg" style={{ color: colors.text }}>{item.title}</h3>
-                    <p className="text-sm md:text-base" style={{ color: colors.textSecondary }}>{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            <motion.div className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm order-first md:order-last scale-95 card-shadow" style={{ backgroundColor: `${colors.cardBg}ee` }}>
-              <Leaf className="w-16 h-16 opacity-20" style={{ color: colors.accent }} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              className="flex flex-col justify-center"
+            >
+              <div className="prose prose-lg max-w-none" style={{ color: colors.textSecondary }}>
+                <p className="leading-relaxed text-lg">
+                  Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. 
+                  Процесс начинается с мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
+                  Благодаря уникальному сочетанию природных компонентов и современных технологий, продукты активируют внутренние 
+                  ресурсы здоровья, нормализуют обмен веществ и гармонизируют работу всех систем. Регулярное использование 
+                  помогает не только устранить симптомы, но и воздействует на первопричину дискомфорта, возвращая вам 
+                  природную энергию и жизненный тонус.
+                </p>
+              </div>
+            </motion.div>
+            <motion.div 
+              className="w-full flex items-center justify-center order-first md:order-last"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 0.8 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="w-full aspect-[3/4] rounded-xl flex items-center justify-center backdrop-blur-sm card-shadow" style={{ backgroundColor: `${colors.cardBg}ee` }}>
+                <Leaf className="w-16 h-16 opacity-20" style={{ color: colors.accent }} />
+              </div>
             </motion.div>
           </div>
         </div>
