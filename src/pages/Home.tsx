@@ -170,198 +170,32 @@ export default function Home() {
     }
   ];
 
-  const [activeStepVariant, setActiveStepVariant] = useState(1);
-
-  const steps = [
-    { title: "Очищение", icon: Leaf, description: "Натуральные компоненты мягко выводят токсины и подготавливают организм к восстановлению." },
-    { title: "Активация", icon: Activity, description: "Продукты запускают внутренние механизмы регенерации и гармонизируют работу всех систем." },
-    { title: "Результат", icon: Star, description: "Вы чувствуете прилив сил, легкость в движениях и улучшение общего качества жизни." }
-  ];
-
   const renderSteps = () => {
-    switch (activeStepVariant) {
-      case 2: // Floating Elements (Invisible border)
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[85rem] mx-auto px-4">
-            {steps.map((step, idx) => (
-              <motion.div key={idx} className="flex flex-col items-center text-center">
-                <div className="w-[8rem] h-[8rem] mb-8 flex items-center justify-center rounded-3xl" style={{ backgroundColor: colors.accentLight + '33' }}>
-                  <step.icon className="w-[3.5rem] h-[3.5rem]" style={{ color: colors.accent }} />
+    return (
+      <div className="flex flex-col md:flex-row items-stretch gap-8">
+        <div className="w-full md:w-5/12 shrink-0 rounded-lg overflow-hidden" style={{ border: `0.0625rem solid ${colors.accentLight}` }}>
+          <div className="aspect-[4/5] h-full">
+            <SmartImage
+              sources={getImageSources('how-it-works', 1)}
+              alt="How it works"
+              className="w-full h-full object-cover"
+              placeholderContent={
+                <div className="w-full h-full flex items-center justify-center bg-slate-50">
+                  <Activity className="w-14 h-14 text-slate-300" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                <p className="text-lg leading-relaxed px-4" style={{ color: colors.textSecondary }}>{step.description}</p>
-              </motion.div>
-            ))}
+              }
+            />
           </div>
-        );
-      case 3: // Side-by-Side (Detached)
-        return (
-          <div className="flex flex-col gap-20 max-w-[65rem] mx-auto px-4">
-            {steps.map((step, idx) => (
-              <div key={idx} className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-16`}>
-                <div className="w-[12rem] h-[12rem] shrink-0 rounded-full flex items-center justify-center shadow-sm" style={{ backgroundColor: colors.bgAlt }}>
-                  <step.icon className="w-[5rem] h-[5rem]" style={{ color: colors.accent }} />
-                </div>
-                <div className="text-center md:text-left flex-1">
-                  <h3 className="text-3xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                  <p className="text-xl leading-relaxed" style={{ color: colors.textSecondary }}>{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-      case 4: // Numbered (Clean White)
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[85rem] mx-auto px-4">
-            {steps.map((step, idx) => (
-              <div key={idx} className="relative group p-10">
-                <span className="text-8xl font-black absolute top-0 left-0 opacity-5 pointer-events-none" style={{ color: colors.accent }}>{idx + 1}</span>
-                <div className="relative z-10">
-                  <step.icon className="w-12 h-12 mb-6" style={{ color: colors.accent }} />
-                  <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                  <p className="text-lg" style={{ color: colors.textSecondary }}>{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-      case 5: // Minimal List (No Cards)
-        return (
-          <div className="max-w-[55rem] mx-auto px-4 space-y-16">
-            {steps.map((step, idx) => (
-              <div key={idx} className="flex items-start gap-12">
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0" style={{ backgroundColor: colors.accentLight }}>
-                  <step.icon className="w-8 h-8" style={{ color: colors.accent }} />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3" style={{ color: colors.text }}>{step.title}</h3>
-                  <p className="text-xl leading-relaxed" style={{ color: colors.textSecondary }}>{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-      case 6: // Timeline (Center Line)
-        return (
-          <div className="relative max-w-[60rem] mx-auto px-4 py-10">
-            <div className="absolute left-1/2 top-0 bottom-0 w-px hidden md:block" style={{ backgroundColor: colors.accentLight }}></div>
-            <div className="space-y-24">
-              {steps.map((step, idx) => (
-                <div key={idx} className={`flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-                    <div className={`text-center ${idx % 2 !== 0 ? 'md:text-left' : 'md:text-right'}`}>
-                      <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                      <p className="text-lg" style={{ color: colors.textSecondary }}>{step.description}</p>
-                    </div>
-                  </div>
-                  <div className="relative z-10 w-14 h-14 rounded-full flex items-center justify-center shrink-0 shadow-lg" style={{ background: colors.gradient }}>
-                    <step.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="hidden md:block md:w-1/2"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      case 7: // Modern Boxed (Individual)
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-[85rem] mx-auto px-4">
-            {steps.map((step, idx) => (
-              <div key={idx} className="p-10 rounded-2xl transition-all duration-300 hover-elevate" style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}>
-                <step.icon className="w-12 h-12 mb-8" style={{ color: colors.accent }} />
-                <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                <p className="text-lg leading-relaxed" style={{ color: colors.textSecondary }}>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        );
-      case 8: // Large Hero Icons
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-[85rem] mx-auto px-4 py-10">
-            {steps.map((step, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <step.icon className="w-24 h-24 mb-10 stroke-[1]" style={{ color: colors.accent }} />
-                <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                <p className="text-center text-lg leading-relaxed" style={{ color: colors.textSecondary }}>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        );
-      case 9: // Steps with Connectors
-        return (
-          <div className="flex flex-col md:flex-row justify-between items-start gap-12 max-w-[85rem] mx-auto px-4">
-            {steps.map((step, idx) => (
-              <div key={idx} className="flex-1 text-center relative">
-                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 border-4" style={{ borderColor: colors.accent, backgroundColor: colors.cardBg }}>
-                  <step.icon className="w-10 h-10" style={{ color: colors.accent }} />
-                </div>
-                <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                <p className="text-lg" style={{ color: colors.textSecondary }}>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        );
-      case 10: // Grid Detailed
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 max-w-[85rem] mx-auto px-4 overflow-hidden rounded-3xl border" style={{ borderColor: colors.accentLight }}>
-            {steps.map((step, idx) => (
-              <div key={idx} className="p-16 bg-white flex flex-col items-center text-center">
-                <step.icon className="w-14 h-14 mb-8" style={{ color: colors.accent }} />
-                <h3 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>{step.title}</h3>
-                <p className="text-lg opacity-80" style={{ color: colors.textSecondary }}>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        );
-      default: // Option 1: Current (Shared Box)
-        return (
-          <div className="rounded-lg overflow-hidden shadow-sm border" style={{ backgroundColor: colors.cardBg, borderColor: colors.accentLight }}>
-            <div className="flex flex-col md:flex-row items-stretch">
-              <div className="w-full md:w-5/12 shrink-0">
-                <div className="aspect-[4/5] h-full">
-                  <SmartImage
-                    sources={getImageSources('how-it-works', 1)}
-                    alt="How it works"
-                    className="w-full h-full object-cover"
-                    placeholderContent={
-                      <div className="w-full h-full flex items-center justify-center bg-slate-50">
-                        <Activity className="w-14 h-14 text-slate-300" />
-                      </div>
-                    }
-                  />
-                </div>
-              </div>
-              <div className="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center">
-                {variants[0].content}
-              </div>
-            </div>
-          </div>
-        );
-    }
+        </div>
+        <div className="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center rounded-lg" style={{ backgroundColor: colors.cardBg, border: `0.0625rem solid ${colors.accentLight}` }}>
+          {variants[0].content}
+        </div>
+      </div>
+    );
   };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.bg }}>
-      <header className="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b py-4">
-        <div className="max-w-[85rem] mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Leaf className="w-6 h-6" style={{ color: colors.accent }} />
-            <span className="font-bold text-xl">Wellness</span>
-          </div>
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-            {[1,2,3,4,5,6,7,8,9,10].map(v => (
-              <button
-                key={v}
-                onClick={() => setActiveStepVariant(v)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeStepVariant === v ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
-                style={activeStepVariant === v ? { backgroundColor: colors.accent } : {}}
-              >
-                Вариант {v}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
       <HeroSection />
 
       {/* How it Works Section */}
@@ -375,7 +209,6 @@ export default function Home() {
           </div>
 
           <motion.div
-            key={activeStepVariant}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
