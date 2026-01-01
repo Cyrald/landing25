@@ -220,7 +220,7 @@ export default function Home() {
             {products.map((product) => (
               <motion.div 
                 key={product.id} 
-                className="flex flex-col md:flex-row rounded-lg overflow-hidden card-shadow scale-x-[1.25] origin-left mb-0 md:mb-0 relative" 
+                className="flex flex-col md:flex-row rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative" 
                 style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}`, zIndex: 1 }}
               >
                 <div className="w-full md:w-[40%] shrink-0" style={{ backgroundColor: colors.bgAlt }}>
