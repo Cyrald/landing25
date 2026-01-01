@@ -216,11 +216,11 @@ export default function Home() {
             </h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-6xl mx-auto px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-7xl mx-auto px-4 md:px-0">
             {products.map((product) => (
               <motion.div 
                 key={product.id} 
-                className="grid grid-cols-1 md:grid-cols-[1fr_3.5fr] rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative" 
+                className="grid grid-cols-1 md:grid-cols-[1fr_4fr] rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative" 
                 style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}`, zIndex: 1 }}
               >
                 <div className="aspect-[3/4] bg-[#f4f9f5] flex items-center justify-center w-full shrink-0" style={{ backgroundColor: colors.bgAlt }}>
