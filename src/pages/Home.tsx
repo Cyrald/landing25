@@ -309,33 +309,26 @@ export default function Home() {
       </section>
 
       {/* Footer Section */}
-      <footer className="py-20 bg-white border-t border-slate-100">
+      <footer className="py-12 bg-white border-t border-slate-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
-            <Leaf className="w-4 h-4 text-accent" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">Wellness Lifestyle</span>
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: colors.text }}>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: colors.text }}>
             Начните новую главу вашего здоровья
           </h2>
           
-          <p className="text-lg mb-10 text-slate-500 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base mb-8 text-slate-500 max-w-lg mx-auto leading-relaxed">
             Присоединяйтесь к нашему сообществу и откройте для себя силу природного восстановления.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <button className="w-full sm:w-auto px-12 py-4 rounded-xl font-bold transition-all hover-elevate active-elevate-2 shadow-lg shadow-accent/10" 
-                    style={{ backgroundColor: colors.button, color: colors.buttonText }}>
-              Магазин Wellness
-            </button>
-          </div>
+          <button className="px-10 py-3.5 rounded-xl font-bold transition-all hover-elevate active-elevate-2 shadow-lg shadow-accent/10 mb-12" 
+                  style={{ backgroundColor: colors.button, color: colors.buttonText }}>
+            Магазин Wellness
+          </button>
 
-          <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-sm font-medium text-slate-400">
-              © 2026 Wellness Products. Природная энергия.
+          <div className="pt-8 border-t border-slate-50 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="text-xs font-medium text-slate-400">
+              © 2026 Wellness Products.
             </div>
-            <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+            <div className="flex gap-6 text-[10px] uppercase tracking-widest font-bold text-slate-400">
               <a href="#" className="hover:text-accent transition-colors">Политика</a>
               <a href="#" className="hover:text-accent transition-colors">Контакты</a>
               <a href="#catalog" className="hover:text-accent transition-colors">Каталог</a>
