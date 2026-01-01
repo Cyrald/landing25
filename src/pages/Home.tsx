@@ -170,8 +170,135 @@ export default function Home() {
     }
   ];
 
+  const [ctaVariant, setCtaVariant] = useState(1);
+
+  const ctaVariants = [
+    {
+      id: 1,
+      name: "Классический Минимализм",
+      content: (
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-xl md:text-2xl font-bold mb-4" style={{ color: colors.text }}>
+            Начните новую главу вашего здоровья
+          </h2>
+          <button className="px-10 py-3 rounded-xl font-bold transition-all hover-elevate active-elevate-2 shadow-lg shadow-accent/10 mb-8" 
+                  style={{ backgroundColor: colors.button, color: colors.buttonText }}>
+            Магазин Wellness
+          </button>
+          <div className="pt-4 border-t border-slate-50 flex justify-center items-center">
+            <div className="text-[10px] uppercase tracking-widest font-bold opacity-40" style={{ color: colors.text }}>
+              © 2026 Wellness Products. Природная энергия.
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 2,
+      name: "Акцентный Градиент",
+      content: (
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="p-8 rounded-[2rem] text-center text-white relative overflow-hidden shadow-2xl shadow-accent/20" style={{ background: colors.gradient }}>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">Готовы к переменам?</h2>
+            <button className="px-12 py-4 bg-white rounded-xl font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-xl" style={{ color: colors.accent }}>
+              В магазин
+            </button>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 3,
+      name: "Чистая Эстетика",
+      content: (
+        <div className="max-w-2xl mx-auto px-6 text-center flex flex-col items-center">
+          <Leaf className="w-8 h-8 text-accent mb-6 opacity-40" />
+          <h2 className="text-2xl font-light italic mb-8" style={{ color: colors.text }}>
+            Чистая энергия природы в каждой капле
+          </h2>
+          <button className="px-12 py-3 border-b-2 border-accent font-bold tracking-widest uppercase text-sm hover:opacity-70 transition-opacity" style={{ color: colors.accent }}>
+            Перейти в магазин
+          </button>
+        </div>
+      )
+    },
+    {
+      id: 4,
+      name: "Социальный Отклик",
+      content: (
+        <div className="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-left">
+          <div>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: colors.text }}>Присоединяйтесь к 10,000+ довольных клиентов</h2>
+            <p className="text-sm opacity-60" style={{ color: colors.textSecondary }}>Начните свой путь к здоровью вместе с нами сегодня.</p>
+          </div>
+          <div className="flex justify-end">
+            <button className="px-10 py-4 rounded-full font-bold shadow-xl hover-elevate active-elevate-2" style={{ backgroundColor: colors.button, color: colors.buttonText }}>
+              Wellness Магазин
+            </button>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 5,
+      name: "Геометрический Порядок",
+      content: (
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 py-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+              <Activity className="text-accent" />
+            </div>
+            <h2 className="text-xl font-bold uppercase tracking-tighter" style={{ color: colors.text }}>Wellness Era</h2>
+          </div>
+          <button className="px-8 py-3 bg-black text-white rounded-md font-bold text-sm tracking-widest uppercase hover:bg-accent transition-colors">
+            Shop Now
+          </button>
+        </div>
+      )
+    },
+    {
+      id: 6,
+      name: "Мягкая Тень",
+      content: (
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="bg-white p-10 rounded-3xl shadow-lg border border-slate-50 text-center">
+            <h2 className="text-2xl font-bold mb-8" style={{ color: colors.text }}>Почувствуйте разницу с первого дня</h2>
+            <button className="px-12 py-4 rounded-2xl font-black text-white hover-elevate active-elevate-2 shadow-xl shadow-accent/20" style={{ backgroundColor: colors.accent }}>
+              ВИТРИНА ПРОДУКТОВ
+            </button>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 7,
+      name: "Финальный Штрих",
+      content: (
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <p className="text-[10px] uppercase tracking-[0.4em] mb-4 opacity-40">The Final Step</p>
+          <h2 className="text-3xl font-serif italic mb-8" style={{ color: colors.text }}>Ваше тело скажет вам спасибо</h2>
+          <button className="w-full py-5 rounded-none border-2 border-slate-800 font-bold hover:bg-slate-800 hover:text-white transition-all">
+            ПЕРЕЙТИ В МАГАЗИН
+          </button>
+        </div>
+      )
+    }
+  ];
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.bg }}>
+      {/* Switcher UI in Dev Mode - Fixed at bottom */}
+      <div className="fixed bottom-4 left-4 z-[100] bg-white/80 backdrop-blur-md p-2 rounded-lg shadow-xl border border-slate-200 flex gap-2">
+        <select 
+          className="text-xs p-1 rounded border border-slate-300 outline-none"
+          value={ctaVariant}
+          onChange={(e) => setCtaVariant(Number(e.target.value))}
+        >
+          {ctaVariants.map(v => (
+            <option key={v.id} value={v.id}>{v.name}</option>
+          ))}
+        </select>
+      </div>
       <HeroSection />
 
       {/* How it Works Section */}
@@ -184,17 +311,17 @@ export default function Home() {
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
 
-          <div className="rounded-3xl overflow-hidden shadow-sm border border-slate-100" style={{ backgroundColor: colors.bgAlt }}>
+          <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
             <div className="flex flex-col md:flex-row items-stretch">
               <div className="w-full md:w-5/12 shrink-0">
                 <div className="aspect-[4/5] h-full">
                   <SmartImage
                     sources={getImageSources('how-it-works', 1)}
                     alt="How it works"
-                    className="w-full h-full object-cover grayscale opacity-80"
+                    className="w-full h-full object-cover"
                     placeholderContent={
-                      <div className="w-full h-full flex items-center justify-center bg-slate-100">
-                        <Activity className="w-14 h-14 text-slate-400" />
+                      <div className="w-full h-full flex items-center justify-center bg-slate-50">
+                        <Activity className="w-14 h-14 text-slate-300" />
                       </div>
                     }
                   />
@@ -309,23 +436,8 @@ export default function Home() {
       </section>
 
       {/* Footer Section */}
-      <footer className="py-10 border-t border-slate-200/50" style={{ backgroundColor: colors.bgAlt }}>
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-xl md:text-2xl font-bold mb-5" style={{ color: colors.text }}>
-            Начните новую главу вашего здоровья
-          </h2>
-          
-          <button className="px-10 py-3 rounded-xl font-bold transition-all hover-elevate active-elevate-2 shadow-lg shadow-accent/10 mb-8" 
-                  style={{ backgroundColor: colors.button, color: colors.buttonText }}>
-            Магазин Wellness
-          </button>
-
-          <div className="pt-6 border-t border-accent/10 flex justify-center items-center">
-            <div className="text-[10px] uppercase tracking-widest font-bold opacity-40" style={{ color: colors.text }}>
-              © 2026 Wellness Products. Природная энергия.
-            </div>
-          </div>
-        </div>
+      <footer className="py-12 border-t border-slate-200/50" style={{ backgroundColor: colors.bgAlt }}>
+        {ctaVariants.find(v => v.id === ctaVariant)?.content}
       </footer>
     </div>
   );
