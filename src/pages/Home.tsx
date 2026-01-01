@@ -175,32 +175,32 @@ export default function Home() {
       <HeroSection />
 
       {/* How it Works Section */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.text }}>
+      <section className="py-12 md:py-16" style={{ backgroundColor: colors.bg }}>
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: colors.text }}>
               Как это <span style={{ color: colors.accent }}>работает</span>
             </h2>
-            <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
+            <div className="w-20 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
 
-          <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+          <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 scale-95 md:scale-100">
             <div className="flex flex-col md:flex-row items-stretch">
-              <div className="w-full md:w-1/2 lg:w-5/12 shrink-0">
-                <div className="aspect-[3/4] h-full">
+              <div className="w-full md:w-5/12 shrink-0">
+                <div className="aspect-[4/5] h-full">
                   <SmartImage
                     sources={getImageSources('how-it-works', 1)}
                     alt="How it works"
                     className="w-full h-full object-cover"
                     placeholderContent={
                       <div className="w-full h-full flex items-center justify-center bg-slate-50">
-                        <Activity className="w-12 h-12 text-slate-300" />
+                        <Activity className="w-10 h-10 text-slate-300" />
                       </div>
                     }
                   />
                 </div>
               </div>
-              <div className="w-full md:w-1/2 lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+              <div className="w-full md:w-7/12 p-6 md:p-10 flex flex-col justify-center">
                 {variants[0].content}
               </div>
             </div>
@@ -309,13 +309,55 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: colors.gradient }}>
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Добро пожаловать в мир здоровья</h2>
-          <p className="text-white/90 text-lg mb-8">Откройте для себя полный ассортимент продукции на нашем сайте.</p>
-          <button className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold transition-all hover:scale-105 bg-white shadow-lg active-elevate-2" style={{ color: colors.accent }}>
-            Перейти в каталог <ExternalLink className="w-5 h-5" />
-          </button>
+      <section className="py-20 md:py-32 relative overflow-hidden" style={{ background: colors.bgAlt }}>
+        <div className="absolute inset-0 opacity-10 pointer-events-none" 
+             style={{ 
+               backgroundImage: `radial-gradient(circle at 2px 2px, ${colors.accent} 1px, transparent 0)`,
+               backgroundSize: '40px 40px' 
+             }}>
+        </div>
+        <div className="max-w-5xl mx-auto px-6 lg:px-8 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-2xl shadow-accent/5 border border-accent/10 text-center relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-accent to-transparent"></div>
+            
+            <Leaf className="w-12 h-12 mx-auto mb-8 text-accent opacity-20" />
+            
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: colors.text }}>
+              Начните свой путь к <span style={{ color: colors.accent }}>совершенному</span> здоровью
+            </h2>
+            
+            <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed" style={{ color: colors.textSecondary }}>
+              Присоединяйтесь к тысячам людей, которые уже вернули себе радость движения и чистоту энергии с нашими натуральными решениями.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button className="w-full sm:w-auto px-10 py-5 rounded-2xl text-lg font-bold transition-all hover-elevate active-elevate-2 shadow-xl shadow-accent/20" 
+                      style={{ backgroundColor: colors.button, color: colors.buttonText }}>
+                Перейти в каталог
+              </button>
+              <button className="w-full sm:w-auto px-10 py-5 rounded-2xl text-lg font-bold transition-all hover:bg-slate-50 border border-slate-200" 
+                      style={{ color: colors.text }}>
+                Консультация эксперта
+              </button>
+            </div>
+            
+            <div className="mt-12 flex items-center justify-center gap-8 opacity-50 grayscale transition-all hover:grayscale-0">
+              <div className="flex flex-col items-center">
+                <span className="text-2xl font-bold">10k+</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold">Клиентов</span>
+              </div>
+              <div className="w-px h-8 bg-slate-200"></div>
+              <div className="flex flex-col items-center">
+                <span className="text-2xl font-bold">100%</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold">Natural</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
