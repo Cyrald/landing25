@@ -322,7 +322,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center text-white relative">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Естество природы в руках человека</h2>
             <p className="text-lg md:text-xl opacity-80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-              Присоединяйтесь к тысячам людей, которые уже выбрали натуральный путь к долголетию и жизненной энергии.
+              Хватит просто глушить симптомы. Дайте своему телу возможность по-настоящему восстановиться и вернуться к естественному состоянию силы и легкости.
             </p>
             <button className="px-14 py-4 bg-white rounded-lg font-bold text-lg hover-elevate active-elevate-2 transition-all shadow-xl" 
                     style={{ color: colors.accentDark }}
