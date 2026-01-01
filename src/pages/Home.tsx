@@ -140,10 +140,10 @@ export default function Home() {
       content: (
         <div className="h-full flex flex-col justify-center py-2 space-y-6">
           <div className="space-y-6">
-            <h3 className="text-2xl font-light leading-tight text-accent" style={{ color: colors.accent }}>
+            <h3 className="text-2xl font-light leading-tight" style={{ color: colors.accent }}>
               Биорезонансная синергия и клеточный баланс
             </h3>
-            <div className="space-y-4 text-sm leading-relaxed opacity-90 text-slate-700">
+            <div className="space-y-4 text-sm leading-relaxed opacity-90" style={{ color: colors.textSecondary }}>
               <p>
                 Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. Процесс начинается с мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
               </p>
@@ -154,14 +154,14 @@ export default function Home() {
                 Возвращая вам природную энергию и жизненный тонус, мы создаем условия для естественного долголетия и высокого качества жизни в любом возрасте. Все компоненты подобраны с учетом синергического эффекта.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-6 pt-6 border-t border-slate-100">
+            <div className="grid grid-cols-2 gap-6 pt-6 border-t" style={{ borderColor: colors.accentLight }}>
               <div className="space-y-1">
-                <span className="text-[10px] uppercase tracking-[0.2em] opacity-40">Биодоступность</span>
-                <p className="text-xs font-medium">98% активного усвоения тканями.</p>
+                <span className="text-[10px] uppercase tracking-[0.2em] opacity-40" style={{ color: colors.textSecondary }}>Биодоступность</span>
+                <p className="text-xs font-medium" style={{ color: colors.text }}>98% активного усвоения тканями.</p>
               </div>
               <div className="space-y-1 text-right">
-                <span className="text-[10px] uppercase tracking-[0.2em] opacity-40">Метод</span>
-                <p className="text-xs font-medium">Квантовая активация клеток.</p>
+                <span className="text-[10px] uppercase tracking-[0.2em] opacity-40" style={{ color: colors.textSecondary }}>Метод</span>
+                <p className="text-xs font-medium" style={{ color: colors.text }}>Квантовая активация клеток.</p>
               </div>
             </div>
           </div>
