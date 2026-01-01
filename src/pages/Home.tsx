@@ -145,7 +145,7 @@ export default function Home() {
             </h3>
             <div className="space-y-4 text-sm leading-relaxed opacity-90" style={{ color: colors.textSecondary }}>
               <p>
-                Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. Процесс начинается with мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
+                Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. Процесс начинается с мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
               </p>
               <p>
                 Благодаря уникальному сочетанию природных компонентов и современных технологий, продукты активируют внутренние ресурсы здоровья, нормализуют обмен веществ и гармонизируют работу всех систем. Регулярное использование помогает не только устранить симптомы, но и воздействует на первопричину дискомфорта.
@@ -209,42 +209,34 @@ export default function Home() {
       </section>
 
       <section id="catalog" className="py-12 md:py-16" style={{ backgroundColor: colors.bgAlt }}>
-        <div className="max-w-[1500px] mx-auto px-4 lg:px-10">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.text }}>
               Каталог <span style={{ color: colors.accent }}>продуктов</span>
             </h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-6xl mx-auto px-4 md:px-0">
             {products.map((product) => (
               <motion.div 
                 key={product.id} 
-                className="flex flex-col md:flex-row rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative min-h-[294px]" 
+                className="grid grid-cols-1 md:grid-cols-[1fr_3.5fr] rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative" 
                 style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}`, zIndex: 1 }}
               >
-                {/* 
-                  ФИНАЛЬНОЕ РЕШЕНИЕ: Левая колонка - монолит.
-                  Она всегда занимает 100% высоты всей карточки.
-                */}
-                <div className="md:w-[220px] shrink-0 relative self-stretch" style={{ backgroundColor: colors.bgAlt }}>
-                   {/* Внутренний контейнер, который ВСЕГДА 3:4 */}
-                  <div className="w-full h-full aspect-[3/4] md:aspect-auto flex items-center justify-center">
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
-                      <product.icon className="w-full h-full max-w-[5.5rem] max-h-[5.5rem] object-contain" style={{ color: colors.accent }} />
+                <div className="aspect-[3/4] bg-[#f4f9f5] flex items-center justify-center w-full shrink-0" style={{ backgroundColor: colors.bgAlt }}>
+                  <div className="w-full h-full flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center p-4">
+                      <product.icon className="w-full h-full max-w-[4rem] max-h-[4rem]" style={{ color: colors.accent }} />
                     </div>
                   </div>
                 </div>
-                
-                <div className="flex-1 p-10 md:p-12 flex flex-col justify-center min-w-0">
+                <div className="p-8 md:p-10 flex flex-col justify-center">
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-bold shrink-0" style={{ backgroundColor: colors.accent }}>{product.id}</span>
-                    <h3 className="text-2xl font-bold truncate" style={{ color: colors.text }}>{product.name}</h3>
+                    <span className="w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-bold" style={{ backgroundColor: colors.accent }}>{product.id}</span>
+                    <h3 className="text-2xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
                   </div>
                   <p className="text-base leading-relaxed mb-6" style={{ color: colors.textSecondary }}>{product.description}</p>
-                  <div className="mt-auto">
-                    <button className="px-6 py-3 text-base font-medium rounded-lg transition-all hover:scale-105 active-elevate-2 w-fit" style={{ backgroundColor: colors.button, color: colors.buttonText }}>Подробнее</button>
-                  </div>
+                  <button className="px-6 py-3 text-base font-medium rounded-lg transition-all hover:scale-105 active-elevate-2 w-fit" style={{ backgroundColor: colors.button, color: colors.buttonText }}>Подробнее</button>
                 </div>
               </motion.div>
             ))}
