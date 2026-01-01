@@ -320,8 +320,7 @@ export default function Home() {
       <footer className="w-full border-t border-slate-200/50">
         <div className="w-full py-20 px-6" style={{ backgroundColor: colors.accentDark }}>
           <div className="max-w-4xl mx-auto text-center text-white relative">
-            <Waves className="absolute -top-10 left-1/2 -translate-x-1/2 w-full h-48 opacity-5 pointer-events-none" style={{ color: "#ffffff" }} />
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Ваше здоровье в ваших руках</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Естество природы в руках человека</h2>
             <p className="text-lg md:text-xl opacity-80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
               Присоединяйтесь к тысячам людей, которые уже выбрали натуральный путь к долголетию и жизненной энергии.
             </p>
