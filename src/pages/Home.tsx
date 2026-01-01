@@ -140,17 +140,17 @@ export default function Home() {
     (product: any) => (
       <motion.div 
         key={product.id} 
-        className="flex flex-col h-full rounded-lg overflow-hidden card-shadow mb-0 relative" 
+        className="flex flex-row h-full rounded-lg overflow-hidden card-shadow mb-0 relative" 
         style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}`, zIndex: 1 }}
       >
-        <div className="w-full shrink-0" style={{ backgroundColor: colors.bgAlt }}>
+        <div className="w-[40%] shrink-0" style={{ backgroundColor: colors.bgAlt }}>
           <div className="w-full aspect-[3/4] flex items-center justify-center relative overflow-hidden h-full">
             <div className="absolute inset-0 flex items-center justify-center p-4">
               <product.icon className="w-full h-full max-w-[4rem] max-h-[4rem]" style={{ color: colors.accent }} />
             </div>
           </div>
         </div>
-        <div className="w-full p-6 flex flex-col justify-center flex-1">
+        <div className="w-[60%] p-6 flex flex-col justify-center">
           <div className="flex items-center gap-4 mb-4">
             <span className="w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-bold" style={{ backgroundColor: colors.accent }}>{product.id}</span>
             <h3 className="text-xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
@@ -507,7 +507,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto px-4 md:px-0 scale-[0.7] origin-top">
+          <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto px-4 md:px-0 scale-[0.7] origin-top">
             {products.map((product) => (
               <div key={product.id} className="w-full h-full">
                 {cardVariants[designVariant](product)}
