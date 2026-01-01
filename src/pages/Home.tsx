@@ -216,27 +216,27 @@ export default function Home() {
             </h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-[1600px] mx-auto px-4 md:px-6">
             {products.map((product) => (
               <motion.div 
                 key={product.id} 
                 className="flex flex-col sm:flex-row rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 relative" 
                 style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}`, zIndex: 1 }}
               >
-                <div className="w-full sm:w-[280px] shrink-0 bg-[#f4f9f5]" style={{ backgroundColor: colors.bgAlt }}>
+                <div className="w-full sm:w-[240px] shrink-0 bg-[#f4f9f5]" style={{ backgroundColor: colors.bgAlt }}>
                   <div className="w-full h-full relative" style={{ paddingBottom: '133.33%' }}>
                     <div className="absolute inset-0 flex items-center justify-center p-4">
-                      <product.icon className="w-full h-full max-w-[4rem] max-h-[4rem]" style={{ color: colors.accent }} />
+                      <product.icon className="w-full h-full max-w-[3.5rem] max-h-[3.5rem]" style={{ color: colors.accent }} />
                     </div>
                   </div>
                 </div>
-                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ backgroundColor: colors.accent }}>{product.id}</span>
-                    <h3 className="text-xl md:text-2xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
+                <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-white text-base font-bold" style={{ backgroundColor: colors.accent }}>{product.id}</span>
+                    <h3 className="text-2xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
                   </div>
-                  <p className="text-sm md:text-base leading-relaxed mb-5" style={{ color: colors.textSecondary }}>{product.description}</p>
-                  <button className="px-6 py-2.5 text-sm md:text-base font-medium rounded-lg transition-all hover:scale-105 active-elevate-2 w-fit" style={{ backgroundColor: colors.button, color: colors.buttonText }}>Подробнее</button>
+                  <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: colors.textSecondary }}>{product.description}</p>
+                  <button className="px-8 py-3 text-base font-medium rounded-lg transition-all hover:scale-105 active-elevate-2 w-fit" style={{ backgroundColor: colors.button, color: colors.buttonText }}>Подробнее</button>
                 </div>
               </motion.div>
             ))}
