@@ -172,7 +172,7 @@ export default function Home() {
 
   const renderSteps = () => {
     return (
-      <div className="flex flex-col md:flex-row-reverse items-stretch gap-8 scale-[0.85] origin-center">
+      <div className="flex flex-col md:flex-row-reverse items-stretch gap-8 origin-center">
         <div className="w-full md:w-5/12 shrink-0 rounded-lg overflow-hidden" style={{ border: `0.0625rem solid ${colors.accentLight}` }}>
           <div className="aspect-[4/5] h-full">
             <SmartImage
@@ -188,7 +188,34 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center rounded-lg" style={{ backgroundColor: colors.cardBg, border: `0.0625rem solid ${colors.accentLight}` }}>
-          {variants[0].content}
+          <div className="h-full flex flex-col justify-center py-2 space-y-8">
+            <div className="space-y-8">
+              <h3 className="text-3xl font-light leading-tight" style={{ color: colors.text }}>
+                Биорезонансная синергия и клеточный баланс
+              </h3>
+              <div className="space-y-6 text-base leading-relaxed opacity-90" style={{ color: colors.textSecondary }}>
+                <p>
+                  Наши wellness-продукты основаны на принципах биорезонансного воздействия и натурального восстановления организма. Процесс начинается с мягкого очищения на клеточном уровне, что подготавливает тело к глубокой регенерации. 
+                </p>
+                <p>
+                  Благодаря уникальному сочетанию природных компонентов и современных технологий, продукты активируют внутренние ресурсы здоровья, нормализуют обмен веществ и гармонизируют работу всех систем. Регулярное использование помогает не только устранить симптомы, но и воздействует на первопричину дискомфорта.
+                </p>
+                <p>
+                  Возвращая вам природную энергию и жизненный тонус, мы создаем условия для естественного долголетия и высокого качества жизни в любом возрасте. Все компоненты подобраны с учетом синергического эффекта.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-6 pt-8 border-t" style={{ borderColor: colors.accentLight }}>
+                <div className="space-y-2">
+                  <span className="text-xs uppercase tracking-[0.2em] opacity-40" style={{ color: colors.textSecondary }}>Биодоступность</span>
+                  <p className="text-sm font-medium" style={{ color: colors.text }}>98% активного усвоения тканями.</p>
+                </div>
+                <div className="space-y-2 text-right">
+                  <span className="text-xs uppercase tracking-[0.2em] opacity-40" style={{ color: colors.textSecondary }}>Метод</span>
+                  <p className="text-sm font-medium" style={{ color: colors.text }}>Квантовая активация клеток.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
