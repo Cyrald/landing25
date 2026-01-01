@@ -217,7 +217,6 @@ export default function Home() {
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-6xl mx-auto px-4 md:px-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-6xl mx-auto px-4 md:px-0">
             {products.map((product, index) => {
               // 6 different implementations to satisfy: 
               // 1. Forced 3:4 aspect ratio for image/container
