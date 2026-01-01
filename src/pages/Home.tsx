@@ -172,7 +172,7 @@ export default function Home() {
 
   const renderSteps = () => {
     return (
-      <div className="flex flex-col md:flex-row items-stretch gap-8">
+      <div className="flex flex-col md:flex-row-reverse items-stretch gap-8 scale-[0.85] origin-center">
         <div className="w-full md:w-5/12 shrink-0 rounded-lg overflow-hidden" style={{ border: `0.0625rem solid ${colors.accentLight}` }}>
           <div className="aspect-[4/5] h-full">
             <SmartImage
