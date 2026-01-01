@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { ChevronDown, ExternalLink, Star, ChevronLeft, ChevronRight, Leaf, Quote, Activity } from "lucide-react";
+import { ChevronDown, Star, ChevronLeft, ChevronRight, Leaf, Quote, Activity } from "lucide-react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -346,8 +346,10 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {products.map((product) => (
               <motion.div key={product.id} className="flex flex-row rounded-xl overflow-hidden card-shadow scale-[0.9] origin-center" style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}` }}>
-                <div className="w-[40%] aspect-[3/4] flex items-center justify-center flex-shrink-0" style={{ backgroundColor: colors.bgAlt }}>
-                  <product.icon className="w-16 h-16 mx-auto mb-3" style={{ color: colors.accent }} />
+                <div className="w-[40%] aspect-[3/4] flex items-center justify-center flex-shrink-0 relative overflow-hidden" style={{ backgroundColor: colors.bgAlt }}>
+                  <div className="absolute inset-0 flex items-center justify-center p-4">
+                    <product.icon className="w-full h-full max-w-[4rem] max-h-[4rem]" style={{ color: colors.accent }} />
+                  </div>
                 </div>
                 <div className="w-[60%] p-8 flex flex-col justify-center">
                   <div className="flex items-center gap-4 mb-4">
