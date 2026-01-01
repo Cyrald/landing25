@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { ChevronDown, Star, ChevronLeft, ChevronRight, Leaf, Quote, Activity } from "lucide-react";
+import { ChevronDown, Star, ChevronLeft, ChevronRight, Leaf, Quote, Activity, Heart, ShoppingBag, ArrowRight, ShieldCheck, Package, Droplets, Waves } from "lucide-react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -58,8 +58,6 @@ const colors = {
   buttonText: currentPalette.colors.buttonText,
   gradient: `linear-gradient(135deg, ${currentPalette.colors.accent} 0%, ${currentPalette.colors.accentDark} 50%, ${currentPalette.colors.text} 100%)`,
 };
-
-import { ctaVariantsData } from "../ctaVariants";
 
 // --- Page Components ---
 function ProductImage({ text = "Продукт", aspectRatio = "3/4", className = "", bgColor }: { text?: string; aspectRatio?: string; className?: string; bgColor: string }) {
@@ -131,6 +129,40 @@ const HeroSection = () => {
   );
 };
 
+const CTASection = () => {
+  return (
+    <div className="w-full py-16 px-6 relative overflow-hidden" style={{ backgroundColor: colors.accentDark }}>
+      <Waves className="absolute bottom-0 left-0 w-full h-40 opacity-10 text-white" />
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10 text-white">
+         <div className="flex-1 space-y-6 text-center md:text-left">
+            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm mx-auto md:mx-0">
+               <Droplets className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-4xl font-bold leading-tight uppercase tracking-tight">Ваше здоровье — наш приоритет</h2>
+            <p className="text-lg opacity-80 font-light leading-relaxed">Натуральное очищение и восстановление биодоступности вашей воды. Вернитесь к истокам чистоты с нашими технологиями.</p>
+            <button className="px-12 py-4 bg-white font-bold text-lg rounded-lg hover-elevate active-elevate-2 transition-all shadow-lg" 
+                    style={{ color: colors.accentDark }}
+                    onClick={() => window.location.hash = 'catalog'}>
+               Оформить доставку
+            </button>
+         </div>
+         <div className="w-full md:w-1/3 grid grid-cols-1 gap-4">
+            {[
+              { l: "Чистота", v: "100%" },
+              { l: "Структура", v: "Природная" },
+              { l: "Баланс", v: "Оптимальный" }
+            ].map((item, i) => (
+              <div key={i} className="p-8 border border-white/20 bg-white/5 backdrop-blur-md rounded-lg text-center">
+                 <div className="text-3xl font-bold text-white mb-1">{item.v}</div>
+                 <div className="text-[10px] uppercase font-bold tracking-widest opacity-60">{item.l}</div>
+              </div>
+            ))}
+         </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const swiperRef = useRef<any>(null);
@@ -172,22 +204,8 @@ export default function Home() {
     }
   ];
 
-  const [ctaVariant, setCtaVariant] = useState(1);
-
   return (
     <div className="min-h-screen" style={{ backgroundColor: colors.bg }}>
-      {/* Switcher UI in Dev Mode - Fixed at bottom */}
-      <div className="fixed bottom-4 left-4 z-[100] bg-white/80 backdrop-blur-md p-2 rounded-lg shadow-xl border border-slate-200 flex gap-2">
-        <select 
-          className="text-xs p-1 rounded-md border border-slate-300 outline-none"
-          value={ctaVariant}
-          onChange={(e) => setCtaVariant(Number(e.target.value))}
-        >
-          {ctaVariantsData.map(v => (
-            <option key={v.id} value={v.id}>{v.name}</option>
-          ))}
-        </select>
-      </div>
       <HeroSection />
 
       {/* How it Works Section */}
@@ -334,7 +352,7 @@ export default function Home() {
 
       {/* Footer Section */}
       <footer className="w-full border-t border-slate-200/50">
-        {ctaVariantsData.find(v => v.id === ctaVariant)?.content(colors)}
+        <CTASection />
       </footer>
     </div>
   );
