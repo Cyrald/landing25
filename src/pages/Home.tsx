@@ -175,16 +175,16 @@ export default function Home() {
       <HeroSection />
 
       {/* How it Works Section */}
-      <section className="py-14 md:py-20" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.text }}>
+      <section className="py-20 md:py-28" style={{ backgroundColor: colors.bg }}>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-5" style={{ color: colors.text }}>
               Как это <span style={{ color: colors.accent }}>работает</span>
             </h2>
-            <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
+            <div className="w-28 h-1.5 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
 
-          <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
+          <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-md border border-slate-100">
             <div className="flex flex-col md:flex-row items-stretch">
               <div className="w-full md:w-5/12 shrink-0">
                 <div className="aspect-[4/5] h-full">
@@ -194,13 +194,13 @@ export default function Home() {
                     className="w-full h-full object-cover"
                     placeholderContent={
                       <div className="w-full h-full flex items-center justify-center bg-slate-50">
-                        <Activity className="w-12 h-12 text-slate-300" />
+                        <Activity className="w-14 h-14 text-slate-300" />
                       </div>
                     }
                   />
                 </div>
               </div>
-              <div className="w-full md:w-7/12 p-8 md:p-12 flex flex-col justify-center">
+              <div className="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center">
                 {variants[0].content}
               </div>
             </div>
@@ -308,27 +308,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 border-t border-slate-100" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4" style={{ color: colors.text }}>
-            Готовы начать?
+      {/* Footer Section */}
+      <footer className="py-20 bg-white border-t border-slate-100">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
+            <Leaf className="w-4 h-4 text-accent" />
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">Wellness Lifestyle</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: colors.text }}>
+            Начните новую главу вашего здоровья
           </h2>
-          <p className="text-lg mb-8" style={{ color: colors.textSecondary }}>
-            Откройте для себя силу природного восстановления уже сегодня.
+          
+          <p className="text-lg mb-10 text-slate-500 max-w-xl mx-auto leading-relaxed">
+            Присоединяйтесь к нашему сообществу и откройте для себя силу природного восстановления.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 rounded-xl font-bold transition-all hover-elevate active-elevate-2 shadow-lg shadow-accent/10" 
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <button className="w-full sm:w-auto px-12 py-4 rounded-xl font-bold transition-all hover-elevate active-elevate-2 shadow-lg shadow-accent/10" 
                     style={{ backgroundColor: colors.button, color: colors.buttonText }}>
-              Перейти в каталог
-            </button>
-            <button className="px-8 py-4 rounded-xl font-bold transition-all hover:bg-slate-50 border border-slate-200" 
-                    style={{ color: colors.text }}>
-              Связаться с нами
+              Магазин Wellness
             </button>
           </div>
+
+          <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-sm font-medium text-slate-400">
+              © 2026 Wellness Products. Природная энергия.
+            </div>
+            <div className="flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+              <a href="#" className="hover:text-accent transition-colors">Политика</a>
+              <a href="#" className="hover:text-accent transition-colors">Контакты</a>
+              <a href="#catalog" className="hover:text-accent transition-colors">Каталог</a>
+            </div>
+          </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
