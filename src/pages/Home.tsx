@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { ChevronDown, Star, ChevronLeft, ChevronRight, Leaf, Quote, Activity, Heart, ShoppingBag, ArrowRight, ShieldCheck, Package, Droplets, Waves } from "lucide-react";
+import { ChevronDown, Star, ChevronLeft, ChevronRight, Leaf, Quote, Activity, Droplets, Waves } from "lucide-react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
