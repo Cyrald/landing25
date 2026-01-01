@@ -216,26 +216,26 @@ export default function Home() {
             </h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-6xl mx-auto px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-7xl mx-auto px-4 md:px-0">
             {products.map((product) => (
               <motion.div 
                 key={product.id} 
-                className="flex flex-col md:flex-row rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative min-h-[400px]" 
+                className="flex flex-col md:flex-row rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative" 
                 style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}`, zIndex: 1 }}
               >
-                <div className="w-full md:w-[40%] shrink-0" style={{ backgroundColor: colors.bgAlt }}>
-                  <div className="w-full aspect-[3/4] flex items-center justify-center relative overflow-hidden h-full">
+                <div className="w-full md:w-[35%] shrink-0" style={{ backgroundColor: colors.bgAlt }}>
+                  <div className="w-full aspect-[3/4] flex items-center justify-center relative overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center p-4">
                       <product.icon className="w-full h-full max-w-[4.5rem] max-h-[4.5rem]" style={{ color: colors.accent }} />
                     </div>
                   </div>
                 </div>
-                <div className="w-full md:w-[60%] p-8 md:p-10 flex flex-col justify-center">
+                <div className="w-full md:w-[65%] p-8 md:p-10 flex flex-col justify-center">
                   <div className="flex items-center gap-4 mb-5">
                     <span className="w-11 h-11 rounded-full flex items-center justify-center text-white text-lg font-bold" style={{ backgroundColor: colors.accent }}>{product.id}</span>
                     <h3 className="text-2xl font-bold" style={{ color: colors.text }}>{product.name}</h3>
                   </div>
-                  <p className="text-base leading-relaxed mb-8 flex-1" style={{ color: colors.textSecondary }}>{product.description}</p>
+                  <p className="text-base leading-relaxed mb-8" style={{ color: colors.textSecondary }}>{product.description}</p>
                   <button className="w-fit px-8 py-3.5 text-base font-medium rounded-lg transition-all hover:scale-105 active-elevate-2" style={{ backgroundColor: colors.button, color: colors.buttonText }}>Подробнее</button>
                 </div>
               </motion.div>
