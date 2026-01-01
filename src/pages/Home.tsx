@@ -283,7 +283,7 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <section className="py-12 md:py-16" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-[85rem] xl:max-w-[100rem] mx-auto px-20 lg:px-40">
+        <div className="max-w-[85rem] mx-auto px-4 md:px-0">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: colors.text }}>Истории наших клиентов</h2>
           <div className="relative group">
             <Swiper 
