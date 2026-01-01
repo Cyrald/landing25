@@ -220,11 +220,11 @@ export default function Home() {
             {products.map((product) => (
               <motion.div 
                 key={product.id} 
-                className="grid grid-cols-1 md:grid-cols-[220px_1fr] rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative" 
+                className="grid grid-cols-1 md:grid-cols-[220px_1fr] rounded-lg overflow-hidden card-shadow scale-[0.9] origin-center mb-0 md:mb-0 relative items-stretch" 
                 style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.accentLight}`, zIndex: 1 }}
               >
-                <div className="aspect-[3/4] bg-[#f4f9f5] flex items-center justify-center w-full shrink-0" style={{ backgroundColor: colors.bgAlt }}>
-                  <div className="w-full h-full flex items-center justify-center relative overflow-hidden">
+                <div className="bg-[#f4f9f5] flex items-center justify-center w-full shrink-0 h-full" style={{ backgroundColor: colors.bgAlt }}>
+                  <div className="w-full aspect-[3/4] flex items-center justify-center relative overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center p-4">
                       <product.icon className="w-full h-full max-w-[4rem] max-h-[4rem]" style={{ color: colors.accent }} />
                     </div>
