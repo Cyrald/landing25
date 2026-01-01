@@ -84,7 +84,7 @@ function ProductImage({ text = "Продукт", aspectRatio = "3/4", className 
 const HeroSection = () => {
   return (
     <section className="pt-8 pb-12 md:pt-10 md:pb-16" style={{ backgroundColor: colors.bg }}>
-      <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-[85rem] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -176,7 +176,7 @@ export default function Home() {
 
       {/* How it Works Section */}
       <section className="py-20 md:py-28" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[85rem] mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.text }}>
               Как это <span style={{ color: colors.accent }}>работает</span>
@@ -209,14 +209,14 @@ export default function Home() {
       </section>
 
       <section id="catalog" className="py-12 md:py-16" style={{ backgroundColor: colors.bgAlt }}>
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
+        <div className="max-w-[100rem] mx-auto px-4 lg:px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.text }}>
               Каталог <span style={{ color: colors.accent }}>продуктов</span>
             </h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: colors.gradient }}></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-6xl mx-auto px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 max-w-7xl mx-auto px-4 md:px-0">
             {products.map((product) => (
               <motion.div 
                 key={product.id} 
@@ -246,7 +246,7 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <section className="py-12 md:py-16" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[85rem] xl:max-w-[100rem] mx-auto px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: colors.text }}>Истории наших клиентов</h2>
           <div className="relative group">
             <Swiper 
@@ -296,7 +296,7 @@ export default function Home() {
 
       {/* FAQ Section */}
       <section className="py-12 md:py-16" style={{ backgroundColor: colors.bgAlt }}>
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: colors.text }}>Вопросы и ответы</h2>
           <div className="space-y-4">
             {faqItems.map((item, idx) => (
@@ -319,7 +319,7 @@ export default function Home() {
       {/* Footer Section */}
       <footer className="w-full border-t border-slate-200/50">
         <div className="w-full py-20 px-6" style={{ backgroundColor: colors.accentDark }}>
-          <div className="max-w-4xl mx-auto text-center text-white relative">
+          <div className="max-w-5xl mx-auto text-center text-white relative">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Естество природы в руках человека</h2>
             <p className="text-lg md:text-xl opacity-80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
               Ваше здоровье - это ваш главный актив, от которого зависит каждый ваш день. Начните заботиться о нем прямо сейчас!
