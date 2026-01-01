@@ -222,7 +222,7 @@ export default function Home() {
             {products.map((product) => (
               <motion.div 
                 key={product.id}
-                className="group relative flex flex-col md:flex-row rounded-xl overflow-hidden shadow-lg scale-[0.9] origin-center bg-white items-stretch min-h-[320px]"
+                className="group relative flex flex-col md:flex-row rounded-xl overflow-hidden shadow-lg scale-x-[1.2] scale-y-[1] origin-center bg-white items-stretch min-h-[320px]"
                 style={{ border: `1px solid ${colors.accentLight}` }}
               >
                 {/* Левая часть: Изображение */}
